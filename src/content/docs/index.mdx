@@ -1,18 +1,75 @@
 ---
 title: Sedrava
-description: Official documentation for the Sedrava programming language.
+description: A declarative language for small offline applications, from one source to Web and Android.
 template: splash
 hero:
-  tagline: Describe state, behavior, and transitions with clarity.
+  tagline: Describe the application. Generate the application.
   actions:
     - text: Get started
       link: /getting-started/
       icon: right-arrow
       variant: primary
-    - text: GitHub
-      link: https://github.com/VasiliiBabkin/intent-lang
-      icon: external
-      variant: minimal
+    - text: Explore the language
+      link: /language-overview/
+      variant: secondary
 ---
 
-Sedrava is an experimental programming language under active development. Documentation and examples will evolve alongside the language.
+<div className="sd-intro">
+  <div>
+    <p className="sd-eyebrow">Code less boilerplate. Express more intent.</p>
+    <h2>State. Actions. Rules. An application.</h2>
+    <p>Sedrava is an experimental declarative programming language. Describe the behavior of a small application once, then generate a standalone Web app or an Android/Jetpack Compose project.</p>
+  </div>
+  <img src="/branding/sedrava-mark.svg" width="128" height="144" alt="Sedrava folded amethyst ribbon with a gold cut" />
+</div>
+
+## One source, shared behavior
+
+<div className="sd-feature-grid">
+  <article className="sd-feature">
+    <span className="sd-number">01 / DECLARE</span>
+    <h3>Describe state</h3>
+    <p>Define integers, booleans, derived values and simple UI elements without platform setup.</p>
+  </article>
+  <article className="sd-feature">
+    <span className="sd-number">02 / PROTECT</span>
+    <h3>Enforce invariants</h3>
+    <p>Actions are atomic: rejected final states and arithmetic failures never partially change accepted state.</p>
+  </article>
+  <article className="sd-feature">
+    <span className="sd-number">03 / GENERATE</span>
+    <h3>Build two targets</h3>
+    <p>Create a self-contained Web page or the sources of a native Android project from the same program.</p>
+  </article>
+</div>
+
+## A small Sedrava program
+
+~~~text title="hello.sdr"
+app "Hello Sedrava"
+state count = 0
+action add: count = count + 1
+rule count >= 0 and count <= 10
+test once: add -> count == 1
+screen main:
+    text "Hello Sedrava"
+    value count
+    button "Add" -> add
+~~~
+
+Use <code>sedrava check</code> to validate, <code>sedrava test</code> to run embedded tests and <code>sedrava build web</code> or <code>sedrava build android</code> to generate a target.
+
+<div className="sd-status">
+  <strong>0.9.0a1 · Alpha candidate</strong>
+  <span>Integrated in the language repository, but not a published release. Intended for learning and experiments, not production apps. Installation currently uses the GitHub source checkout, not PyPI.</span>
+</div>
+
+## Explore Sedrava
+
+<div className="sd-links">
+  <a href="/getting-started/">Install from source</a>
+  <a href="/examples/">Browse examples</a>
+  <a href="/language-overview/">Language overview</a>
+  <a href="/roadmap/">Roadmap</a>
+  <a href="https://github.com/VasiliiBabkin/sedrava">Source on GitHub</a>
+</div>
