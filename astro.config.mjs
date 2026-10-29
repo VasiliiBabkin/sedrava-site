@@ -36,6 +36,7 @@ export default defineConfig({
           translations: { ru: 'Изучение' },
           items: [
             { slug: 'language-overview' },
+            { slug: 'text-010' },
           ],
         },
         {

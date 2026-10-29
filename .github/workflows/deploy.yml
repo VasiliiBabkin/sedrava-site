@@ -1,6 +1,8 @@
 name: Deploy Sedrava website
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -41,6 +43,13 @@ jobs:
           printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+
+      - name: Verify generated site pages
+        run: |
+          test -s dist/index.html
+          test -s dist/ru/index.html
+          test -s dist/text-010/index.html
+          test -s dist/ru/text-010/index.html
 
       - name: Upload site files over SSH
         env:

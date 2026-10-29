@@ -7,7 +7,7 @@ Sedrava 0.9 is a deliberately small language for local applications. Its source 
 
 ## State and derived values
 
-The two supported state types are **signed 32-bit integers** and **booleans**. A derived value is calculated from state and cannot be assigned directly.
+The published 0.9 baseline supports **signed 32-bit integers** and **booleans**. The unreleased 0.10 development increment also supports **text**; see [text values](/text-010/). A derived value is calculated from state and cannot be assigned directly.
 
 ~~~text
 state goal = 5
@@ -58,6 +58,6 @@ The 0.9 UI supports literal text, displayed values, buttons, integer input and s
 
 ## Important limitations
 
-The alpha does **not** yet support string state, collections, files, asynchronous operations, automatic timers, modules or navigation. Web persistence uses localStorage; Android uses SharedPreferences. Neither is suitable for secrets, and migration is not supported.
+The published 0.9 alpha does **not** support text state. Text state is implemented in unreleased 0.10 source; collections, files, asynchronous operations, automatic timers, modules and navigation remain unsupported. Web persistence uses localStorage; Android uses SharedPreferences. Neither is suitable for secrets, and migration is not supported.
 
 Read the authoritative [0.9 language reference](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/LANGUAGE_0_9.md) and [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
