@@ -34,7 +34,7 @@ Sedrava 0.9.0a1 is the published experimental alpha baseline. First-class text i
 
 ## Deployment
 
-The public site is statically served by Nginx with FASTPANEL on a VDS. Deployment is manual via the [GitHub Actions workflow](https://github.com/VasiliiBabkin/sedrava-site/actions/workflows/deploy.yml), using SSH and tar.
+The public site is statically served by Nginx with FASTPANEL on a VDS. Deployment runs automatically on pushes to main and can also be started manually via the [GitHub Actions workflow](https://github.com/VasiliiBabkin/sedrava-site/actions/workflows/deploy.yml), using SSH and tar.
 
 For details, see DEPLOYMENT.md. Never commit SSH keys or any other server credentials.
 
