@@ -44,6 +44,7 @@ export default defineConfig({
           translations: { ru: 'Проект' },
           items: [
             { slug: 'roadmap' },
+            { slug: 'upstream-status' },
           ],
         },
       ],
