@@ -38,14 +38,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          if git diff --quiet -- src/content/docs/upstream-status.md src/content/docs/ru/upstream-status.md; then
+          git add src/content/docs/upstream-status.md src/content/docs/ru/upstream-status.md
+          if git diff --cached --quiet; then
             echo "No upstream revision change."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           BRANCH="automation/sedrava-upstream-status"
-          git add src/content/docs/upstream-status.md src/content/docs/ru/upstream-status.md
           git commit -m "docs: sync upstream language revision"
           git push --force-with-lease origin "HEAD:refs/heads/$BRANCH"
           if ! gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number' | grep -q '[0-9]'; then
