@@ -1,9 +1,9 @@
 ---
 title: Getting started
-description: Install the Sedrava alpha candidate from GitHub and generate a first Web application.
+description: Install Sedrava from GitHub and generate a first Web application.
 ---
 
-Sedrava 0.9.0a1 is an **unreleased alpha candidate**, currently meant for experimentation. Do not install Sedrava from PyPI: no official Sedrava release is published there yet.
+Sedrava 0.9.0a1 is a **published experimental GitHub alpha**. Sedrava is not published on PyPI. The source checkout currently contains additional **unreleased 0.10.0.dev0 text support**; see the [text reference](/text-010/).
 
 ## Requirements
 
