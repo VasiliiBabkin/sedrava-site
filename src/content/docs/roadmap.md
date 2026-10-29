@@ -7,9 +7,9 @@ Sedrava is developed incrementally. Version numbers below are planning milestone
 
 | Stage | Focus | Status |
 | --- | --- | --- |
-| **0.9** | State, actions, invariants, tests, basic Web/Android generators | Alpha candidate, not published |
-| **0.10** | Richer UI, themes, navigation, multi-screen app | Planned |
-| **0.11** | Strings, collections, records and migration strategy | Planned |
+| **0.9** | State, actions, invariants, tests, basic Web/Android generators | Published GitHub alpha |
+| **0.10** | Text input, richer UI, themes, navigation, multi-screen app | Text core implemented in unreleased source; remaining UI planned |
+| **0.11** | Collections, records and migration strategy | Planned; text core moved forward to 0.10 |
 | **0.12–0.13** | Device capabilities, modules, reusable components | Planned |
 | **0.14–0.15** | Editor integration and desktop target | Planned |
 | **0.16–0.19** | Hardening, security, accessibility and compatibility | Planned |
