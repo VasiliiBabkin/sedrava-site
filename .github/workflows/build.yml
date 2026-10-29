@@ -15,3 +15,9 @@ jobs:
           node-version: '22'
       - run: npm install
       - run: npm run build
+      - name: Verify bilingual documentation pages
+        run: |
+          test -s dist/index.html
+          test -s dist/ru/index.html
+          test -s dist/text-010/index.html
+          test -s dist/ru/text-010/index.html
