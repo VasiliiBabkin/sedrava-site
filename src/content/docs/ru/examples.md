@@ -22,6 +22,10 @@ sedrava build web examples/reference_09.sdr --output build/web/index.html
 python -m http.server 8000 --directory build/web
 ~~~
 
+## Неопубликованный пример 0.10
+
+[Текстовый профиль](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/text_profile.sdr) демонстрирует ввод Unicode, сравнение, сохранение и атомарный отказ. Требуются **неопубликованные исходники разработки**, а не версия 0.9. См. [справочник текста](/ru/text-010/).
+
 ## Другие программы
 
 В [полном каталоге примеров](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) доступны:
