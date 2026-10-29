@@ -47,6 +47,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           BRANCH="automation/sedrava-upstream-status"
           git commit -m "docs: sync upstream language revision"
+          git fetch origin "+refs/heads/$BRANCH:refs/remotes/origin/$BRANCH" || true
           git push --force-with-lease origin "HEAD:refs/heads/$BRANCH"
           if ! gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number' | grep -q '[0-9]'; then
             gh pr create --base main --head "$BRANCH" --title "docs: sync Sedrava upstream revision" --body "Automated bilingual upstream source revision and authoritative documentation links. Review before merging. No language release is implied."
