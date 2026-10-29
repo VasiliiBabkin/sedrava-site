@@ -1,0 +1,53 @@
+name: Sync language documentation
+
+on:
+  schedule:
+    - cron: '23 5 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sedrava-docs-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+      - name: Check out language (read-only public repository)
+        uses: actions/checkout@v4
+        with:
+          repository: VasiliiBabkin/sedrava
+          ref: main
+          path: upstream-language
+          persist-credentials: false
+      - name: Generate source status
+        run: |
+          SHA="$(git -C upstream-language rev-parse HEAD)"
+          python3 scripts/sync_upstream.py --source upstream-language --sha "$SHA"
+      - name: Create or update review PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- src/content/docs/upstream-status.md src/content/docs/ru/upstream-status.md; then
+            echo "No upstream revision change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="automation/sedrava-upstream-status"
+          git add src/content/docs/upstream-status.md src/content/docs/ru/upstream-status.md
+          git commit -m "docs: sync upstream language revision"
+          git push --force-with-lease origin "HEAD:refs/heads/$BRANCH"
+          if ! gh pr list --head "$BRANCH" --base main --state open --json number --jq '.[0].number' | grep -q '[0-9]'; then
+            gh pr create --base main --head "$BRANCH" --title "docs: sync Sedrava upstream revision" --body "Automated bilingual upstream source revision and authoritative documentation links. Review before merging. No language release is implied."
+          fi
