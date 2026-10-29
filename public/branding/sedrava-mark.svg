@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 144" role="img" aria-labelledby="title desc">
+  <title id="title">Sedrava symbol</title>
+  <desc id="desc">A folded amethyst ribbon with a golden diagonal cut forming a dynamic S</desc>
+  <defs>
+    <linearGradient id="upper" x1="0" y1="1" x2="1" y2="0">
+      <stop stop-color="#422763"/><stop offset=".59" stop-color="#7650A8"/><stop offset="1" stop-color="#503279"/>
+    </linearGradient>
+    <linearGradient id="lower" x1="0" y1=".85" x2="1" y2=".12">
+      <stop stop-color="#9B62C0"/><stop offset=".46" stop-color="#583C82"/><stop offset="1" stop-color="#291B46"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2=".95">
+      <stop stop-color="#EFC982"/><stop offset=".45" stop-color="#D5AD60"/><stop offset="1" stop-color="#B98636"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#upper)" d="M20 64C25 41 36 29 57 20L117 0 104 39C101 49 92 56 80 61L25 84C14 84 13 75 20 64Z"/>
+  <path fill="url(#gold)" d="M25 78C43 69 70 60 104 43L94 63C88 74 67 77 48 88L23 99C14 95 15 86 25 78Z"/>
+  <path fill="url(#lower)" d="M23 93C36 82 56 78 80 69L92 64C104 72 111 81 107 94 105 104 95 109 82 114L0 144 17 107C19 102 21 97 23 93Z"/>
+  <path fill="#291B46" opacity=".22" d="M80 69L92 64C104 72 111 81 107 94 105 104 95 109 82 114L60 122C90 101 93 84 80 69Z"/>
+</svg>

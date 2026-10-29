@@ -1,0 +1,76 @@
+
+/* Sedrava brand: amethyst, matte gold, and a calm ivory surface. */
+:root {
+  --sd-amethyst: #583c82;
+  --sd-amethyst-deep: #35234f;
+  --sd-gold: #d5ad60;
+  --sd-ivory: #f5f0e8;
+  --sl-font: Inter, "Segoe UI", Arial, sans-serif;
+  --sl-content-width: 52rem;
+  --sl-color-accent-low: #2f2147;
+  --sl-color-accent: #c8a2ea;
+  --sl-color-accent-high: #f1e8ff;
+}
+:root[data-theme="light"] {
+  --sl-color-accent-low: #e8daf4;
+  --sl-color-accent: #583c82;
+  --sl-color-accent-high: #35234f;
+  --sl-color-bg: #fcfaf7;
+  --sl-color-bg-nav: #fcfaf7;
+  --sl-color-bg-sidebar: #faf7f2;
+}
+:root[data-theme="dark"] {
+  --sl-color-bg: #151122;
+  --sl-color-bg-nav: #171225;
+  --sl-color-bg-sidebar: #191329;
+}
+.site-title { font-weight: 760; letter-spacing: -.045em; }
+.site-title img { width: 1.65rem; height: 1.85rem; object-fit: contain; }
+.sl-markdown-content h2 { letter-spacing: -.035em; }
+.sl-markdown-content .sd-eyebrow { margin-top: 0; font-size: .77rem; letter-spacing: .16em; font-weight: 750; text-transform: uppercase; color: var(--sd-gold); }
+.sl-markdown-content .sd-intro {
+  max-width: 68rem; padding: 2.25rem 2.3rem; margin: 2.5rem auto 0;
+  border-radius: 1.45rem; border: 1px solid rgba(213,173,96,.30);
+  background: linear-gradient(115deg,#231933 0%,#35234f 60%,#513873 100%);
+  color: #fbf9ff; display:grid; grid-template-columns: 1fr 7rem; align-items:center; gap:2rem;
+  box-shadow: 0 24px 60px rgba(19,12,34,.15);
+}
+.sl-markdown-content .sd-intro h2 { color:#fff; font-weight:760; margin:.45rem 0 .7rem; font-size: clamp(1.5rem,3vw,2.3rem); line-height:1.2; }
+.sl-markdown-content .sd-intro p:not(.sd-eyebrow) { color:#e8dfef; margin:0; line-height:1.65; font-size:1rem; }
+.sl-markdown-content .sd-intro img { width: 100%; max-height: 10rem; filter: drop-shadow(0 14px 20px rgba(10,5,18,.3)); }
+.sl-markdown-content .sd-feature-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1rem; margin:1.4rem 0 2.8rem; }
+.sl-markdown-content .sd-feature { min-width:0; padding:1.4rem 1.3rem 1.5rem; border:1px solid var(--sl-color-gray-5); border-radius:1.15rem; background:var(--sl-color-bg); }
+.sl-markdown-content .sd-feature .sd-number { font-size:.73rem; font-weight:800; letter-spacing:.11em; color:var(--sd-amethyst); }
+:root[data-theme="dark"] .sl-markdown-content .sd-feature .sd-number {color:#d5ad60;}
+.sl-markdown-content .sd-feature h3 { font-size:1.14rem; margin:.85rem 0 .55rem; letter-spacing:-.025em; }
+.sl-markdown-content .sd-feature p { font-size:.93rem; line-height:1.68; color:var(--sl-color-gray-2); margin:0; }
+:root[data-theme="light"] .sl-markdown-content .sd-feature p { color:#514c59; }
+.sl-markdown-content .sd-status {
+  display:flex; gap:1rem; align-items:flex-start; margin:1.5rem 0 2rem; padding:1.1rem 1.3rem;
+  border-left:3px solid var(--sd-gold); border-radius:0 .85rem .85rem 0; background:var(--sl-color-gray-6);
+}
+.sl-markdown-content .sd-status strong { white-space:nowrap; color:var(--sl-color-text); }
+.sl-markdown-content .sd-status span { line-height:1.65; font-size:.92rem; color:var(--sl-color-gray-2); }
+:root[data-theme="light"] .sl-markdown-content .sd-status span { color:#494452; }
+.sl-markdown-content .sd-links { display:flex; flex-wrap:wrap; gap:.8rem; margin-top:1.4rem; }
+.sl-markdown-content .sd-links a {
+  display:inline-flex; text-decoration:none; align-items:center; padding:.72rem 1rem; border-radius:.72rem;
+  border:1px solid var(--sl-color-gray-5); font-weight:650; transition:border-color .15s,transform .15s;
+}
+.sl-markdown-content .sd-links a:hover { border-color:var(--sd-gold); transform:translateY(-1px); }
+.hero { padding-block: 3.4rem 2.6rem; }
+.hero .tagline { max-width: 38rem; }
+.hero .action.primary { background:var(--sd-amethyst); border-color:var(--sd-amethyst); color:#fff; }
+.hero .action.primary:hover { background:var(--sd-amethyst-deep); border-color:var(--sd-amethyst-deep); }
+:root[data-theme="dark"] .hero .action.primary { background:#d5ad60; color:#271937; border-color:#d5ad60; }
+@media (max-width: 50rem) {
+  .sl-markdown-content .sd-feature-grid { grid-template-columns:1fr; }
+  .sl-markdown-content .sd-intro { grid-template-columns:1fr 5.5rem; padding:1.4rem; gap:1rem; border-radius:1rem; }
+  .sl-markdown-content .sd-intro h2 {font-size:1.45rem;}
+  .sl-markdown-content .sd-status {display:block;}
+  .sl-markdown-content .sd-status strong {display:block; margin-bottom:.3rem;}
+}
+@media (prefers-reduced-motion: reduce) {
+  .sl-markdown-content .sd-links a {transition:none;}
+  .sl-markdown-content .sd-links a:hover { transform:none; }
+}

@@ -6,21 +6,43 @@ export default defineConfig({
   integrations: [
     starlight({
       title: 'Sedrava',
-      // English pages live directly in src/content/docs and use the site root.
-      // Russian pages live in src/content/docs/ru and use the /ru/ prefix.
+      description: 'Official website and documentation of the experimental Sedrava programming language.',
+      logo: {
+        src: './src/assets/sedrava-mark.svg',
+        alt: 'Sedrava',
+      },
+      customCss: ['./src/styles/brand.css'],
       locales: {
         root: { label: 'English', lang: 'en' },
         ru: { label: 'Русский', lang: 'ru' },
       },
       social: [
-        { icon: 'github', label: 'GitHub', href: 'https://github.com/VasiliiBabkin/intent-lang' },
+        { icon: 'github', label: 'GitHub', href: 'https://github.com/VasiliiBabkin/sedrava' },
       ],
+      editLink: {
+        baseUrl: 'https://github.com/VasiliiBabkin/sedrava-site/edit/main/',
+      },
       sidebar: [
         {
-          label: 'Guides',
-          translations: { ru: 'Руководства' },
+          label: 'Start',
+          translations: { ru: 'Начало' },
           items: [
-            { label: 'Getting started', translations: { ru: 'Начало работы' }, slug: 'getting-started' },
+            { slug: 'getting-started' },
+            { slug: 'examples' },
+          ],
+        },
+        {
+          label: 'Learn',
+          translations: { ru: 'Изучение' },
+          items: [
+            { slug: 'language-overview' },
+          ],
+        },
+        {
+          label: 'Project',
+          translations: { ru: 'Проект' },
+          items: [
+            { slug: 'roadmap' },
           ],
         },
       ],

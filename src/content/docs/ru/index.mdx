@@ -1,18 +1,75 @@
 ---
 title: Sedrava
-description: Официальная документация языка программирования Sedrava.
+description: "Декларативный язык для небольших автономных приложений: один исходник для Web и Android."
 template: splash
 hero:
-  tagline: Описывайте состояния, поведение и переходы ясно.
+  tagline: Опиши приложение — получи приложение.
   actions:
     - text: Начало работы
       link: /ru/getting-started/
       icon: right-arrow
       variant: primary
-    - text: GitHub
-      link: https://github.com/VasiliiBabkin/intent-lang
-      icon: external
-      variant: minimal
+    - text: О языке
+      link: /ru/language-overview/
+      variant: secondary
 ---
 
-Sedrava — экспериментальный язык программирования в активной разработке. Документация и примеры будут развиваться вместе с языком.
+<div className="sd-intro">
+  <div>
+    <p className="sd-eyebrow">Меньше служебного кода. Больше смысла.</p>
+    <h2>Состояния. Действия. Правила. Приложение.</h2>
+    <p>Sedrava — экспериментальный декларативный язык программирования. Опиши поведение небольшого приложения один раз, а затем создай автономную веб-страницу или проект Android на Jetpack Compose.</p>
+  </div>
+  <img src="/branding/sedrava-mark.svg" width="128" height="144" alt="Знак Sedrava: аметистовая складка с золотым разрезом" />
+</div>
+
+## Один исходник — одинаковые правила
+
+<div className="sd-feature-grid">
+  <article className="sd-feature">
+    <span className="sd-number">01 / ОПИШИ</span>
+    <h3>Объяви состояние</h3>
+    <p>Целые числа, логические значения, вычисляемые поля и простой интерфейс без настройки платформенных шаблонов.</p>
+  </article>
+  <article className="sd-feature">
+    <span className="sd-number">02 / ЗАЩИТИ</span>
+    <h3>Задай инварианты</h3>
+    <p>Действия атомарны: нарушение итогового правила или ошибка вычисления не приводят к частичному изменению состояния.</p>
+  </article>
+  <article className="sd-feature">
+    <span className="sd-number">03 / СОЗДАЙ</span>
+    <h3>Собери под две платформы</h3>
+    <p>Из одной программы генерируется самостоятельная веб-страница или исходники нативного Android-проекта.</p>
+  </article>
+</div>
+
+## Небольшая программа на Sedrava
+
+~~~text title="hello.sdr"
+app "Hello Sedrava"
+state count = 0
+action add: count = count + 1
+rule count >= 0 and count <= 10
+test once: add -> count == 1
+screen main:
+    text "Hello Sedrava"
+    value count
+    button "Add" -> add
+~~~
+
+Команда <code>sedrava check</code> проверяет программу, <code>sedrava test</code> запускает встроенные тесты, а <code>sedrava build web</code> и <code>sedrava build android</code> создают приложения.
+
+<div className="sd-status">
+  <strong>0.9.0a1 · Альфа-кандидат</strong>
+  <span>Код объединён в основной ветке языка, но публичный выпуск ещё не состоялся. Версия предназначена для изучения и экспериментов, не для промышленного использования. Установка пока выполняется из исходников GitHub, а не из PyPI.</span>
+</div>
+
+## Изучить Sedrava
+
+<div className="sd-links">
+  <a href="/ru/getting-started/">Установка</a>
+  <a href="/ru/examples/">Примеры</a>
+  <a href="/ru/language-overview/">Возможности языка</a>
+  <a href="/ru/roadmap/">Планы развития</a>
+  <a href="https://github.com/VasiliiBabkin/sedrava">Исходники на GitHub</a>
+</div>
