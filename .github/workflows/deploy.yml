@@ -42,16 +42,24 @@ jobs:
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
 
-      - name: Upload site files
+      - name: Upload site files over SSH
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: |
-          set -eu
+          set -euo pipefail
           test -n "$SSH_HOST"
           test -n "$SSH_USER"
           PORT="${SSH_PORT:-22}"
-          rsync -az --no-owner --no-group \
-            -e "ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -p $PORT" \
-            dist/ "$SSH_USER@$SSH_HOST:/var/www/virtreal_ru_usr27/data/www/virtreal.ru/sedrava/"
+          TARGET="/var/www/virtreal_ru_usr27/data/www/virtreal.ru/sedrava"
+          SSH_OPTS=(-o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -p "$PORT")
+
+          # FASTPANEL hosts may not have rsync. Use standard tar over SSH instead.
+          ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" \
+            "test -d '$TARGET' && test -w '$TARGET' && command -v tar >/dev/null"
+
+          tar -C dist -cf - . | ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" \
+            "tar -C '$TARGET' -xf -"
+
+          echo "Uploaded static site to $TARGET (existing unrelated files preserved)."
