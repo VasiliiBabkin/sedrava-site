@@ -22,6 +22,10 @@ To preview the generated page:
 python -m http.server 8000 --directory build/web
 ~~~
 
+## Unreleased 0.10 text example
+
+The [text profile](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/text_profile.sdr) demonstrates Unicode text input, equality, persistence and atomic rejection. It requires the **unreleased development source**, not the published 0.9 alpha. See [text documentation](/text-010/).
+
 ## Other programs
 
 See [the complete example index](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) for:
