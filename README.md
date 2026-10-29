@@ -41,3 +41,11 @@ For details, see DEPLOYMENT.md. Never commit SSH keys or any other server creden
 ## Visual identity
 
 Amethyst #583C82, deep amethyst #35234F, matte gold #D5AD60 and ivory #F5F0E8. The SVG mark is a vector approximation of the approved Dynamic Cut brand concept and should receive a final visual comparison before production.
+
+## Automatic language documentation synchronization
+
+The daily **Sync language documentation** workflow (also manually runnable from Actions) reads the public `VasiliiBabkin/sedrava` `main` branch, generates English and Russian `upstream-status` pages with an exact commit and authoritative source links, and opens a review PR. It does **not** translate or automatically rewrite editorial documentation, publish an unreleased version, or deploy without a merge. Merge the generated PR after review; the site's `main` push then triggers production deployment.
+
+**One-time GitHub setting:** Settings → Actions → General → Workflow permissions → enable **Allow GitHub Actions to create and approve pull requests** (do not enable broad write permissions; the workflow requests scoped `contents: write` and `pull-requests: write`). The workflow needs no personal access token or cross-repository secret because the language repository is public. The existing deployment SSH secrets remain required.
+
+If source code changes but docs are not updated, the status page will still link to the latest source revision; review language feature claims manually. The synchronization runs daily rather than immediately on every upstream push.
