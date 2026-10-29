@@ -8,7 +8,7 @@ Built with Astro + Starlight. English content is published at the root; Russian 
 
 ## Development
 
-Requires Node.js 22 and npm.
+Requires Node.js **22.23.4 or later** and npm (Astro 7 toolchain).
 
 ~~~sh
 npm install
