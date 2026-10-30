@@ -30,7 +30,7 @@ The output of the static build is written to dist/.
 
 ## Release status
 
-Sedrava 0.9.0a1 is the published experimental alpha baseline. First-class text is implemented in source as unreleased 0.10.0.dev0; the full 0.10 release is not published. Neither version is production-ready. The website documents both statuses separately.
+Sedrava 0.9.0a1 is the published experimental alpha baseline. Text, records, bounded collections and navigation are implemented in unreleased 0.10 source. Audit fixes are merged; rc2 preparation is next. No 0.10 release has been published. Neither version is production-ready. The website documents both statuses separately.
 
 ## Deployment
 
