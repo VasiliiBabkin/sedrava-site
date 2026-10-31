@@ -73,3 +73,8 @@ jobs:
             "tar -C '$TARGET' -xf -"
 
           echo "Uploaded static site to $TARGET (existing unrelated files preserved)."
+
+          # Verify the actual VDS target, not only the local Astro dist/ tree.
+          ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" \
+            "test -s '$TARGET/index.html' && test -s '$TARGET/ru/index.html' && grep -Fq '0.10.0' '$TARGET/index.html' && grep -Fq '0.10.0' '$TARGET/ru/index.html'"
+          echo "Remote smoke check passed: EN/RU 0.10.0 entry pages exist."
