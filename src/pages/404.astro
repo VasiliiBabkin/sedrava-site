@@ -1,0 +1,35 @@
+---
+const title = '404 — Sedrava';
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{title}</title>
+    <style>
+      :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+      body { background: #251a38; color: #f5f0e8; margin: 0; min-height: 100vh; display: grid; place-items: center; }
+      main { width: min(560px, calc(100% - 40px)); text-align: center; padding: 48px 0; }
+      img { display: block; margin: auto; width: 72px; height: auto; }
+      h1 { font-size: clamp(4rem, 12vw, 7rem); margin: 18px 0; color: #d5ad60; }
+      p { line-height: 1.7; font-size: 1.1rem; }
+      nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 28px; }
+      a { color: #d5ad60; border: 1px solid #d5ad60; border-radius: 10px; padding: 12px 17px; text-decoration: none; }
+      a:hover, a:focus-visible { background: #d5ad60; color: #251a38; outline-offset: 3px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <img src="/branding/sedrava-mark.svg" alt="Sedrava" width="72" />
+      <h1>404</h1>
+      <p>Page not found. Return to the Sedrava documentation.</p>
+      <p lang="ru">Страница не найдена. Вернитесь к документации Sedrava.</p>
+      <nav aria-label="Documentation">
+        <a href="/">English documentation</a>
+        <a href="/ru/" lang="ru">Документация на русском</a>
+      </nav>
+    </main>
+  </body>
+</html>

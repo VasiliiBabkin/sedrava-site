@@ -5,6 +5,7 @@ export default defineConfig({
   site: 'https://sedrava.virtreal.ru',
   integrations: [
     starlight({
+      disable404Route: true,
       title: 'Sedrava',
       description: 'Official website and documentation of the experimental Sedrava programming language.',
       logo: {
