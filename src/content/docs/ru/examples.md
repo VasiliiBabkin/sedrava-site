@@ -3,7 +3,7 @@ title: Примеры
 description: Исполняемые программы для Sedrava 0.10.0.
 ---
 
-Примеры работают с [опубликованной Sedrava 0.10.0](https://pypi.org/project/sedrava/0.10.0/). Для файлов `examples/` клонируйте [репозиторий языка](https://github.com/VasiliiBabkin/sedrava).
+Примеры работают с [опубликованной Sedrava 0.10.0](https://pypi.org/project/sedrava/0.10.0/). [Релиз на GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0). Для файлов `examples/` клонируйте [репозиторий языка](https://github.com/VasiliiBabkin/sedrava).
 
 ## Цель и прогресс: исторический пример 0.9
 
