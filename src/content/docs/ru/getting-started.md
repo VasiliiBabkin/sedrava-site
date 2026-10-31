@@ -1,38 +1,30 @@
 ---
 title: Начало работы
-description: Установка Sedrava из GitHub и создание первого веб-приложения.
+description: Установка Sedrava 0.10.0 из PyPI и создание первого веб-приложения.
 ---
 
-Sedrava 0.9.0a1 — **опубликованная экспериментальная альфа-версия на GitHub**. Пакета Sedrava на PyPI пока нет. Текущие исходники содержат также **неопубликованное текстовое ядро 0.10.0.dev0**; см. [справочник](/ru/text-010/).
+Sedrava **0.10.0** опубликована на [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) и [PyPI](https://pypi.org/project/sedrava/0.10.0/). Язык экспериментальный и предназначен прежде всего для обучения и небольших локальных приложений.
 
-## Что потребуется
+## Требования
 
-Python **3.10 или новее** и Git. Для работы интерпретатора не требуются сторонние Python-зависимости.
+Python **3.10+**. Git нужен только для получения примеров из репозитория. Сам интерпретатор не требует сторонних Python-библиотек.
 
-## Установка из исходников
+## Установка опубликованной версии
 
 ~~~sh
-git clone https://github.com/VasiliiBabkin/sedrava.git
-cd sedrava
 python -m venv .venv
-~~~
-
-Активируйте виртуальное окружение:
-
-- Linux/macOS: **. .venv/bin/activate**
-- Windows PowerShell: **.venv\Scripts\Activate.ps1**
-
-Установите проект:
-
-~~~sh
-python -m pip install .
+# Linux/macOS:
+. .venv/bin/activate
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+python -m pip install sedrava==0.10.0
 sedrava --version
-sedrava --help
 ~~~
+
+Ожидаемая версия — `0.10.0`. Для разработки из исходников клонируйте [репозиторий](https://github.com/VasiliiBabkin/sedrava) и выполните там `python -m pip install .`.
 
 ## Первая программа
 
-Создайте UTF-8 файл **hello.sdr**:
+Сохраните UTF-8 файл **hello.sdr**:
 
 ~~~text title="hello.sdr"
 app "Hello Sedrava"
@@ -46,8 +38,6 @@ screen main:
     button "Add" -> add
 ~~~
 
-Проверьте программу и создайте веб-приложение:
-
 ~~~sh
 sedrava check hello.sdr
 sedrava test hello.sdr
@@ -56,7 +46,7 @@ sedrava build web hello.sdr --output build/web/index.html
 python -m http.server 8000 --directory build/web
 ~~~
 
-Откройте **http://localhost:8000**. Команда run выводит **{"count": 2}** в формате JSON. Сгенерированная веб-страница содержит код приложения и не требует отдельного сервера приложения.
+Откройте **http://localhost:8000**. Интерпретатор выведет `{"count": 2}`. HTML-приложение не нуждается в отдельном серверном API.
 
 ## Создание Android-проекта
 
@@ -64,8 +54,10 @@ python -m http.server 8000 --directory build/web
 sedrava build android hello.sdr --output build/hello-android
 ~~~
 
-Команда создаёт **исходники Android/Compose, а не готовый APK**. Для сборки APK дополнительно понадобятся JDK, Android SDK и Gradle. Точные версии указаны в [руководстве по сборке](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md).
+Создаются исходники Android/Compose, **не APK**. Для сборки понадобятся JDK 17, Android SDK 35 и Gradle 8.11.1; см. [руководство](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md).
 
-## Дальше
+## Что дальше
 
-Изучите [возможности языка](/ru/language-overview/), [примеры](/ru/examples/) и [планы развития](/ru/roadmap/). [Полный справочник синтаксиса 0.9](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/LANGUAGE_0_9.md) — основной источник по семантике альфа-версии.
+[Возможности языка](/ru/language-overview/), [строки](/ru/text-010/), [примеры](/ru/examples/), [дорожная карта](/ru/roadmap/). Основная [документация 0.10](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.ru.md) и [ограничения](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
+
+**Важно:** `sedrava build site` ещё не входит в опубликованную 0.10.0: функция развивается в [черновом PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22). Сайт документации отдельно собирается через Astro/Starlight.
