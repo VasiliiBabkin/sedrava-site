@@ -3,7 +3,7 @@ title: Examples
 description: Executable examples included in Sedrava 0.10.0.
 ---
 
-These examples work with the [published Sedrava 0.10.0](https://pypi.org/project/sedrava/0.10.0/) CLI. Clone the [language repository](https://github.com/VasiliiBabkin/sedrava) for the `examples/` source files.
+These examples work with the [published Sedrava 0.10.0](https://pypi.org/project/sedrava/0.10.0/) CLI. [GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0). Clone the [language repository](https://github.com/VasiliiBabkin/sedrava) for the `examples/` source files.
 
 ## Goal and progress: historical 0.9 example
 
