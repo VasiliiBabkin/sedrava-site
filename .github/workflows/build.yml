@@ -9,11 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
         with:
           node-version: '22'
+          package-manager-cache: false
       - run: npm install
+      - run: npm run lint:content
       - run: npm run build
       - name: Verify bilingual documentation pages
         run: |
@@ -21,3 +23,7 @@ jobs:
           test -s dist/ru/index.html
           test -s dist/text-010/index.html
           test -s dist/ru/text-010/index.html
+          for page in getting-started examples language-overview roadmap text-010; do
+            test -s "dist/$page/index.html"
+            test -s "dist/ru/$page/index.html"
+          done

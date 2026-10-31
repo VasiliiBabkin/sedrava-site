@@ -1,25 +1,26 @@
 ---
 title: Language overview
-description: State, atomic actions, rules, generated UI and the limitations of Sedrava 0.9.
+description: State, text, records, actions and navigation in the published Sedrava 0.10.0.
 ---
 
-Sedrava 0.9 is a deliberately small language for local applications. Its source files use the **.sdr** extension. Keywords and identifiers are written in English.
+[**Sedrava 0.10.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) is published on [PyPI](https://pypi.org/project/sedrava/0.10.0/). The language is experimental: version 0.10.0 does not imply compatibility with all future changes.
 
-## State and derived values
+## State, text and derived values
 
-The published 0.9 baseline supports **signed 32-bit integers** and **booleans**. The unreleased 0.10 source also supports **text, typed records and bounded collections**; see [text values](/text-010/). A derived value is calculated from state and cannot be assigned directly.
+Sedrava uses `.sdr` source files and English keywords. State may contain signed int32 integers, booleans, exact Unicode text, typed records and bounded ordered lists.
 
 ~~~text
 state goal = 5
 state progress = 0
+state note = "One thing at a time"
 derive reached = progress >= goal
 ~~~
 
-State declarations can be marked for local persistence with the **persist** declaration.
+Persistent values are explicitly declared with `persist`. Text is limited to **1024 Unicode scalars**; no automatic normalization or trimming. See [text semantics](/text-010/).
 
 ## Atomic actions and invariants
 
-Actions are sequential changes to a candidate state. If arithmetic overflows or a final rule is broken, the complete action is rejected without partially changing accepted state.
+Actions change a candidate state. Checked arithmetic, type constraints, derived values and final rules determine whether the complete change is accepted.
 
 ~~~text
 action add:
@@ -29,11 +30,11 @@ rule goal >= 1 and goal <= 20
 rule progress >= 0 and progress <= goal
 ~~~
 
-Rules apply to the final candidate state. Derived values must remain evaluable throughout each action.
+A rejected action does not partially mutate the accepted domain state.
 
-## Tests and user interface
+## Records, collections and screens
 
-An embedded test starts from the defaults and executes its named actions independently of other tests.
+The published 0.10.0 implementation has typed records and ordered bounded lists (up to **100** entries), stable collection IDs and multi-screen navigation with a maximum stack depth of **32**. The UI supports text, values, input, buttons, lists and guarded screen transitions. [Task manager example](/examples/).
 
 ~~~text
 test once: add -> progress == 1
@@ -44,20 +45,18 @@ screen main:
     button "Add" -> add
 ~~~
 
-The 0.9 UI supports literal text, displayed values, buttons, integer input and simple conditional text. The published 0.9 UI has **one screen**. Unreleased 0.10 source adds multi-screen navigation.
-
-## Toolchain
+## CLI commands
 
 | Command | Purpose |
 | --- | --- |
-| sedrava check FILE | Validate syntax, types and rules |
-| sedrava test FILE | Run embedded tests |
-| sedrava run FILE ACTION... | Interpret actions and print JSON state |
-| sedrava build web FILE --output PATH | Generate standalone Web HTML |
-| sedrava build android FILE --output DIR | Generate an Android/Compose source project |
+| `sedrava check FILE` | Validate syntax, types and initial constraints |
+| `sedrava test FILE` | Run embedded tests |
+| `sedrava run FILE ACTION...` | Run actions, output JSON state |
+| `sedrava build web FILE --output PATH` | Generate standalone HTML |
+| `sedrava build android FILE --output DIR` | Generate Kotlin/Compose project sources |
 
-## Important limitations
+Android APK compilation is a separate task. The experimental `build site` for responsive websites belongs to [draft PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22), **not** the 0.10.0 CLI.
 
-The published 0.9 alpha does **not** support text state. Text, records, collections and navigation are implemented in unreleased 0.10 source; files, asynchronous operations, automatic timers and modules remain unsupported. Web persistence uses localStorage; Android uses SharedPreferences. Neither is suitable for secrets, and migration is not supported.
+## Limitations
 
-Read the authoritative [0.9 language reference](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/LANGUAGE_0_9.md) and [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
+No automatic data migrations, encrypted persistence, real-time timers, general-purpose layout system, modules, async services or 1.0 API stability promise. [Known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md), [compatibility](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/COMPATIBILITY_010.md), [0.10 text reference](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/LANGUAGE_0_10_TEXT.md). The physical-device acceptance of the final 0.10 Android APK is not yet documented.

@@ -1,40 +1,43 @@
 ---
 title: Примеры
-description: Рабочие примеры из репозитория Sedrava.
+description: Исполняемые программы для Sedrava 0.10.0.
 ---
 
-В репозитории языка есть готовые программы для текущей альфа-версии.
+Примеры работают с [опубликованной Sedrava 0.10.0](https://pypi.org/project/sedrava/0.10.0/). [Релиз на GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0). Для файлов `examples/` клонируйте [репозиторий языка](https://github.com/VasiliiBabkin/sedrava).
 
-## Эталонное приложение: цель и прогресс
+## Цель и прогресс: исторический пример 0.9
 
-[Приложение Sedrava 0.9 Lab](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/reference_09.sdr) показывает числовой ввод, вычисляемые значения, правила, сохранение состояния, встроенные тесты и условный текст.
+[0.9 Lab](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/reference_09.sdr) — эталон для ввода чисел, вычисляемых значений, правил и сохранения.
 
 ~~~sh
 sedrava check examples/reference_09.sdr
 sedrava test examples/reference_09.sdr
-sedrava run examples/reference_09.sdr add add
-sedrava build web examples/reference_09.sdr --output build/web/index.html
+sedrava build web examples/reference_09.sdr --output build/reference-web/index.html
 ~~~
 
-Для просмотра страницы:
+## Текстовый профиль: возможности 0.10
+
+[Текстовый профиль](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/text_profile.sdr) показывает ввод Unicode, точное сравнение строк, сохранение и атомарный отказ.
 
 ~~~sh
-python -m http.server 8000 --directory build/web
+sedrava check examples/text_profile.sdr
+sedrava test examples/text_profile.sdr
+sedrava build web examples/text_profile.sdr --output build/profile-web/index.html
 ~~~
 
-## Неопубликованный пример 0.10
+[Справочник текстовых значений](/ru/text-010/).
 
-[Текстовый профиль](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/text_profile.sdr) демонстрирует ввод Unicode, сравнение, сохранение и атомарный отказ. Требуются **неопубликованные исходники разработки**, а не версия 0.9. См. [справочник текста](/ru/text-010/).
+## Менеджеры задач: записи и навигация
 
-## Другие программы
+[Одноэкранный менеджер](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/task_manager.sdr) показывает записи и списки. [Двухэкранный](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/task_manager_navigation.sdr) добавляет навигацию и системную кнопку Back.
 
-В [полном каталоге примеров](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) доступны:
+~~~sh
+sedrava check examples/task_manager_navigation.sdr
+sedrava test examples/task_manager_navigation.sdr
+sedrava build web examples/task_manager_navigation.sdr --output build/navigation-web/index.html
+python -m http.server 8000 --directory build/navigation-web
+~~~
 
-- Счётчик с ограничением значения.
-- **Ручной** обратный отсчёт (настоящих таймеров в 0.9 ещё нет).
-- Учёт прогресса с локальным сохранением принятого состояния.
-- Ввод чисел с проверкой ограничений.
+Откройте **http://localhost:8000** для просмотра Web-приложения. Android-генератор создаёт исходники, а не APK; см. [руководство по сборке](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md).
 
-Эти примеры предназначены для изучения языка и тестирования, **не для выпуска готовых продуктов**. Android-генератор создаёт исходники; сборка и проверка APK выполняются отдельно.
-
-Перед запуском ознакомьтесь с [инструкцией по установке](/ru/getting-started/).
+В [полном каталоге](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) также есть счётчик, ручной обратный отсчёт и учёт привычек. Примеры предназначены для изучения, не для промышленной эксплуатации.

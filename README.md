@@ -13,6 +13,7 @@ Requires Node.js **22.23.4 or later** and npm (Astro 7 toolchain).
 ~~~sh
 npm install
 npm run dev
+npm run lint:content
 npm run build
 ~~~
 
@@ -25,12 +26,15 @@ The output of the static build is written to dist/.
 - src/assets/sedrava-mark.svg — vector interpretation of the approved mark concept
 - src/styles/brand.css — amethyst and matte gold visual theme
 - public/branding/ — public assets
+- scripts/check-docs.mjs — bilingual release-status and navigation-link guard
 - .github/workflows/build.yml — CI build
 - .github/workflows/deploy.yml — manual VDS deployment
 
 ## Release status
 
-Sedrava 0.9.0a1 is the published experimental alpha baseline. Text, records, bounded collections and navigation are implemented in unreleased 0.10 source. Audit fixes are merged; rc2 preparation is next. No 0.10 release has been published. Neither version is production-ready. The website documents both statuses separately.
+[**Sedrava 0.10.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) was published on GitHub and [PyPI](https://pypi.org/project/sedrava/0.10.0/) on 31 October 2026. It includes text, records, bounded collections and multi-screen navigation. The release is experimental and not a production-support or 1.0 compatibility guarantee. The physical-device acceptance of the final 0.10 Android APK has not been documented. Historical 0.9/RC reports remain available as historical evidence.
+
+The experimental 0.11 `sedrava build site` language feature is being developed in [draft PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22); this documentation website itself uses **Astro/Starlight**, not the released 0.10 language generator.
 
 ## Deployment
 

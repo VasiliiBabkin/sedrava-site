@@ -1,40 +1,43 @@
 ---
 title: Examples
-description: Working examples from the Sedrava source repository.
+description: Executable examples included in Sedrava 0.10.0.
 ---
 
-The language repository contains complete, executable programs for the current alpha.
+These examples work with the [published Sedrava 0.10.0](https://pypi.org/project/sedrava/0.10.0/) CLI. [GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0). Clone the [language repository](https://github.com/VasiliiBabkin/sedrava) for the `examples/` source files.
 
-## Reference application: goal and progress
+## Goal and progress: historical 0.9 example
 
-The [Sedrava 0.9 Lab](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/reference_09.sdr) demonstrates integer input, derived values, rules, persistence, embedded tests and conditional text.
+The [0.9 Lab](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/reference_09.sdr) remains a regression example for int32 input, derived values, rules and persistence.
 
 ~~~sh
 sedrava check examples/reference_09.sdr
 sedrava test examples/reference_09.sdr
-sedrava run examples/reference_09.sdr add add
-sedrava build web examples/reference_09.sdr --output build/web/index.html
+sedrava build web examples/reference_09.sdr --output build/reference-web/index.html
 ~~~
 
-To preview the generated page:
+## Text profile: new in 0.10
+
+The [text profile](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/text_profile.sdr) demonstrates Unicode input, exact equality, persistence and atomic rejection.
 
 ~~~sh
-python -m http.server 8000 --directory build/web
+sedrava check examples/text_profile.sdr
+sedrava test examples/text_profile.sdr
+sedrava build web examples/text_profile.sdr --output build/profile-web/index.html
 ~~~
 
-## Unreleased 0.10 text example
+See [text semantics](/text-010/).
 
-The [text profile](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/text_profile.sdr) demonstrates Unicode text input, equality, persistence and atomic rejection. It requires the **unreleased development source**, not the published 0.9 alpha. See [text documentation](/text-010/).
+## Task managers: records and navigation
 
-## Other programs
+The [single-screen task manager](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/task_manager.sdr) demonstrates typed records and bounded lists. The [two-screen task manager](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/task_manager_navigation.sdr) adds navigation and Back behavior.
 
-See [the complete example index](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) for:
+~~~sh
+sedrava check examples/task_manager_navigation.sdr
+sedrava test examples/task_manager_navigation.sdr
+sedrava build web examples/task_manager_navigation.sdr --output build/navigation-web/index.html
+python -m http.server 8000 --directory build/navigation-web
+~~~
 
-- A constrained counter.
-- A **manual** countdown (no real-time timer in 0.9).
-- Habit progress with locally persisted accepted state.
-- Validated numeric input.
+Open **http://localhost:8000** to try the generated Web app. Android generation produces sources, not an APK; see the [build guide](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md).
 
-Examples are intended for learning and conformance checks, **not as production templates**. Android generation produces project sources. Compiling and testing an APK is a separate step.
-
-[Install Sedrava from source](/getting-started/) before running these commands.
+The [full example index](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) also includes a constrained counter, manual countdown and habit progress. Examples are for learning and conformance, not production templates.
