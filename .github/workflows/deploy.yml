@@ -28,6 +28,7 @@ jobs:
       - name: Install dependencies and build
         run: |
           npm install
+          npm run lint:content
           npm run build
 
       - name: Configure SSH

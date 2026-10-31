@@ -14,6 +14,7 @@ jobs:
         with:
           node-version: '22'
       - run: npm install
+      - run: npm run lint:content
       - run: npm run build
       - name: Verify bilingual documentation pages
         run: |

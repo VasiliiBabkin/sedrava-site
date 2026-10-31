@@ -13,6 +13,7 @@ Requires Node.js **22.23.4 or later** and npm (Astro 7 toolchain).
 ~~~sh
 npm install
 npm run dev
+npm run lint:content
 npm run build
 ~~~
 
@@ -25,6 +26,7 @@ The output of the static build is written to dist/.
 - src/assets/sedrava-mark.svg — vector interpretation of the approved mark concept
 - src/styles/brand.css — amethyst and matte gold visual theme
 - public/branding/ — public assets
+- scripts/check-docs.mjs — bilingual release-status and navigation-link guard
 - .github/workflows/build.yml — CI build
 - .github/workflows/deploy.yml — manual VDS deployment
 
