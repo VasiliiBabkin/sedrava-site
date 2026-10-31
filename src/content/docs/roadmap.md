@@ -8,7 +8,7 @@ Sedrava is developed incrementally. Version numbers below are planning milestone
 | Stage | Focus | Status |
 | --- | --- | --- |
 | **0.9** | State, actions, invariants, tests, basic Web/Android generators | Published GitHub alpha |
-| **0.10** | Text input, richer UI, themes, navigation, multi-screen app | Verified 0.10.0rc2 candidate merged to main; GitHub prerelease publication pending |
+| **0.10** | Text input, richer UI, themes, navigation, multi-screen app | 0.10.0rc2 experimental GitHub prerelease published; stable 0.10.0 not released |
 | **0.11** | Further language and storage evolution (scope not finalized) | Planned; records and collections implemented in 0.10 |
 | **0.12–0.13** | Device capabilities, modules, reusable components | Planned |
 | **0.14–0.15** | Editor integration and desktop target | Planned |
