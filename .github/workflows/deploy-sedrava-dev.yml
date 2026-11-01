@@ -27,7 +27,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           repository: VasiliiBabkin/sedrava
-          ref: b54e19b5f9b7b23dff24cc4c8ff45a833a8fe0a7
+          ref: a0c40b5eb7f2b8d24a92be8be96ce0daba8870ce
           path: .sedrava-compiler
           persist-credentials: false
       - name: Set up Python
