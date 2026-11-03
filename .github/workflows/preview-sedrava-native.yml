@@ -1,0 +1,60 @@
+name: Preview official site written in Sedrava (no deploy)
+on:
+  pull_request:
+    paths:
+      - "sedrava-next/**"
+      - ".github/workflows/preview-sedrava-native.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-site:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: VasiliiBabkin/sedrava
+          ref: afb96f533f70478590f864fb32a839d0cdb4a903
+          path: .sedrava-compiler
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: "3.12"
+      - name: Check same Sedrava source is displayed on both pages
+        run: python sedrava-next/check_preview.py
+      - name: Verify and compile real Sedrava site
+        env:
+          PYTHONPATH: .sedrava-compiler
+        run: |
+          python -m sedrava_cli check sedrava-next/site.sdr
+          python -m sedrava_cli build site sedrava-next/site.sdr --output build/native-site
+          test -s build/native-site/index.html
+          test -s build/native-site/examples/index.html
+          test -s build/native-site/ru/index.html
+          test -s build/native-site/ru/examples/index.html
+          grep -q 'BUILT WITH SEDRAVA' build/native-site/index.html
+          grep -q 'САЙТ НАПИСАН НА SEDRAVA' build/native-site/ru/index.html
+      - name: Compile real standalone WebApp examples from Sedrava source
+        env:
+          PYTHONPATH: .sedrava-compiler
+        run: |
+          python -m sedrava_cli check sedrava-next/demos/counter.sdr
+          python -m sedrava_cli build webapp sedrava-next/demos/counter.sdr --output build/live-examples/counter
+          python -m sedrava_cli build webapp .sedrava-compiler/examples/platform_tasks.sdr --output build/live-examples/tasks
+          python -m sedrava_cli build webapp .sedrava-compiler/examples/platform_crm.sdr --output build/live-examples/crm
+          for demo in counter tasks crm; do
+            test -s "build/live-examples/$demo/index.html"
+            test -s "build/live-examples/$demo/app.js"
+            test -s "build/live-examples/$demo/sedrava-webapp.json"
+          done
+      - name: Upload staging bundles only
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sedrava-native-site-preview
+          if-no-files-found: error
+          path: |
+            build/native-site/
+            build/live-examples/

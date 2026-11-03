@@ -1,0 +1,144 @@
+site "Sedrava — built with Sedrava"
+theme:
+    background "#F5F0E8"
+    surface "#FFFFFF"
+    foreground "#231A35"
+    accent "#583C82"
+    gold "#8B6419"
+    muted "#62596D"
+    border "#DED5E5"
+
+style panel:
+    padding 28
+    radius 22
+    shadow soft
+
+page home at "/":
+    title "Sedrava — the language that builds its own website"
+    description "Explore the Sedrava programming language, the official releases and examples. This preview is generated using Sedrava."
+    lang "en"
+    navbar label "Main navigation":
+        link "Sedrava" to "/"
+        link "Examples" to "/examples/"
+        link "Русский" to "/ru/"
+    container max 1140 padding 24:
+        column gap 28:
+            paragraph "BUILT WITH SEDRAVA" variant eyebrow
+            heading "The language that builds its own website." variant display
+            paragraph "An experimental programming language for describing data, actions, rules, interfaces, and applications. This entire preview website is generated from Sedrava source." variant lead
+            row gap 16:
+                button "See the source and examples" to "/examples/"
+                button "Stable release 0.10.0" to "https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0" variant secondary
+            grid columns 2 gap 20:
+                card style panel:
+                    column gap 12:
+                        heading "Describe a website" level 2
+                        paragraph "Pages, navigation, reusable components, local styling, responsive layouts and static output."
+                card style panel:
+                    column gap 12:
+                        heading "Describe an application" level 2
+                        paragraph "Typed state, validated actions, collections, forms, navigation and public HTTP in the experimental WebApp compiler."
+            callout variant info:
+                paragraph "The public version is Sedrava 0.10.0. Website and richer WebApp features are experimental 0.11 integration work in PR #36. This is a development preview, not a released 0.11.0."
+            paragraph "Official source and issue tracker: github.com/VasiliiBabkin/sedrava" variant muted
+    footer:
+        paragraph "Built with Sedrava — generated from a .sdr website source, without Astro or Starlight." variant muted
+        link "Language source" to "https://github.com/VasiliiBabkin/sedrava"
+
+page examples at "/examples/":
+    title "Sedrava examples — real programs and source code"
+    description "A Sedrava counter with its exact original code, plus generated task and CRM applications in the preview build."
+    lang "en"
+    navbar label "Main navigation":
+        link "Home" to "/"
+        link "Examples" to "/examples/"
+        link "Русский" to "/ru/examples/"
+    container max 1080 padding 24:
+        column gap 22:
+            heading "Real applications. Real Sedrava source."
+            paragraph "The preview build generates these examples with the same experimental compiler used to build this website. The next step is embedding sandboxed live demonstrations alongside their exact source code." variant lead
+            card style panel:
+                column gap 14:
+                    heading "Counter — a working interactive WebApp" level 2
+                    paragraph "Source of the separately generated demo; source and display are kept identical by a CI check."
+                    code "webapp \"Counter\"\nstate count = 0\npersist count\naction add: count = count + 1\nview main:\n    container max 720 padding 24:\n        column gap 16:\n            heading \"A live Sedrava counter\"\n            paragraph \"Click the button to update accepted state. Reload to test persistence.\"\n            value count label \"Current count\"\n            button \"Add one\" action add"
+                    link "See demo source on GitHub" to "https://github.com/VasiliiBabkin/sedrava-site/blob/feature/sedrava-native-docs-live-examples/sedrava-next/demos/counter.sdr"
+            card style panel:
+                column gap 12:
+                    heading "Task manager" level 2
+                    paragraph "Real offline CRUD: add, select, rename, mark complete, delete, filter, and navigate to details."
+                    link "Full task manager source" to "https://github.com/VasiliiBabkin/sedrava/blob/feature/011-web-platform-integration/examples/platform_tasks.sdr"
+            card style panel:
+                column gap 12:
+                    heading "Client desk CRM" level 2
+                    paragraph "Companies, contacts, typed relations, reusable components, form validation and light/dark mode."
+                    link "Full CRM source" to "https://github.com/VasiliiBabkin/sedrava/blob/feature/011-web-platform-integration/examples/platform_crm.sdr"
+            callout variant warning:
+                paragraph "The interactive compiled demos are produced by CI, but not yet embedded in this page. Inline previews are a tracked implementation requirement; the site must not pretend that static code samples are running."
+    footer:
+        paragraph "This preview website is written in Sedrava. The 0.11 integration is not yet released." variant muted
+
+page ru_home at "/ru/":
+    title "Sedrava — сайт, созданный на Sedrava"
+    description "Язык программирования Sedrava, официальные релизы, примеры программ и исходный код. Этот сайт собирается средствами Sedrava."
+    lang "ru"
+    navbar label "Навигация":
+        link "Sedrava" to "/ru/"
+        link "Примеры" to "/ru/examples/"
+        link "English" to "/"
+    container max 1140 padding 24:
+        column gap 28:
+            paragraph "САЙТ НАПИСАН НА SEDRAVA" variant eyebrow
+            heading "Язык, который создаёт собственный сайт." variant display
+            paragraph "Sedrava — экспериментальный язык программирования для описания данных, действий, правил, интерфейсов и приложений. Эта версия сайта целиком собирается из исходника на Sedrava." variant lead
+            row gap 16:
+                button "Посмотреть примеры и код" to "/ru/examples/"
+                button "Стабильная версия 0.10.0" to "https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0" variant secondary
+            grid columns 2 gap 20:
+                card style panel:
+                    column gap 12:
+                        heading "Создаём сайты" level 2
+                        paragraph "Страницы, навигация, компоненты, свои стили и адаптивная вёрстка."
+                card style panel:
+                    column gap 12:
+                        heading "Создаём приложения" level 2
+                        paragraph "Типизированные состояния, действия, коллекции, формы, переходы и публичные HTTP API в экспериментальной ветке."
+            callout variant info:
+                paragraph "Опубликованная версия языка — 0.10.0. Возможности сайта и WebApp относятся к экспериментальной разработке 0.11 из PR #36. Эта версия сайта — предпросмотр, а не объявление релиза 0.11.0."
+            paragraph "Репозиторий языка: github.com/VasiliiBabkin/sedrava" variant muted
+    footer:
+        paragraph "Сделано на Sedrava: сайт создан из .sdr без Astro и Starlight." variant muted
+        link "Исходники языка" to "https://github.com/VasiliiBabkin/sedrava"
+
+page ru_examples at "/ru/examples/":
+    title "Примеры Sedrava — настоящие приложения и код"
+    description "Работающие примеры программ на Sedrava и точный исходный код."
+    lang "ru"
+    navbar label "Навигация":
+        link "Главная" to "/ru/"
+        link "Примеры" to "/ru/examples/"
+        link "English" to "/examples/"
+    container max 1080 padding 24:
+        column gap 22:
+            heading "Работающие программы и их исходный код."
+            paragraph "В тестовой сборке настоящие приложения собираются из исходников на Sedrava. Следующий этап — добавить интерактивные примеры непосредственно рядом с кодом на странице." variant lead
+            card style panel:
+                column gap 14:
+                    heading "Счётчик — интерактивное WebApp" level 2
+                    paragraph "Точный исходный код примера. Сборка и идентичность проверяются в CI."
+                    code "webapp \"Counter\"\nstate count = 0\npersist count\naction add: count = count + 1\nview main:\n    container max 720 padding 24:\n        column gap 16:\n            heading \"A live Sedrava counter\"\n            paragraph \"Click the button to update accepted state. Reload to test persistence.\"\n            value count label \"Current count\"\n            button \"Add one\" action add"
+                    link "Открыть исходник примера на GitHub" to "https://github.com/VasiliiBabkin/sedrava-site/blob/feature/sedrava-native-docs-live-examples/sedrava-next/demos/counter.sdr"
+            card style panel:
+                column gap 12:
+                    heading "Менеджер задач" level 2
+                    paragraph "Добавление, редактирование, выполнение, удаление и поиск. Локальное сохранение и переходы между экранами."
+                    link "Полный код менеджера задач" to "https://github.com/VasiliiBabkin/sedrava/blob/feature/011-web-platform-integration/examples/platform_tasks.sdr"
+            card style panel:
+                column gap 12:
+                    heading "Мини-CRM" level 2
+                    paragraph "Компании и контакты, связанные записи, формы, таблицы и переключение темы."
+                    link "Полный код CRM" to "https://github.com/VasiliiBabkin/sedrava/blob/feature/011-web-platform-integration/examples/platform_crm.sdr"
+            callout variant warning:
+                paragraph "Компилируемые приложения уже готовы для проверки, но встроенный интерактивный просмотр на этой странице пока не реализован. Мы не называем статический пример работающим демо."
+    footer:
+        paragraph "Этот предпросмотр сайта написан на Sedrava. Релиз 0.11 пока не опубликован." variant muted
