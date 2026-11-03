@@ -63,7 +63,7 @@ class NativeSiteBrowser(unittest.TestCase):
         return self.page
 
     def test_en_ru_pages_and_exact_counter_code(self):
-        source = (ROOT / "demos/counter.sdr").read_text(encoding="utf-8").strip()
+        source = (ROOT / "sedrava-next/demos/counter.sdr").read_text(encoding="utf-8").strip()
         p = self.goto("/native-site/")
         self.assertTrue(p.get_by_text("BUILT WITH SEDRAVA").is_visible())
         self.assertTrue(p.get_by_role("heading", name="The language that builds its own website.").is_visible())
