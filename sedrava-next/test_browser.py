@@ -65,15 +65,15 @@ class NativeSiteBrowser(unittest.TestCase):
     def test_en_ru_pages_and_exact_counter_code(self):
         source = (ROOT / "sedrava-next/demos/counter.sdr").read_text(encoding="utf-8").strip()
         p = self.goto("/native-site/")
-        self.assertTrue(p.get_by_text("BUILT WITH SEDRAVA").is_visible())
+        self.assertTrue(p.get_by_text("BUILT WITH SEDRAVA", exact=True).is_visible())
         self.assertTrue(p.get_by_role("heading", name="The language that builds its own website.").is_visible())
-        p.get_by_role("link", name="Examples").click()
+        p.get_by_role("link", name="Examples", exact=True).click()
         self.assertIn("/native-site/examples/", p.url)
         self.assertEqual(p.locator("pre code").inner_text().strip(), source)
         self.assertTrue(p.get_by_text("not yet embedded", exact=False).is_visible())
         self.goto("/native-site/ru/")
-        self.assertTrue(p.get_by_text("САЙТ НАПИСАН НА SEDRAVA").is_visible())
-        p.get_by_role("link", name="Примеры").click()
+        self.assertTrue(p.get_by_text("САЙТ НАПИСАН НА SEDRAVA", exact=True).is_visible())
+        p.get_by_role("link", name="Примеры", exact=True).click()
         self.assertEqual(p.locator("pre code").inner_text().strip(), source)
 
     def test_counter_actually_updates_and_persists(self):
