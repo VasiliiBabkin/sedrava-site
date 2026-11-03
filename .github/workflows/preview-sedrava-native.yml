@@ -50,6 +50,11 @@ jobs:
             test -s "build/live-examples/$demo/app.js"
             test -s "build/live-examples/$demo/sedrava-webapp.json"
           done
+      - name: Test generated site and live demos in Chromium
+        run: |
+          python -m pip install playwright==1.62.0
+          python -m playwright install --with-deps chromium
+          python sedrava-next/test_browser.py
       - name: Upload staging bundles only
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -58,3 +63,4 @@ jobs:
           path: |
             build/native-site/
             build/live-examples/
+            build/native-browser-evidence/
