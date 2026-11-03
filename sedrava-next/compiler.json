@@ -1,0 +1,8 @@
+{
+  "repository": "VasiliiBabkin/sedrava",
+  "sha": "71b5460858dad53aceaf32566d79ca760b5b771f",
+  "base_pr": 36,
+  "docs_pr": 37,
+  "version": "0.10.0",
+  "feature_status": "experimental 0.11"
+}

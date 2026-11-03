@@ -1,44 +1,44 @@
-# Sedrava native website: staging and interactive-documentation plan
+# Native Sedrava documentation preview
 
-**Branch:** feature/sedrava-native-docs-live-examples (sedrava-site).
-**Status:** stage-0 working preview; **not production**. Do not publish to sedrava.virtreal.ru.
-**Compiler:** experimental integration PR #36, pin exact SHA in CI. Stable published language is 0.10.0.
+**Work in progress; no production replacement or release.** Website branch `feature/sedrava-native-docs-live-examples`, draft [site PR #10](https://github.com/VasiliiBabkin/sedrava-site/pull/10). Compiler [PR #36](https://github.com/VasiliiBabkin/sedrava/pull/36), separate native-docs extension [PR #37](https://github.com/VasiliiBabkin/sedrava/pull/37). Exact SHA in `compiler.json` and the read-only preview workflow.
 
-## Goals
+## Source and build
 
-Replace Astro/Starlight on the official site only after feature parity. The new site itself must compile from \`site "..." \` Sedrava source. Show a prominently visible claim in both languages: "This site is built with Sedrava" / "Этот сайт написан на Sedrava". Link to the actual site .sdr source and compiler commit. Present the release/preview distinction truthfully.
+`site.sdr` declares every page, layout, locale link, native documentation component and live demo. `components/chrome.sdr` contains reusable navigation/footer/sidebar. Source-controlled Markdown is content, not an Astro wrapper. No generated HTML/CSS/JS is manually changed. Build orchestration only creates explicit provenance Markdown input before invoking standard `sedrava check` and `sedrava build site`; the compiler builds the four declared WebApps and preserves their standalone bytes.
 
-## What is committed now
+```sh
+# Obtain the compiler at the exact commit in compiler.json in a separate checkout.
+python -m pip install '/path/to/compiler[docs]' playwright==1.62.0
+python sedrava-next/build.py --compiler /path/to/compiler
+python sedrava-next/check_preview.py
+python -m http.server 8000 --directory build/native-site
+```
 
-- \`site.sdr\`: four real generated Sedrava pages (EN/RU home and examples) with brand styling, clear provenance, exact code snippet, source links and status caveats.
-- \`demos/counter.sdr\`: small true Sedrava state/action WebApp, not a screenshot or simulated button.
-- CI preview workflow builds static site plus counter, task manager and CRM WebApps from compiler PR #36. Outputs are separate managed directories; do not manually modify generated assets.
-- A source consistency test checks that the two displayed counter snippets match the demo source exactly.
+`build/native-site/` is the complete static tree (26 site pages + 4 demo routes). `native-provenance.json` records actual website/compiler SHA, dirty-tree status, dependency versions and file hashes. Each demo has exact downloadable `.sdr`, source SHA and generated-file hashes in `docs-demos.json`. Local fonts include the Inter OFL notice. `migrate_content.py --check` proves all 12 original canonical pages and their fenced source are preserved under the reviewed transformation; the production `src/content/docs` is not modified.
 
-The site pages intentionally do **not** claim an inline running example yet: a safe same-origin or cross-origin embed of WebApp output is not currently a native Sedrava site component.
+## Implemented and under acceptance
 
-## Follow-on implementation (Codex)
+- Bilingual homepages explicitly say “This website is built with Sedrava” / “Этот сайт написан на Sedrava”. Stable 0.10.0 and experimental 0.11 are distinguished.
+- All original routes plus bilingual CLI/records/navigation/releases/compatibility/project/preview/provenance pages, shared responsive disclosure sidebar, current-section links, previous/next and heading TOC.
+- Checked local Markdown (raw HTML rejected by the compiler), syntax-highlighted source with copy/download, local offline full-text search across both languages with keyboard and safe excerpts.
+- Inline counter, tasks, CRM and typed HTTP catalog, each compiled from the same file shown next to the running iframe. Reload and individual reset retain unrelated storage.
+- Trusted author demos share the site's origin; they are **not an untrusted-code sandbox**. No arbitrary editor, raw script or secret API key.
+- The HTTP catalog is explicitly **CI-endpoint-only**. The browser acceptance server supplies real HTTP; a plain static host reports an honest 404/error, not synthetic live data.
 
-1. Extend \`sedrava build site\` with an explicit, typed and tested safe \`demo\` or \`embed-webapp\` component, or a \`build project\` layout that bundles a site and explicitly listed WebApps as local routes. Prefer building real sub-apps from their original \`.sdr\` sources. Avoid arbitrary HTML injection or post-build replacement of generated HTML.
-2. Embed live WebApp preview on /examples/ and /ru/examples/ with a code panel for the **same exact source**, copy button, accessible title, loading/error fallback, mobile fallback, keyboard and focus handling. Explicitly model iframe origin/sandbox/CSP; do not claim sandbox isolation with allow-scripts+allow-same-origin on the same origin.
-3. Provide demos: counter, tasks, themed CRM and a typed API catalog. API demo requires an actual controlled server service or a properly labeled, deterministic fixture. Never claim public mutation endpoints are authenticated if they are not.
-4. Migrate every existing English/Russian documentation page, paths, canonical metadata, release status, sidebar, code formatting and search without losing information. Add document indexing/build-time full-text search (no cloud keys); support keyboard and screen readers.
-5. Keep Astro production site and existing deploy workflows unchanged until staging is reviewed and parity is independently verified. Stage in dev environment only behind explicit authorization.
-6. Add CI real-browser runs of link/page/docs search and each embedded demo; check generated code matches source; verify 320/360/390/768/1024/1440 px and mobile layout, CSP, XSS, broken assets and accessibility.
-7. Make native compiler dependency pinned by immutable Git commit or verified versioned artifact and keep the 0.10/0.11 release labeling truthful. Do not publish 0.11 packages automatically.
+## Checks
 
-## Existing deployment constraints
+```sh
+npm install --prefix build/a11y --no-audit --no-fund axe-core@4.10.3
+python -m playwright install chromium
+python sedrava-next/test_browser.py
+```
 
-Astro production site currently auto-deploys on pushes to main. The working \`dev.virtreal.ru\` workflow is opt-in for SSH publication, using Nginx and tar. Do not change or enable automatic production deploy. The old dev site has a separate \`sedrava-dev/site.sdr\` implementation.
+The preview workflow tests Chromium/Firefox/WebKit, 320/360/390/768/1024/1440 widths, source/download parity, actions/persistence/reset, offline Cyrillic/English search, real HTTP methods/errors and axe. Static parity currently verifies **12 retained routes, 26 native pages, four compiled demos, eight exact source panels, 792 local links/resources**. Initial local browser run passed most scenarios but found a navigation assertion requiring investigation; final success is not yet claimed. CI links/counts will be added after actual runs on the published SHA.
 
-## Acceptance
+## Staging and production
 
-- Genuine official site entirely authored as Sedrava site source (not an Astro wrapper).
-- No lost EN/RU documentation or broken old routes.
-- Actual live demo code and rendered behaviour proven to come from the same source.
-- Real browser tests and successful static deployment rehearsal on dev.
-- Owner explicitly approves replacing production after side-by-side inspection.
+Current Astro production and `sedrava-dev` deployment are untouched. This workflow uploads artifacts only. Do not merge to main, create a release/tag, publish a package or replace `sedrava.virtreal.ru`. Dev publication must be separately gated, target only the already documented approved dev directory/domain, and be verified remotely before a staging GO is claimed. Until acceptance and remote checks finish: **NO-GO for production**, staging artifacts under review.
 
 ## Resume
 
-Start from this branch; examine \`sedrava-next/site.sdr\`, the preview workflow and compiler PR #36. Do the implementation, not another plan-only response. The spec intentionally separates what exists from what remains.
+Run `check_preview.py`, then the browser suite; fix real failures without loosening requirements. Inspect compiler #37 WebKit lazy-frame test result and keep both compiler pins synchronized. Finish cross-engine/visual review, immutable provenance/CI evidence and the gated staging/rollback instructions before proposing any publication.

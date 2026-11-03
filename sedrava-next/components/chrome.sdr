@@ -1,0 +1,48 @@
+component EnglishHeader:
+    navbar label "Main navigation":
+        link "Sedrava" to "/"
+        link "Documentation" to "/getting-started/"
+        link "Examples" to "/examples/"
+        link "GitHub" to "https://github.com/VasiliiBabkin/sedrava"
+component EnglishFooter:
+    footer:
+        paragraph "This website is built with Sedrava"
+        link "Build provenance" to "/provenance/"
+        link "Website source" to "https://github.com/VasiliiBabkin/sedrava-site/blob/feature/sedrava-native-docs-live-examples/sedrava-next/site.sdr"
+component EnglishSidebar:
+    sidebar label "Documentation":
+        link "Getting started" to "/getting-started/"
+        link "Language overview" to "/language-overview/"
+        link "Text values · 0.10" to "/text-010/"
+        link "Records and navigation" to "/records-navigation/"
+        link "CLI and builds" to "/cli/"
+        link "Examples and source" to "/examples/"
+        link "Release notes" to "/release-notes/"
+        link "Compatibility and storage" to "/compatibility/"
+        link "Roadmap" to "/roadmap/"
+        link "Experimental Web · 0.11" to "/web-preview/"
+        link "Project and dedication" to "/project/"
+component RussianHeader:
+    navbar label "Навигация":
+        link "Sedrava" to "/ru/"
+        link "Документация" to "/ru/getting-started/"
+        link "Примеры" to "/ru/examples/"
+        link "GitHub" to "https://github.com/VasiliiBabkin/sedrava"
+component RussianFooter:
+    footer:
+        paragraph "Этот сайт написан на Sedrava"
+        link "Происхождение сборки" to "/ru/provenance/"
+        link "Исходный код сайта" to "https://github.com/VasiliiBabkin/sedrava-site/blob/feature/sedrava-native-docs-live-examples/sedrava-next/site.sdr"
+component RussianSidebar:
+    sidebar label "Документация":
+        link "Начало работы" to "/ru/getting-started/"
+        link "Возможности языка" to "/ru/language-overview/"
+        link "Текст · 0.10" to "/ru/text-010/"
+        link "Записи и навигация" to "/ru/records-navigation/"
+        link "CLI и сборка" to "/ru/cli/"
+        link "Примеры и исходники" to "/ru/examples/"
+        link "Заметки о выпуске" to "/ru/release-notes/"
+        link "Совместимость и хранение" to "/ru/compatibility/"
+        link "Дорожная карта" to "/ru/roadmap/"
+        link "Экспериментальный Web · 0.11" to "/ru/web-preview/"
+        link "Проект и посвящение" to "/ru/project/"
