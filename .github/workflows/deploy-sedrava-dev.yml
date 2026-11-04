@@ -48,5 +48,5 @@ jobs:
     with:
       run_id: ${{ needs.choose-accepted-preview.outputs.run_id }}
       publish: ${{ inputs.publish }}
-      confirm_domain: ${{ inputs.publish && 'dev.virtreal.ru' || '' }}
+      confirm_domain: 'dev.virtreal.ru'
     secrets: inherit
