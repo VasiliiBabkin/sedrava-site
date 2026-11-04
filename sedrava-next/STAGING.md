@@ -1,6 +1,6 @@
 # Native preview staging and rollback / Staging и откат
 
-**Production is not switched.** Existing `.github/workflows/deploy.yml`, `deploy-sedrava-dev.yml`, `sedrava-dev/` and Astro source are unchanged. The new workflow is manual-only; preview CI cannot publish. No release/tag/package upload.
+**Production is not switched.** The production `.github/workflows/deploy.yml`, existing Astro source and `sedrava-dev/` are unchanged. On `main`, the registered `deploy-sedrava-dev.yml` also remains unchanged; only the feature-branch copy is replaced with a manual native-staging wrapper. Preview CI cannot publish. No release/tag/package upload.
 
 ## Single manual confirmation using the existing registered workflow
 
