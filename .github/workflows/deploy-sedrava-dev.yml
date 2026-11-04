@@ -1,79 +1,52 @@
 name: Build Sedrava dev website
+run-name: Native Sedrava staging / ${{ inputs.publish && 'PUBLISH DEV' || 'PREPARE ONLY' }} / ${{ github.ref_name }}
+
+# Already registered on main. Select the native feature branch in Run workflow.
 on:
-  push:
-    branches: [feature/sedrava-dev-preview]
-    paths:
-      - 'sedrava-dev/**'
-      - '.github/workflows/deploy-sedrava-dev.yml'
   workflow_dispatch:
     inputs:
       publish:
-        description: 'Upload to dev.virtreal.ru after successful build'
+        description: 'I approve publishing the verified native site to dev.virtreal.ru only (backed up and verified)'
         type: boolean
         default: false
 permissions:
   contents: read
-concurrency:
-  group: sedrava-dev-preview
-  cancel-in-progress: false
+  actions: read
 jobs:
-  dev-site:
+  choose-accepted-preview:
+    if: ${{ github.ref == 'refs/heads/feature/sedrava-native-docs-live-examples' }}
     runs-on: ubuntu-24.04
-    environment: production
+    outputs:
+      run_id: ${{ steps.find.outputs.run_id }}
     steps:
-      - name: Check out website sources
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-      - name: Check out experimental Sedrava compiler
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          repository: VasiliiBabkin/sedrava
-          ref: a0c40b5eb7f2b8d24a92be8be96ce0daba8870ce
-          path: .sedrava-compiler
-          persist-credentials: false
-      - name: Set up Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
-        with:
-          python-version: '3.12'
-      - name: Build .sdr website
+      - name: Identify a successful three-engine native preview at the exact chosen commit
+        id: find
         env:
-          PYTHONPATH: .sedrava-compiler
-        run: |
-          python -m sedrava_cli build site sedrava-dev/site.sdr --output build/sedrava-dev
-          test -s build/sedrava-dev/index.html
-          test -s build/sedrava-dev/site.css
-          test -s build/sedrava-dev/sedrava-site.json
-      - name: Upload preview artifact
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: sedrava-dev-preview
-          path: build/sedrava-dev/
-          if-no-files-found: error
-      - name: Configure SSH
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
-        env:
-          DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
-        run: |
-          set -eu
-          test -n "$DEPLOY_KEY"
-          test -n "$KNOWN_HOSTS"
-          install -m 700 -d ~/.ssh
-          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
-          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
-          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
-      - name: Publish only to dev.virtreal.ru
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          test -n "$SSH_HOST"
-          test -n "$SSH_USER"
-          PORT="${SSH_PORT:-22}"
-          TARGET="/var/www/virtreal_ru_usr27/data/www/virtreal.ru/dev"
-          SSH_OPTS=(-o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -p "$PORT")
-          ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "test -d '$TARGET' && test -w '$TARGET' && command -v tar >/dev/null"
-          tar -C build/sedrava-dev -cf - . | ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "tar -C '$TARGET' -xf -"
-          ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "test -s '$TARGET/index.html' && test -s '$TARGET/site.css'"
+          gh api "repos/$GITHUB_REPOSITORY/actions/workflows/preview-sedrava-native.yml/runs?head_sha=$GITHUB_SHA&status=success&per_page=60" > successful-previews.json
+          python3 - <<'PY'
+          import json, os
+          runs = json.load(open('successful-previews.json'))['workflow_runs']
+          candidates = [run for run in runs
+                        if run['head_sha'] == os.environ['GITHUB_SHA']
+                        and run['conclusion'] == 'success'
+                        and run['status'] == 'completed'
+                        and run['path'] == '.github/workflows/preview-sedrava-native.yml'
+                        and run.get('head_repository', {}).get('full_name') == os.environ['GITHUB_REPOSITORY']]
+          if not candidates:
+              raise SystemExit('No fully successful native preview for this exact commit. Review PR #10 CI before dispatch.')
+          selected = max(candidates, key=lambda run: int(run['id']))
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as handle:
+              handle.write(f"run_id={selected['id']}\n")
+          print(f"Accepted native preview run: {selected['id']}, exact SHA {selected['head_sha']}")
+          PY
+  native-staging:
+    needs: choose-accepted-preview
+    uses: ./.github/workflows/stage-sedrava-native.yml
+    with:
+      run_id: ${{ needs.choose-accepted-preview.outputs.run_id }}
+      publish: ${{ inputs.publish }}
+      confirm_domain: ${{ inputs.publish && 'dev.virtreal.ru' || '' }}
+    secrets: inherit

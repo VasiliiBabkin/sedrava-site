@@ -1,5 +1,16 @@
 name: Prepare or manually stage accepted native docs (dev only)
 on:
+  workflow_call:
+    inputs:
+      run_id:
+        required: true
+        type: string
+      publish:
+        required: true
+        type: boolean
+      confirm_domain:
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       run_id:
@@ -96,11 +107,28 @@ jobs:
         run: |
           set -euo pipefail
           test -n "$SSH_HOST" && test -n "$SSH_USER"
-          [[ "$BACKUP_DIR" =~ ^/[A-Za-z0-9_./-]+$ && "$BACKUP_DIR" != *'..'* ]]
-          [[ "$BACKUP_DIR/" != /var/www/virtreal_ru_usr27/data/www/* ]]
           PORT="${SSH_PORT:-22}"
           [[ "$PORT" =~ ^[0-9]+$ ]]
           SSH_OPTS=(-o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -p "$PORT")
+          # Reuse the reviewed nonpublic backup variable if configured.
+          # Otherwise securely create one under the SSH account's real home.
+          if [[ -z "$BACKUP_DIR" ]]; then
+            BACKUP_DIR="$(ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" 'bash -s' <<'REMOTE'
+          set -euo pipefail
+          umask 077
+          dir="$HOME/.sedrava-native-backups"
+          case "$dir/" in
+            /var/www/virtreal_ru_usr27/data/www/*) exit 25 ;;
+          esac
+          mkdir -p -m 700 -- "$dir"
+          [[ -d "$dir" && -w "$dir" ]]
+          [[ "$(readlink -f -- "$dir")" == "$dir" ]]
+          printf '%s' "$dir"
+          REMOTE
+          )"
+          fi
+          [[ "$BACKUP_DIR" =~ ^/[A-Za-z0-9_./-]+$ && "$BACKUP_DIR" != *'..'* ]]
+          [[ "$BACKUP_DIR/" != /var/www/virtreal_ru_usr27/data/www/* ]]
           DEPLOYMENT="$GITHUB_SHA-$GITHUB_RUN_ID"
           DIGEST="$(python -c 'import json;print(json.load(open("build/staging/manifest.json"))["archive_sha256"])')"
           ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "test -d '$BACKUP_DIR' && test -w '$BACKUP_DIR' && test \"\$(readlink -f '$BACKUP_DIR')\" = '$BACKUP_DIR' && test ! -e '$BACKUP_DIR/$DEPLOYMENT.tar.gz'"

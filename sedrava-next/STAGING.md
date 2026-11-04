@@ -2,6 +2,19 @@
 
 **Production is not switched.** Existing `.github/workflows/deploy.yml`, `deploy-sedrava-dev.yml`, `sedrava-dev/` and Astro source are unchanged. The new workflow is manual-only; preview CI cannot publish. No release/tag/package upload.
 
+## Single manual confirmation using the existing registered workflow
+
+The safe native staging workflow is only in a feature branch. GitHub requires a manual workflow to be registered on the default branch. To avoid merging site code or triggering production deployment, use the existing `Build Sedrava dev website` workflow (which is already registered on main) and select the native feature branch:
+
+https://github.com/VasiliiBabkin/sedrava-site/actions/workflows/deploy-sedrava-dev.yml
+
+1. Open **Run workflow**, select `feature/sedrava-native-docs-live-examples`.
+2. To prepare without publishing, leave `publish` unchecked. The job checks the latest successful preview for the exact chosen SHA and packages the accepted bytes.
+3. To explicitly approve publication to **dev.virtreal.ru only**, check `publish` and click **Run workflow**. No run ID or domain typing is needed; the safe wrapper fixes the dev target.
+4. Monitor the job and its `sedrava-native-staging-http-evidence` artifact. The HTTP and cache gate can still fail and trigger a rollback; no production deployment is authorized.
+
+For backups, an existing `SEDRAVA_STAGING_BACKUP_DIR` variable is used if configured. Otherwise, the remote SSH account creates `$HOME/.sedrava-native-backups` (0700), only if it canonically resolves outside the public site tree. If this cannot be established, the workflow fails before touching the dev root. No backup directory under the web root is accepted. The existing `production` GitHub environment is used only for its stored SSH credentials; its deployment **target is hard-coded to dev**.
+
 ## Verified-artifact preparation
 
 1. Wait for all three engines in `preview-sedrava-native.yml` to succeed at the exact website SHA. Review screenshots and `native-parity.json` / `native-provenance.json`. The independent `build webapp` outputs must match the embedded bytes.
