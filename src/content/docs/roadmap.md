@@ -1,22 +1,24 @@
 ---
 title: Roadmap
-description: Published Sedrava 0.10.0 and the next experimental language milestones.
+description: Published Sedrava 0.10.0 and verified experimental 0.11/0.12 development.
 ---
 
-Sedrava [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) was publicly released on 31 October 2026 and is available on [PyPI](https://pypi.org/project/sedrava/0.10.0/). Numbered future milestones are development plans, not release dates or promises.
+Sedrava [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) was released on 31 October 2026 and is available on [PyPI](https://pypi.org/project/sedrava/0.10.0/). The following future numbers are plans, not release dates.
 
 | Stage | Focus | Status |
 | --- | --- | --- |
-| **0.9** | Core state/actions, checked arithmetic and Web/Android generation | Historical GitHub alpha |
-| **0.10** | Unicode text, typed records, bounded lists, multi-screen navigation | **Published** on GitHub and PyPI |
-| **0.11** | Responsive Web UI and website generation | **Draft PR #22**, not included in 0.10.0 |
-| **0.12+** | Device capabilities, reusable modules, editor support and hardening | Proposed, not scheduled |
-| **1.0** | Versioned specification and compatibility commitments | Long-term objective |
+| **0.10.0** | Text, records, collections, multi-screen applications | **Published** |
+| **0.11.0rc1** | Responsive sites, interactive WebApps, typed client HTTP | **Candidate in preparation** ([PR #42](https://github.com/VasiliiBabkin/sedrava/pull/42)); not published |
+| **0.11.0** | Reviewed Web platform | Planned stable release after candidate acceptance |
+| **0.12.0a1** | Aliased namespaces, source diagnostics, offline local dependency locking | Implemented experimental stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41), alpha not published |
+| **0.13+** | Trusted server target, SQLite then authentication/migrations | Architecture proposal, not implemented |
+| **1.0** | Frozen specification, supported APIs and compatibility rules | Long-term objective |
 
 ## Current work
 
-A [0.11 Web UI development branch](https://github.com/VasiliiBabkin/sedrava/pull/22) explores static website generation from `.sdr`, with responsive components, themes and asset checks. **It is not released** and should not be confused with this official documentation website, which is independently built with Astro/Starlight in [sedrava-site](https://github.com/VasiliiBabkin/sedrava-site).
+The candidate is based on [Web platform integration PR #36](https://github.com/VasiliiBabkin/sedrava/pull/36). Namespaces and packages are separate experimental work. Details and current availability are on the [release status page](/releases/).
 
+The official documentation site still uses **Astro/Starlight**; the [Sedrava-authored development preview](https://dev.virtreal.ru/) is separate. Server-side authentication, SQLite and a package registry must not be described as released capabilities.
 ## Project principles
 
 - Express application behavior, typed state and invariants rather than platform boilerplate.

@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 
 const root = resolve('src/content/docs');
-const slugs = ['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'text-010'];
+const slugs = ['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases', 'text-010'];
 const published = 'https://pypi.org/project/sedrava/0.10.0/';
 const release = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0';
 const stale = [
@@ -26,6 +26,7 @@ for (const prefix of ['', 'ru/']) {
     for (const required of ['0.10.0', published, release]) {
       if (!text.includes(required)) throw new Error('Missing release fact (' + required + '): ' + path);
     }
+    if (slug === 'releases' && (!text.includes('0.11.0rc1') || !text.includes('0.12.0a1'))) throw new Error('Missing unpublished candidate/alpha status: ' + path);
     for (const p of stale) {
       if (p.test(text)) throw new Error('Stale unreleased status: ' + path + ' / ' + p);
     }

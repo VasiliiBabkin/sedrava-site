@@ -34,7 +34,7 @@ The output of the static build is written to dist/.
 
 [**Sedrava 0.10.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) was published on GitHub and [PyPI](https://pypi.org/project/sedrava/0.10.0/) on 31 October 2026. It includes text, records, bounded collections and multi-screen navigation. The release is experimental and not a production-support or 1.0 compatibility guarantee. The physical-device acceptance of the final 0.10 Android APK has not been documented. Historical 0.9/RC reports remain available as historical evidence.
 
-The experimental 0.11 `sedrava build site` language feature is being developed in [draft PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22); this documentation website itself uses **Astro/Starlight**, not the released 0.10 language generator.
+An unpublished **0.11.0rc1** candidate is being prepared in [PR #42](https://github.com/VasiliiBabkin/sedrava/pull/42), based on the Web platform integration work. The separate experimental **0.12** stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41) adds namespaces, source provenance and offline dependency locks. Neither development line has been released. See [bilingual status pages](src/content/docs/releases.md) and [RU](src/content/docs/ru/releases.md). This official site itself uses **Astro/Starlight**, not the published 0.10 language generator.
 
 ## Deployment
 
