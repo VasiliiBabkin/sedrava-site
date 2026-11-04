@@ -67,6 +67,20 @@ jobs:
           path: |
             build/native-site/
             build/native-independent/
-            build/native-browser-evidence/
             build/native-provenance.json
             build/native-parity.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sedrava-native-evidence-${{ matrix.engine }}
+          if-no-files-found: error
+          path: |
+            build/native-browser-evidence/*.png
+            build/native-browser-evidence/*.json
+            build/native-browser-evidence/*.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sedrava-native-traces-${{ matrix.engine }}
+          if-no-files-found: warn
+          path: build/native-browser-evidence/*.zip

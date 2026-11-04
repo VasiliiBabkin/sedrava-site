@@ -5,7 +5,7 @@
 ## Verified-artifact preparation
 
 1. Wait for all three engines in `preview-sedrava-native.yml` to succeed at the exact website SHA. Review screenshots and `native-parity.json` / `native-provenance.json`. The independent `build webapp` outputs must match the embedded bytes.
-2. Download a successful `sedrava-native-site-chromium` artifact. It contains `native-site/`, standalone comparison apps, source/file hash receipts and browser evidence.
+2. Download a successful `sedrava-native-site-chromium` artifact. It contains `native-site/`, standalone comparison apps and source/file hash receipts. Browser screenshots/results and traces are in separate evidence/traces artifacts of the same successful run.
 3. `stage_bundle.py` rejects a different/dirty SHA, missing/extra/modified files, symlinks, unsafe names and oversized payloads. It creates a deterministic file-only tar and checksum list **without rebuilding** the accepted website.
 4. The manual `stage-sedrava-native.yml` verifies that the chosen preview run finished successfully on this exact SHA before downloading it. `publish` defaults to false. Merely building/downloading the bundle never accesses SSH.
 

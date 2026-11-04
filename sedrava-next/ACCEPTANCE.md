@@ -40,13 +40,13 @@ The first website cross-engine run on `373c3a6` passed Chromium but failed Firef
 
 ## Evidence layout and final SHA
 
-Each successful CI engine artifact contains:
+Each successful CI engine produces a small `sedrava-native-site-<engine>` artifact containing:
 
 - `native-site/`: the complete static tree, four apps and downloadable exact sources;
 - `native-independent/`: standard CLI comparison outputs;
 - `native-parity.json`: measured page/route/link/source counts;
 - `native-provenance.json`: **actual checkout SHA**, dirty flag, immutable compiler SHA, versions, all artifact hashes;
-- `native-browser-evidence/`: real results, toolchain, API calls, axe output, screenshots at 320/360/390/768/1024/1440 and per-scenario Playwright traces.
+The separate `sedrava-native-evidence-<engine>` artifact contains real results, toolchain, API calls, axe output and 48 screenshots at 320/360/390/768/1024/1440. `sedrava-native-traces-<engine>` contains eight per-scenario Playwright traces. Keeping these separate makes the actual site easy to download and verify.
 
 The final SHA is generated in CI rather than self-referencing this document. The PR is updated with actual final run/artifact links after completion. Do not substitute a previous green run for the latest commit.
 
