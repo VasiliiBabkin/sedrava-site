@@ -25,9 +25,9 @@ def main():
         demo_source=SOURCE/'demos'/f'{name}.sdr';standalone=ROOT/'build/native-independent'/name
         for command in [['check',demo_source],['build','webapp',demo_source,'--output',standalone]]:
             subprocess.run([sys.executable,'-m','sedrava_cli',*map(str,command)],env=env,check=True)
-        expected=demos['/live/'+name+'/']['files'];actual={file:hashlib.sha256((standalone/file).read_bytes()).hexdigest() for file in expected}
-        if actual!=expected:raise SystemExit('Embedded output differs from independent build webapp: '+name)
-        independent[name]=actual
+        expected=demos['/live/'+name+'/']['files'];file_hashes={file:hashlib.sha256((standalone/file).read_bytes()).hexdigest() for file in expected}
+        if file_hashes!=expected:raise SystemExit('Embedded output differs from independent build webapp: '+name)
+        independent[name]=file_hashes
     manifest={'schema':1,'website_sha':site_sha,'website_dirty':dirty,'compiler_sha':actual,'compiler_pin':pin,'python':sys.version,'docs_dependencies':{name:importlib.metadata.version(name) for name in ('markdown-it-py','Pygments')},'ci_run':os.environ.get('GITHUB_RUN_ID'),'independent_demo_files':independent,'files':{p.relative_to(output).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(output.rglob('*')) if p.is_file()}}
     receipt=ROOT/'build/native-provenance.json';receipt.parent.mkdir(parents=True,exist_ok=True);receipt.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n');print(receipt)
 if __name__=='__main__':main()

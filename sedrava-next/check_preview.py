@@ -23,6 +23,13 @@ class Page(HTMLParser):
         if self.current:self.current[1].append(data)
 def main():
     subprocess.run([sys.executable,str(ROOT/'sedrava-next/migrate_content.py'),'--check'],check=True)
+    receipt=json.loads((ROOT/'build/native-provenance.json').read_text())
+    pin=json.loads((ROOT/'sedrava-next/compiler.json').read_text())
+    assert receipt['compiler_sha']==pin['sha'],'Compiler provenance must be its exact immutable SHA'
+    assert receipt['website_sha']==subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'Wrong website checkout provenance'
+    actual_files={p.relative_to(OUTPUT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in OUTPUT.rglob('*') if p.is_file()}
+    assert receipt['files']==actual_files,'Receipt must cover the exact complete output bytes'
+    assert set(receipt['independent_demo_files'])=={'counter','tasks','crm','catalog'}
     pages={};checked=0
     for path in OUTPUT.rglob('*.html'):
         parser=Page();parser.feed(path.read_text());pages[path.relative_to(OUTPUT).as_posix()]=parser

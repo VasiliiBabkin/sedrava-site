@@ -26,6 +26,7 @@ The first website cross-engine run on `373c3a6` passed Chromium but failed Firef
 
 | Issue | Correction and regression evidence |
 |---|---|
+| Compiler SHA was overwritten by an independent-demo hash dictionary in provenance | Separate variables; static acceptance now checks exact compiler/website SHA and all output hashes |
 | MDX conversion stripped indentation inside complete examples | Preserve fences separately; migration checker compares every original fence |
 | Reload reset the selected detail route | Child reload preserves current URL/hash; real browser route/state assertion |
 | Sticky parent navigation obscured a child modal | Trusted lifecycle observer centers the frame on modal open and is disposed/reconnected |
