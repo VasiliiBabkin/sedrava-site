@@ -46,6 +46,10 @@ class NativeSiteBrowser(unittest.TestCase):
         response=self.page.goto(self.base+path);self.assertEqual(response.status,200);return self.page
     def demo(self,name):
         panel=self.page.locator('[data-demo="/live/'+name+'/"]');panel.locator('iframe').scroll_into_view_if_needed();return panel,panel.frame_locator('iframe')
+    def reload_demo(self,panel,reset=False):
+        route=panel.get_attribute('data-demo')
+        with self.page.expect_event('framenavigated',predicate=lambda f:f.parent_frame is not None and urlsplit(f.url).path.startswith(route)):
+            panel.get_by_role('button',name='Reset this demo / Сбросить пример' if reset else 'Reload / Перезагрузить',exact=True).click()
     def test_bilingual_routes_navigation_metadata_and_provenance(self):
         p=self.goto('/');self.assertTrue(p.get_by_role('heading',name='This website is built with Sedrava',exact=True).is_visible())
         self.assertEqual(p.locator('astro-island').count(),0);p.get_by_role('link',name='Documentation',exact=True).click()
@@ -68,18 +72,18 @@ class NativeSiteBrowser(unittest.TestCase):
         self.assertEqual(panel.locator('code').text_content(),source)
         self.assertEqual(p.request.get(self.base+'/'+panel.get_attribute('data-demo').strip('/')+'/index.html').status,200)
         frame.get_by_role('button',name='Add one',exact=True).click();frame.get_by_role('button',name='Add one',exact=True).click();expect(frame.locator('output[data-state=count]')).to_have_text('2')
-        p.evaluate('localStorage.setItem("unrelated-site-state","retained")');panel.get_by_role('button',name='Reload / Перезагрузить',exact=True).click();expect(frame.locator('output[data-state=count]')).to_have_text('2')
+        p.evaluate('localStorage.setItem("unrelated-site-state","retained")');self.reload_demo(panel);expect(frame.locator('output[data-state=count]')).to_have_text('2')
         if self.engine=='chromium':self.context.grant_permissions(['clipboard-read','clipboard-write'],origin=self.base)
         panel.get_by_role('button',name='Copy / Копировать',exact=True).click();expect(panel.locator('[data-copy-status]')).to_have_text('Copied / Скопировано')
         if self.engine=='chromium':self.assertEqual(p.evaluate('navigator.clipboard.readText()'),source)
-        panel.get_by_role('button',name='Reset this demo / Сбросить пример',exact=True).click();expect(frame.locator('output[data-state=count]')).to_have_text('0')
+        self.reload_demo(panel,reset=True);expect(frame.locator('output[data-state=count]')).to_have_text('0')
         self.assertEqual(p.evaluate('localStorage.getItem("unrelated-site-state")'),'retained')
     def test_tasks_crud_search_filter_routes_reload_validation_and_delete(self):
         p=self.goto('/ru/examples/');panel,f=self.demo('tasks')
         f.get_by_label('New task',exact=True).fill('Native docs task');f.get_by_role('button',name='Add task',exact=True).click()
         f.get_by_role('button',name='Select Native docs task',exact=True).click();f.get_by_role('button',name='Open selected task',exact=True).click()
         f.get_by_label('Rename selected task',exact=True).fill('Renamed in frame');f.get_by_role('button',name='Rename task',exact=True).click();f.get_by_role('button',name='Toggle completion',exact=True).click()
-        panel.get_by_role('button',name='Reload / Перезагрузить',exact=True).click();expect(f.locator('[data-state=selected_title]')).to_have_text('Renamed in frame')
+        self.reload_demo(panel);expect(f.locator('[data-state=selected_title]')).to_have_text('Renamed in frame')
         f.get_by_role('button',name='Back to tasks',exact=True).click();f.get_by_label('Search tasks',exact=True).fill('missing');expect(f.locator('[data-each]')).to_contain_text('No matching tasks')
         f.get_by_label('Search tasks',exact=True).fill('');f.get_by_label('Filter by completion',exact=True).check();f.get_by_label('Completion status',exact=True).select_option('true');expect(f.locator('[data-each]')).to_contain_text('Completed')
         f.get_by_role('button',name='Select Renamed in frame',exact=True).click();f.get_by_role('button',name='Open selected task',exact=True).click();f.get_by_role('button',name='Delete task',exact=True).click();f.get_by_role('button',name='Confirm delete',exact=True).click();expect(f.get_by_role('button',name='Select Renamed in frame',exact=True)).to_have_count(0)
@@ -92,9 +96,9 @@ class NativeSiteBrowser(unittest.TestCase):
         f.get_by_role('button',name='Edit selected contact',exact=True).click();f.get_by_label('New contact name',exact=True).fill('Alice Docs');f.get_by_role('button',name='Save contact name',exact=True).click();f.get_by_role('button',name='Close editor',exact=True).click()
         f.get_by_role('button',name='Back to companies',exact=True).click();f.get_by_role('button',name='Delete company',exact=True).click();self.assertTrue(f.locator('#sedrava-error').is_visible());expect(f.get_by_role('table',name='Company directory',exact=True)).to_contain_text('Docs Company')
         f.get_by_role('button',name='Back to dashboard',exact=True).click();f.get_by_role('button',name='Settings',exact=True).click();f.get_by_label('Color theme',exact=True).select_option('"dark"')
-        panel.get_by_role('button',name='Reload / Перезагрузить',exact=True).click();expect(f.locator('html')).to_have_attribute('data-theme','dark')
+        self.reload_demo(panel);expect(f.locator('html')).to_have_attribute('data-theme','dark')
         other,cf=self.demo('counter');cf.get_by_role('button',name='Add one',exact=True).click();expect(cf.locator('output[data-state=count]')).to_have_text('1')
-        panel.get_by_role('button',name='Reset this demo / Сбросить пример',exact=True).click();panel.locator('iframe').scroll_into_view_if_needed();expect(f.locator('[data-state=company_count]')).to_have_text('0');expect(cf.locator('output[data-state=count]')).to_have_text('1')
+        self.reload_demo(panel,reset=True);panel.locator('iframe').scroll_into_view_if_needed();expect(f.locator('[data-state=company_count]')).to_have_text('0');expect(cf.locator('output[data-state=count]')).to_have_text('1')
     def test_http_real_endpoint_methods_errors_retry_cancel_and_static_failure(self):
         p=self.goto('/examples/');panel,f=self.demo('catalog');remote=f.locator('[data-remote=catalog]');expect(remote).to_contain_text('Real CI product')
         for mode,text in [('error','HTTP 503'),('invalid','Duplicate')]:

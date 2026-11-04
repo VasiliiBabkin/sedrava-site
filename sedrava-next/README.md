@@ -33,7 +33,7 @@ python -m playwright install chromium
 python sedrava-next/test_browser.py
 ```
 
-The preview workflow tests Chromium/Firefox/WebKit, 320/360/390/768/1024/1440 widths, source/download parity, actions/persistence/reset, offline Cyrillic/English search, real HTTP methods/errors and axe. Static parity currently verifies **12 retained routes, 26 native pages, four compiled demos, eight exact source panels, 792 local links/resources**. Initial local browser run passed most scenarios but found a navigation assertion requiring investigation; final success is not yet claimed. CI links/counts will be added after actual runs on the published SHA.
+The preview workflow tests Chromium/Firefox/WebKit, 320/360/390/768/1024/1440 widths, source/download parity, actions/persistence/reset, offline Cyrillic/English search, real HTTP methods/errors and axe. Static parity currently verifies **12 retained routes, 26 native pages, four compiled demos, eight exact source panels, 792 local links/resources**. Latest local Chromium acceptance: **8/8 passed** after fixing clean-route navigation, hash-preserving reload and modal visibility inside iframe. The compiler full suite passed **271 tests**; its pinned SHA passed native-docs Chromium/Firefox/WebKit and the existing packaging/Android CI. Website cross-engine CI for the next published checkpoint remains pending. Independent standard `build webapp` runs match the embedded bytes for all four demos. CI links/counts will be added after actual runs on the published SHA.
 
 ## Staging and production
 

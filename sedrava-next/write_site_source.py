@@ -13,7 +13,7 @@ def main():
         chrome += ['component '+name+'Sidebar:','    sidebar label '+q('Документация' if lang=='ru' else 'Documentation')+':']
         chrome += ['        link '+q(ru if lang=='ru' else en)+' to '+q(prefix+slug+'/') for slug,en,ru in PAGES]
     (ROOT/'components/chrome.sdr').write_text('\n'.join(chrome)+'\n')
-    out=['site "Sedrava · native documentation"','origin "https://dev.virtreal.ru"','robots false','stylesheet "assets/brand.css"','license "assets/INTER_LICENSE.txt"','favicon "assets/mark.svg"','social-image "assets/mark.svg"','import "components/chrome.sdr"','theme:','    background "#F5F0E8"','    surface "#FFFFFF"','    foreground "#231A35"','    accent "#583C82"','    gold "#8B6419"','    muted "#62596D"','    border "#D6CBDD"']
+    out=['site "Sedrava · native documentation"','origin "https://dev.virtreal.ru"','clean-urls true','robots false','stylesheet "assets/brand.css"','license "assets/INTER_LICENSE.txt"','favicon "assets/mark.svg"','social-image "assets/mark.svg"','import "components/chrome.sdr"','theme:','    background "#F5F0E8"','    surface "#FFFFFF"','    foreground "#231A35"','    accent "#583C82"','    gold "#8B6419"','    muted "#62596D"','    border "#D6CBDD"']
     for lang in ('en','ru'):
         pre='/ru/' if lang=='ru' else '/';name='Russian' if lang=='ru' else 'English';other='/' if lang=='ru' else '/ru/';locale='English' if lang=='ru' else 'Русский'
         def page(slug,title):

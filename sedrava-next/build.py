@@ -19,6 +19,15 @@ def main():
         provenance='## Compiler / Компилятор\n\nExperimental 0.11 compiler; published language remains 0.10.0.\n\n- Compiler Git SHA: `'+actual+'`\n- [Compiler source](https://github.com/VasiliiBabkin/sedrava/tree/'+actual+')\n- [Compiler extension PR #37](https://github.com/VasiliiBabkin/sedrava/pull/37)\n\n## Website / Сайт\n\n- Website Git SHA: `'+site_sha+'`\n- [Actual .sdr website source](https://github.com/VasiliiBabkin/sedrava-site/blob/'+site_sha+'/sedrava-next/site.sdr)\n- Working tree modified: `'+str(dirty).lower()+'`\n\n## Trust and release status / Статус\n\nThis website is built with Sedrava. Этот сайт написан на Sedrava.\n\nTrusted same-origin demos are not isolated untrusted code. The HTTP demo endpoint is CI-only; static hosting must not invent responses. No production deployment or 0.11 release is implied.\n'
         (generated/'provenance.md').write_text(provenance)
         for command in [['check',source/'site.sdr'],['build','site',source/'site.sdr','--output',args.output.resolve()]]:subprocess.run([sys.executable,'-m','sedrava_cli',*map(str,command)],env=env,check=True)
-    output=args.output.resolve();manifest={'schema':1,'website_sha':site_sha,'website_dirty':dirty,'compiler_sha':actual,'compiler_pin':pin,'python':sys.version,'docs_dependencies':{name:importlib.metadata.version(name) for name in ('markdown-it-py','Pygments')},'ci_run':os.environ.get('GITHUB_RUN_ID'),'files':{p.relative_to(output).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(output.rglob('*')) if p.is_file()}}
+    output=args.output.resolve();demos=json.loads((output/'docs-demos.json').read_text())
+    independent={}
+    for name in ('counter','tasks','crm','catalog'):
+        demo_source=SOURCE/'demos'/f'{name}.sdr';standalone=ROOT/'build/native-independent'/name
+        for command in [['check',demo_source],['build','webapp',demo_source,'--output',standalone]]:
+            subprocess.run([sys.executable,'-m','sedrava_cli',*map(str,command)],env=env,check=True)
+        expected=demos['/live/'+name+'/']['files'];actual={file:hashlib.sha256((standalone/file).read_bytes()).hexdigest() for file in expected}
+        if actual!=expected:raise SystemExit('Embedded output differs from independent build webapp: '+name)
+        independent[name]=actual
+    manifest={'schema':1,'website_sha':site_sha,'website_dirty':dirty,'compiler_sha':actual,'compiler_pin':pin,'python':sys.version,'docs_dependencies':{name:importlib.metadata.version(name) for name in ('markdown-it-py','Pygments')},'ci_run':os.environ.get('GITHUB_RUN_ID'),'independent_demo_files':independent,'files':{p.relative_to(output).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(output.rglob('*')) if p.is_file()}}
     receipt=ROOT/'build/native-provenance.json';receipt.parent.mkdir(parents=True,exist_ok=True);receipt.write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n');print(receipt)
 if __name__=='__main__':main()

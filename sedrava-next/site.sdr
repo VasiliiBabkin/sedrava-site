@@ -1,5 +1,6 @@
 site "Sedrava · native documentation"
 origin "https://dev.virtreal.ru"
+clean-urls true
 robots false
 stylesheet "assets/brand.css"
 license "assets/INTER_LICENSE.txt"
