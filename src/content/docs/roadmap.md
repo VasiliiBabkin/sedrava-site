@@ -3,12 +3,12 @@ title: Roadmap
 description: Published Sedrava 0.10.0 and verified experimental 0.11/0.12 development.
 ---
 
-Sedrava [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) was released on 31 October 2026 and is available on [PyPI](https://pypi.org/project/sedrava/0.10.0/). The following future numbers are plans, not release dates.
+Sedrava [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) was released on 31 October 2026 and is available on [PyPI](https://pypi.org/project/sedrava/0.10.0/). The 0.11.0rc1 experimental prerelease is published; stable 0.11.0 and later milestones remain plans, not release dates.
 
 | Stage | Focus | Status |
 | --- | --- | --- |
 | **0.10.0** | Text, records, collections, multi-screen applications | **Published** |
-| **0.11.0rc1** | Responsive sites, interactive WebApps, typed client HTTP | **Candidate in preparation** ([PR #42](https://github.com/VasiliiBabkin/sedrava/pull/42)); not published |
+| **0.11.0rc1** | Responsive sites, interactive WebApps, typed client HTTP | **Published experimental prerelease** ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) · [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)) |
 | **0.11.0** | Reviewed Web platform | Planned stable release after candidate acceptance |
 | **0.12.0a1** | Aliased namespaces, source diagnostics, offline local dependency locking | Implemented experimental stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41), alpha not published |
 | **0.13+** | Trusted server target, SQLite then authentication/migrations | Architecture proposal, not implemented |
