@@ -1,4 +1,4 @@
-// Verify bilingual docs and the published 0.10.0 release status before build/deploy.
+// Verify stable 0.10, published experimental 0.11 RC, and unpublished 0.12 status before deployment.
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 
@@ -6,6 +6,8 @@ const root = resolve('src/content/docs');
 const slugs = ['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases', 'text-010'];
 const published = 'https://pypi.org/project/sedrava/0.10.0/';
 const release = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0';
+const preview = 'https://pypi.org/project/sedrava/0.11.0rc1/';
+const previewRelease = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1';
 const stale = [
   /0\.10\.0\.dev0/i,
   /0\.10\.0rc2\s*[·—-]\s*(?:published|опубликован)/i,
@@ -26,7 +28,12 @@ for (const prefix of ['', 'ru/']) {
     for (const required of ['0.10.0', published, release]) {
       if (!text.includes(required)) throw new Error('Missing release fact (' + required + '): ' + path);
     }
-    if (slug === 'releases' && (!text.includes('0.11.0rc1') || !text.includes('0.12.0a1'))) throw new Error('Missing unpublished candidate/alpha status: ' + path);
+    if (['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases'].includes(slug)) {
+      for (const required of [preview, previewRelease]) {
+        if (!text.includes(required)) throw new Error('Missing published prerelease fact (' + required + '): ' + path);
+      }
+    }
+    if (slug === 'releases' && !text.includes('0.12.0a1')) throw new Error('Missing experimental 0.12 status: ' + path);
     for (const p of stale) {
       if (p.test(text)) throw new Error('Stale unreleased status: ' + path + ' / ' + p);
     }
@@ -40,4 +47,4 @@ for (const prefix of ['', 'ru/']) {
     checked++;
   }
 }
-console.log('PASS: ' + checked + ' EN/RU pages have current 0.10.0 status and local routes');
+console.log('PASS: ' + checked + ' EN/RU pages include stable 0.10, published 0.11 RC and valid local routes');
