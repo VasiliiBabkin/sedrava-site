@@ -32,4 +32,18 @@ def verify(manifest,output):
     report['status']='PASS' if not report['errors'] else 'NO-GO';Path(output).write_text(json.dumps(report,indent=2)+'\n');return report
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('manifest',type=Path);p.add_argument('--output',type=Path,default=Path('build/native-staging-http.json'));args=p.parse_args()
-    result=verify(json.loads(args.manifest.read_text()),args.output);print(result['status']);raise SystemExit(0 if result['status']=='PASS' else 1)
+    result=verify(json.loads(args.manifest.read_text()),args.output)
+    print(f"Staging HTTP verification: {result['status']}; checked {len(result['files'])} file(s), {len(result['errors'])} error(s)")
+    if result['errors']:
+        from collections import Counter
+        groups=Counter(error.partition(': ')[2] if ': ' in error else error for error in result['errors'])
+        for message,count in groups.most_common():
+            print(f"  {count} x {message}")
+        for error in result['errors'][:5]:
+            print(f"  Example: {error}")
+        if any('Mutable HTML/JS/CSS/JSON needs explicit' in error for error in result['errors']):
+            print("ACTION REQUIRED: dev.virtreal.ru serves mutable files without acceptable Cache-Control.")
+            print("Configure an explicit Nginx cache policy for THIS DEV HOST only, e.g. expires 0;")
+            print("After applying/reloading the reviewed vhost settings, rerun the manual GitHub workflow.")
+        print(f"Full failure evidence: {args.output}")
+    raise SystemExit(0 if result['status']=='PASS' else 1)

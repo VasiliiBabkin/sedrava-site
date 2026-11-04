@@ -26,11 +26,11 @@ For backups, an existing `SEDRAVA_STAGING_BACKUP_DIR` variable is used if config
 
 - Explicit manual `publish: true`, confirmation exactly `dev.virtreal.ru`, and the native feature branch.
 - Existing reviewed `SSH_HOST`, `SSH_USER`, `SSH_PRIVATE_KEY`, `SSH_KNOWN_HOSTS` (and optional port). Keys are not requested or copied into the repository.
-- Repository/environment variable `SEDRAVA_STAGING_BACKUP_DIR`: an **existing approved writable nonpublic directory**, outside the documented public web tree. No guessed backup path is created. It must resolve canonically without symlinks.
+- Prefer repository/environment variable `SEDRAVA_STAGING_BACKUP_DIR` pointing to an existing approved writable nonpublic directory. Without it, the staging workflow securely creates `$HOME/.sedrava-native-backups` under the SSH account (mode 0700) after rejecting web-root paths and symlinks.
 - The only deployment target is the already documented dev root from the existing dev workflow: `/var/www/virtreal_ru_usr27/data/www/virtreal.ru/dev`. It can never be overridden with the production path.
 - GitHub may require registering a new manual workflow on the default branch before it can be dispatched. That infrastructure-only change requires owner review; do not merge this entire site feature to production merely to register a workflow.
 
-The workflow has not been executed against the server. The current managed session cannot reach `https://dev.virtreal.ru`: the network proxy returned **403 CONNECT tunnel failed**. This is an access-policy limitation, not evidence that the host is down. Remote route handling, headers, permissions, backup and rollback are **unverified** until an actual approved staging run completes. Availability/values of SSH secrets and backup configuration have not been assumed.
+**Actual first dev staging run `41781576311` on 2026-11-04:** SSH, approved backup destination, deployment, byte-for-byte verification of all 70 served static files, 404 handling, and rollback were exercised successfully. HTTP acceptance failed **only** because 48 mutable HTML/CSS/JS/JSON responses had **no Cache-Control**. All responses also reported `Last-Modified: Thu, 01 Jan 1970`, reflecting the reproducible tar's epoch timestamps. The workflow correctly returned NO-GO and restored the previous dev snapshot. The external managed session previously saw proxy 403, but the GitHub-hosted runner can reach the live dev site. Future real HTTPS embedded-app/browser acceptance remains pending.
 
 ## Publication behavior and rollback
 
@@ -38,7 +38,17 @@ The workflow has not been executed against the server. The current managed sessi
 
 A failed extraction/hash check restores the old snapshot. A failed external HTTP verification also invokes rollback. Rollback removes only newly introduced managed file paths and restores the previous dev snapshot. It never targets Astro production. Backups are not put under the public document root.
 
-For a later manual rollback, use the same reviewed SSH identity and approved backup directory, and run the checked-in script on the server with operation `rollback` and the recorded deployment identifier (`<40-hex-website-SHA>-<numeric-GitHub-run-ID>`). Review the script and identifier before executing. Do not delete the backup until dev has been accepted. Server-side rollback has not been exercised by this session; local tests validate the bundle/checksum/caching guards only.
+For a later manual rollback, use the same reviewed SSH identity and approved backup directory, and run the checked-in script on the server with operation `rollback` and the recorded deployment identifier (`<40-hex-website-SHA>-<numeric-GitHub-run-ID>`). Review the script and identifier before executing. Do not delete the backup until dev has been accepted. Server-side rollback **was exercised** by real workflow run `41781576311` on 2026-11-04 and reported restoring the previous dev snapshot. An intentionally injected failure test for every possible restoration path has not been performed.
+
+## First real staging attempt: HTTP cache header blocker (2026-11-04)
+
+[Run 41781576311](https://github.com/VasiliiBabkin/sedrava-site/actions/runs/41781576311) and its `sedrava-native-staging-http-evidence` artifact show that **70/70 files were installed and verified over HTTPS**; 404 handling passed. The 48 remaining errors were the same missing `Cache-Control` response header on mutable HTML/JS/CSS/JSON. The rollback completed successfully. This is **not a compiler or artifact corruption failure**.
+
+The serving Nginx virtual host must expose a short explicit caching policy for **dev.virtreal.ru** (not for the production host). In a reviewed Nginx server/location context, the directive `expires 0;` emits `Cache-Control: max-age=0` on supported responses; `expires -1;` emits `no-cache`. Do not blindly duplicate existing `location` blocks or edit unrelated FASTPANEL-managed sites. Some location-level rules can override a server-level policy. FASTPANEL's website card → Settings → Static content also has a per-site cache-time control; validate actual **HTML, JS, CSS, and JSON** headers after changing it, because the panel's static extension list may not include every needed type.
+
+The reproducible staging tar intentionally stores `mtime=0`; `stage_remote.sh` now sets real Last-Modified times on **only** verified installed files without changing file bytes or reproducible release artifacts. This fixes epoch-zero HTTP validators but **does not replace the requirement for explicit Cache-Control**.
+
+After the dev Nginx setting is saved and validated, rerun the registered `Build Sedrava dev website` workflow on the feature branch with `publish` checked. Its checks still use exact-SHA accepted artifacts and rollback on any failure. Production remains unchanged.
 
 ## Real HTTP acceptance and cache policy
 

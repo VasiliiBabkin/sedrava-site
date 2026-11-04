@@ -37,5 +37,14 @@ while IFS= read -r file; do [[ "$file" =~ ^[A-Za-z0-9_./-]+$ && "$file" != /* &&
 trap 'rollback' ERR
 (umask 022; tar -xzf "$archive" -C "$target")
 (cd "$target" && sha256sum -c "$sums")
+# The reproducible bundle has epoch-zero mtime for deterministic archives.
+# Give ONLY verified deployed files the actual publication timestamp;
+# this fixes HTTP Last-Modified/ETag while preserving every content SHA-256.
+while IFS= read -r line; do
+  file="${line:66}"
+  [[ "$file" =~ ^[A-Za-z0-9_./-]+$ && "$file" != /* && "$file" != *'..'* ]]
+  [[ -f "$target/$file" && ! -L "$target/$file" ]]
+  touch -m -- "$target/$file"
+done < "$sums"
 trap - ERR
 printf 'Installed verified native preview on dev only: %s\n' "$deployment"
