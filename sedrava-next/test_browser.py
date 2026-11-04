@@ -31,7 +31,7 @@ class NativeSiteBrowser(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.fixture=tempfile.TemporaryDirectory(prefix='native-site-acceptance-');cls.output=Path(cls.fixture.name)/'site';shutil.copytree(OUT,cls.output)
-        cls.demo_sources={name:(ROOT/'sedrava-next/demos'/f'{name}.sdr').read_text() for name in ('counter','tasks','crm','catalog')}
+        cls.demo_sources={name:(ROOT/'sedrava-next/demos'/f'{name}.sdr').read_text() for name in ('counter','calculator','tasks','crm','catalog')}
         cls.server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(ControlledEndpoint,directory=str(cls.output)));cls.thread=threading.Thread(target=cls.server.serve_forever,daemon=True);cls.thread.start()
         cls.pw=sync_playwright().start();cls.engine=os.environ.get('SEDRAVA_BROWSER','chromium')
         options={'executable_path':os.environ.get('SEDRAVA_CHROMIUM') or shutil.which('chromium'),'args':['--no-sandbox']} if cls.engine=='chromium' else {}
@@ -89,6 +89,25 @@ class NativeSiteBrowser(unittest.TestCase):
         if self.engine=='chromium':self.assertEqual(p.evaluate('navigator.clipboard.readText()'),source)
         self.reload_demo(panel,reset=True);expect(frame.locator('output[data-state=count]')).to_have_text('0')
         self.assertEqual(p.evaluate('localStorage.getItem("unrelated-site-state")'),'retained')
+    def test_calculator_signed_integer_keypad_and_exact_source(self):
+        p=self.goto('/ru/examples/');panel,f=self.demo('calculator')
+        self.assertEqual(panel.locator('code').text_content(),self.demo_sources['calculator'])
+        def press(*buttons):
+            for label in buttons:
+                f.get_by_role('button',name=label,exact=True).click()
+        def result(expected):
+            expect(f.locator('output[data-state=current]')).to_have_text(str(expected))
+        press('1','2','+','3','=');result(15)
+        press('C','9','−','2','=');result(7)
+        press('C','8','×','7','=');result(56)
+        press('C','7','÷','2','=');result(3)
+        press('C','7','±','÷','2','=');result(-3)
+        press('C','8','÷','0','=');expect(f.locator('[data-when=error_div0]')).to_be_visible()
+        press('1','=');result(8)
+        press('C','1','2','+','3','×','4','=');result(60)
+        press('C','1','2','3','4','5');result(1234)
+        press('C','9','9','9','9','×','9','9','9','9','=');result(99980001)
+        panel.screenshot(path=str(EVIDENCE/'calculator-tested.png'))
     def test_tasks_crud_search_filter_routes_reload_validation_and_delete(self):
         p=self.goto('/ru/examples/');panel,f=self.demo('tasks')
         self.assertEqual(p.locator('html').evaluate('e=>getComputedStyle(e).scrollBehavior'),'auto')
@@ -132,7 +151,7 @@ class NativeSiteBrowser(unittest.TestCase):
             for route,name in [('/','home-en'),('/ru/','home-ru'),('/ru/getting-started/','docs-ru'),('/examples/','examples-en')]:
                 self.goto(route);p.evaluate('document.fonts.ready');self.assertLessEqual(p.evaluate('document.documentElement.scrollWidth'),width+1)
                 p.screenshot(path=str(EVIDENCE/f'{name}-{width}.png'),full_page=True)
-            for name in ('counter','tasks','crm','catalog'):
+            for name in ('counter','calculator','tasks','crm','catalog'):
                 panel,f=self.demo(name);f.get_by_role('heading',level=1).first.wait_for()
                 self.assertTrue(panel.locator('iframe').evaluate('e=>e.contentDocument.documentElement.scrollWidth<=e.contentWindow.innerWidth+1'),name+' frame overflow')
                 panel.screenshot(path=str(EVIDENCE/f'{name}-embed-{width}.png'))

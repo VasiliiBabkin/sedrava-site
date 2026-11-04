@@ -29,7 +29,7 @@ def main():
     assert receipt['website_sha']==subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),'Wrong website checkout provenance'
     actual_files={p.relative_to(OUTPUT).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in OUTPUT.rglob('*') if p.is_file()}
     assert receipt['files']==actual_files,'Receipt must cover the exact complete output bytes'
-    assert set(receipt['independent_demo_files'])=={'counter','tasks','crm','catalog'}
+    assert set(receipt['independent_demo_files'])=={'counter','calculator','tasks','crm','catalog'}
     pages={};checked=0
     for path in OUTPUT.rglob('*.html'):
         parser=Page();parser.feed(path.read_text());pages[path.relative_to(OUTPUT).as_posix()]=parser
@@ -57,7 +57,7 @@ def main():
     migration=json.loads((ROOT/'sedrava-next/migration.json').read_text())
     for row in migration:assert row['route'].lstrip('/')+'index.html' in pages,'Lost old route '+row['route']
     demos=json.loads((OUTPUT/'docs-demos.json').read_text())
-    assert len(demos)==4
+    assert len(demos)==5
     for route,demo in demos.items():
         source=(OUTPUT/demo['source_url']).read_bytes();assert hashlib.sha256(source).hexdigest()==demo['source_sha256']
         name=route.strip('/').split('/')[-1];assert source==(ROOT/'sedrava-next/demos'/f'{name}.sdr').read_bytes()
@@ -71,6 +71,6 @@ def main():
     assert native_count==30
     assert (OUTPUT/'sitemap.xml').read_text().count('<url>')==native_count
     assert list((OUTPUT/'assets').glob('*.woff2')) and list((OUTPUT/'assets').glob('license-*.txt'))
-    report={'status':'PASS','site_pages':native_count,'live_demos':len(demos),'legacy_routes':len(migration),'checked_local_links':checked,'displayed_source_panels':8}
+    report={'status':'PASS','site_pages':native_count,'live_demos':len(demos),'legacy_routes':len(migration),'checked_local_links':checked,'displayed_source_panels':10}
     (ROOT/'build/native-parity.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 if __name__=='__main__':main()

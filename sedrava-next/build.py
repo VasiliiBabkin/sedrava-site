@@ -21,7 +21,7 @@ def main():
         for command in [['check',source/'site.sdr'],['build','site',source/'site.sdr','--output',args.output.resolve()]]:subprocess.run([sys.executable,'-m','sedrava_cli',*map(str,command)],env=env,check=True)
     output=args.output.resolve();demos=json.loads((output/'docs-demos.json').read_text())
     independent={}
-    for name in ('counter','tasks','crm','catalog'):
+    for name in ('counter','calculator','tasks','crm','catalog'):
         demo_source=SOURCE/'demos'/f'{name}.sdr';standalone=ROOT/'build/native-independent'/name
         for command in [['check',demo_source],['build','webapp',demo_source,'--output',standalone]]:
             subprocess.run([sys.executable,'-m','sedrava_cli',*map(str,command)],env=env,check=True)

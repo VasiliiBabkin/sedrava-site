@@ -34,6 +34,7 @@ page en_home at "/":
                 row:
                     button "Start building" to "/getting-started/"
                     button "Run live examples" to "/examples/" variant secondary
+                    button "Open calculator" to "/live/calculator/" variant secondary
                 paragraph "Published 0.10.0 · Experimental website compiler 0.11" class "brand-label"
             search label "Search documentation"
             grid columns 2 class "brand-grid":
@@ -172,6 +173,8 @@ page en_examples at "/examples/":
                     callout variant warning:
                         paragraph "The live examples below use experimental 0.11. The HTTP catalog uses a real controlled endpoint only in CI; static dev hosting reports an honest HTTP error until an endpoint is provided."
                     demo "demos/counter.sdr" at "/live/counter/" label "Counter · persistent state" id counter
+                    demo "demos/calculator.sdr" at "/live/calculator/" label "Calculator · signed integer arithmetic" id calculator
+                    paragraph "The calculator uses integer arithmetic: 7 ÷ 2 = 3 and −7 ÷ 2 = −3. Floating-point numbers are not yet available in Sedrava."
                     demo "demos/tasks.sdr" at "/live/tasks/" label "Tasks · CRUD and routes" id tasks
                     demo "demos/crm.sdr" at "/live/crm/" label "CRM · related records and themes" id crm
                     demo "demos/catalog.sdr" at "/live/catalog/" label "HTTP catalog · CI-only endpoint" id catalog
@@ -340,6 +343,7 @@ page ru_home at "/ru/":
                 row:
                     button "Начать разработку" to "/ru/getting-started/"
                     button "Запустить примеры" to "/ru/examples/" variant secondary
+                    button "Калькулятор" to "/live/calculator/" variant secondary
                 paragraph "Опубликована 0.10.0 · Экспериментальный компилятор сайта 0.11" class "brand-label"
             search label "Поиск по документации"
             grid columns 2 class "brand-grid":
@@ -478,6 +482,8 @@ page ru_examples at "/ru/examples/":
                     callout variant warning:
                         paragraph "Примеры ниже используют экспериментальную 0.11. HTTP-каталог работает с настоящим сервером только в CI; на статическом dev-сайте честно показывает ошибку HTTP, пока endpoint не предоставлен."
                     demo "demos/counter.sdr" at "/live/counter/" label "Счётчик · сохранение состояния" id counter
+                    demo "demos/calculator.sdr" at "/live/calculator/" label "Калькулятор · арифметика целых чисел" id calculator
+                    paragraph "Калькулятор работает с целыми числами: 7 ÷ 2 = 3, −7 ÷ 2 = −3. Дробные числа в Sedrava пока не поддерживаются."
                     demo "demos/tasks.sdr" at "/live/tasks/" label "Задачи · CRUD и переходы" id tasks
                     demo "demos/crm.sdr" at "/live/crm/" label "CRM · связанные записи и темы" id crm
                     demo "demos/catalog.sdr" at "/live/catalog/" label "HTTP-каталог · endpoint только в CI" id catalog

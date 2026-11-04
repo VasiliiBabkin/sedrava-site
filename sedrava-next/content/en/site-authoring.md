@@ -18,7 +18,7 @@ Code panels have escaped syntax highlighting for Sedrava, shell and Python, visi
 
 ## Source-bound live demos
 
-`demo "demos/counter.sdr" at "/live/counter/" label "Counter"` compiles a local WebApp under its explicitly owned route. It displays the same exact source with download/hash beside the running iframe. At most 16 trusted demos; overlapping site/demo routes and source escapes reject. The site compares embedded files to independent standard `build webapp` outputs for all four examples.
+`demo "demos/counter.sdr" at "/live/counter/" label "Counter"` compiles a local WebApp under its explicitly owned route. It displays the same exact source with download/hash beside the running iframe. At most 16 trusted demos; overlapping site/demo routes and source escapes reject. The site compares embedded files to independent standard `build webapp` outputs for all five examples.
 
 These are trusted author programs sharing the site's origin, **not isolated untrusted playgrounds**. There is no arbitrary editor, raw JS or secret. The CSP permits self scripts/frames and iframe device permissions are denied. Do not combine same-origin/script permissions and claim isolation. Any future untrusted editor requires a separate origin and explicit budgets/permissions.
 
