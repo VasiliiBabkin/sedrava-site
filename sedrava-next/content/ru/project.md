@@ -1,6 +1,6 @@
 ## Исходники и участие
 
-[Язык](https://github.com/VasiliiBabkin/sedrava), [сайт](https://github.com/VasiliiBabkin/sedrava-site), [ошибки языка](https://github.com/VasiliiBabkin/sedrava/issues). Действующий Astro-сайт сохранён на время проверки нативной версии. Переключение production не выполнялось.
+[Язык](https://github.com/VasiliiBabkin/sedrava), [сайт](https://github.com/VasiliiBabkin/sedrava-site), [ошибки языка](https://github.com/VasiliiBabkin/sedrava/issues). Этот сайт документации полностью собран из исходников Sedrava. Данные о сборке и версии компилятора доступны в разделе [«Происхождение»](/ru/provenance/). Основной домен пока не переключён.
 
 ## Посвящение
 

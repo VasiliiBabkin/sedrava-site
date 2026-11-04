@@ -2,7 +2,7 @@
 
 This preview uses the experimental 0.11 compiler in PR #36 plus the optional documentation contract from PR #37. It is not included in the published 0.10.0 package. Install the exact compiler checkout with `python -m pip install '.[docs]'`: MarkdownIt 4.0.0 and Pygments 2.19.2 are build-time dependencies, not browser frameworks.
 
-The website layout, pages, locales, components, routes and assets are authored in [site.sdr](https://github.com/VasiliiBabkin/sedrava-site/blob/feature/sedrava-native-docs-live-examples/sedrava-next/site.sdr). Source-controlled Markdown supplies content. There is no Astro wrapper or post-build HTML patching.
+The website layout, pages, locales, components, routes and assets are authored in [site.sdr](https://github.com/VasiliiBabkin/sedrava-site/blob/feature/sedrava-native-docs-live-examples/sedrava-next/site.sdr). Source-controlled Markdown supplies content. Pages and their bundled live examples are generated directly by Sedrava without manual HTML patching.
 
 ## Local Markdown
 

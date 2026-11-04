@@ -2,7 +2,7 @@
 
 Здесь используется экспериментальный компилятор 0.11 из PR #36 и расширение документации PR #37. Их нет в опубликованном пакете 0.10.0. Установите точный checkout командой `python -m pip install '.[docs]'`: MarkdownIt 4.0.0 и Pygments 2.19.2 нужны во время сборки, а не как браузерные фреймворки.
 
-Макет, страницы, локали, компоненты, маршруты и ресурсы описаны в [site.sdr](https://github.com/VasiliiBabkin/sedrava-site/blob/feature/sedrava-native-docs-live-examples/sedrava-next/site.sdr). Markdown хранит контент. Astro-обёртки и ручных исправлений HTML после сборки нет.
+Макет, страницы, локали, компоненты, маршруты и ресурсы описаны в [site.sdr](https://github.com/VasiliiBabkin/sedrava-site/blob/feature/sedrava-native-docs-live-examples/sedrava-next/site.sdr). Markdown хранит контент. Страницы и встроенные интерактивные примеры генерируются напрямую компилятором Sedrava без ручных изменений HTML.
 
 ## Локальный Markdown
 

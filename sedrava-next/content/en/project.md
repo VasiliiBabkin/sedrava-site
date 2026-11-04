@@ -1,6 +1,6 @@
 ## Source and participation
 
-[Language source](https://github.com/VasiliiBabkin/sedrava), [website source](https://github.com/VasiliiBabkin/sedrava-site), [language issues](https://github.com/VasiliiBabkin/sedrava/issues). The current official Astro website is preserved while this Sedrava-native preview is reviewed. No production switch is implied.
+[Language source](https://github.com/VasiliiBabkin/sedrava), [website source](https://github.com/VasiliiBabkin/sedrava-site), [language issues](https://github.com/VasiliiBabkin/sedrava/issues). This documentation website is generated directly from Sedrava source files. Its build details and exact compiler version are available in [build provenance](/provenance/). The separate production domain has not been switched.
 
 ## Dedicated to a teacher
 

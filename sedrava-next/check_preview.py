@@ -46,6 +46,14 @@ def main():
             assert resolved.resolve().is_relative_to(OUTPUT.resolve()) and resolved.is_file(),f'{path}: broken local URL {href} -> {target}'
             if url.fragment:assert target in pages and unquote(url.fragment) in pages[target].ids,f'{path}: broken anchor {href}'
             checked+=1
+    # All visitor-facing pages identify their actual Sedrava generator.
+    for path,page in pages.items():
+        if path.startswith('live/'):
+            continue
+        visible=''.join(page.text)
+        assert 'astro' not in visible.casefold(), f'{path}: obsolete generator claim'
+        claim='Этот сайт написан на Sedrava' if path.startswith('ru/') else 'This website is built with Sedrava'
+        assert claim in visible, f'{path}: missing native Sedrava attribution'
     migration=json.loads((ROOT/'sedrava-next/migration.json').read_text())
     for row in migration:assert row['route'].lstrip('/')+'index.html' in pages,'Lost old route '+row['route']
     demos=json.loads((OUTPUT/'docs-demos.json').read_text())
