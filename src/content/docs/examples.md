@@ -41,3 +41,17 @@ python -m http.server 8000 --directory build/navigation-web
 Open **http://localhost:8000** to try the generated Web app. Android generation produces sources, not an APK; see the [build guide](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md).
 
 The [full example index](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) also includes a constrained counter, manual countdown and habit progress. Examples are for learning and conformance, not production templates.
+
+## Four new examples in experimental 0.11.0rc1
+
+The [published prerelease](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) is available on [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). Check out the [release-tag example sources](https://github.com/VasiliiBabkin/sedrava/tree/v0.11.0rc1/examples) first, then:
+
+~~~sh
+python -m pip install sedrava==0.11.0rc1
+sedrava build site examples/platform_site.sdr --output build/platform/site
+sedrava build webapp examples/platform_tasks.sdr --output build/platform/tasks
+sedrava build webapp examples/platform_catalog.sdr --output build/platform/catalog
+sedrava build webapp examples/platform_crm.sdr --output build/platform/crm
+~~~
+
+The catalog requires an independently provided HTTP API; a static file server cannot supply that endpoint. [Read the limitations](/releases/).
