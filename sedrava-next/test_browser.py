@@ -154,6 +154,8 @@ class NativeSiteBrowser(unittest.TestCase):
             for name in ('counter','calculator','tasks','crm','catalog'):
                 panel,f=self.demo(name);f.get_by_role('heading',level=1).first.wait_for()
                 self.assertTrue(panel.locator('iframe').evaluate('e=>e.contentDocument.documentElement.scrollWidth<=e.contentWindow.innerWidth+1'),name+' frame overflow')
+                if name=='calculator':
+                    self.assertTrue(panel.locator('iframe').evaluate('e=>e.contentDocument.documentElement.scrollHeight<=e.contentWindow.innerHeight+2'),f'Calculator keypad must be fully visible at {width}px')
                 panel.screenshot(path=str(EVIDENCE/f'{name}-embed-{width}.png'))
     def test_accessibility_keyboard_toc_and_source_downloads(self):
         axe=(ROOT/'build/a11y/node_modules/axe-core/axe.min.js').read_text();reports={}

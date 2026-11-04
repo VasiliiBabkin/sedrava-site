@@ -15,3 +15,7 @@ body{font-family:SedravaInter,ui-sans-serif,system-ui,sans-serif}.s-heading{font
    sticky parent hit targets while interacting with a child document. */
 html{scroll-behavior:auto;scroll-padding-top:6rem}
 body:has(.doc-demo) .s-navbar{position:static}
+
+/* Calculator has five full keypad rows; show them without an inner iframe scrollbar. */
+.doc-demo[data-demo="/live/calculator/"] .demo-frame{height:1080px}
+@media(max-width:599px){.doc-demo[data-demo="/live/calculator/"] .demo-frame{height:1160px}}
