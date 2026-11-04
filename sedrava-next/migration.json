@@ -1,0 +1,98 @@
+[
+  {
+    "source": "src/content/docs/examples.md",
+    "target": "sedrava-next/content/en/examples.md",
+    "route": "/examples/",
+    "reviewed_mdx": false,
+    "source_sha256": "be56a9641a226151f9dbbb89c048fd1053b352a3958034713c99a7893324fa81",
+    "migrated_sha256": "be56a9641a226151f9dbbb89c048fd1053b352a3958034713c99a7893324fa81"
+  },
+  {
+    "source": "src/content/docs/getting-started.md",
+    "target": "sedrava-next/content/en/getting-started.md",
+    "route": "/getting-started/",
+    "reviewed_mdx": false,
+    "source_sha256": "4e8fad7671b5d1a39bede86ce5020c0ab4637fa33125a3ffd95879de89406330",
+    "migrated_sha256": "b2dd8226ae36736b6653cd0afb85ec7a96f7380e78979f6926ab05265dc1ca32"
+  },
+  {
+    "source": "src/content/docs/index.mdx",
+    "target": "sedrava-next/content/en/home.md",
+    "route": "/",
+    "reviewed_mdx": true,
+    "source_sha256": "1d0ae8bbc9dd22607f529f4b0749e0e410d80cb8fc509704906e123b5a4698f1",
+    "migrated_sha256": "f8611d1837c82acbc97ca428beae316409d8e8f583e2b46b4d8a0e202097cd92"
+  },
+  {
+    "source": "src/content/docs/language-overview.md",
+    "target": "sedrava-next/content/en/language-overview.md",
+    "route": "/language-overview/",
+    "reviewed_mdx": false,
+    "source_sha256": "a65edd280950324926cf1c6829f2be3c5c183a7dcacbab838c189279de8970a1",
+    "migrated_sha256": "a65edd280950324926cf1c6829f2be3c5c183a7dcacbab838c189279de8970a1"
+  },
+  {
+    "source": "src/content/docs/roadmap.md",
+    "target": "sedrava-next/content/en/roadmap.md",
+    "route": "/roadmap/",
+    "reviewed_mdx": false,
+    "source_sha256": "57ab4aa88ea014d503446e59918ffc923983e6bd94201d7d396dcbb2824b7054",
+    "migrated_sha256": "355866190554be533f2c7786d6ede67af73ea8c6ab0db37c0c558f8d478a3daa"
+  },
+  {
+    "source": "src/content/docs/ru/examples.md",
+    "target": "sedrava-next/content/ru/examples.md",
+    "route": "/ru/examples/",
+    "reviewed_mdx": false,
+    "source_sha256": "b3515fa88a0c24d056dd5322aed0edbbbc1783d96b7baeeeee1b410bd99a6605",
+    "migrated_sha256": "b3515fa88a0c24d056dd5322aed0edbbbc1783d96b7baeeeee1b410bd99a6605"
+  },
+  {
+    "source": "src/content/docs/ru/getting-started.md",
+    "target": "sedrava-next/content/ru/getting-started.md",
+    "route": "/ru/getting-started/",
+    "reviewed_mdx": false,
+    "source_sha256": "efa09a441861569d3cbe35fb2902f10d49e83aaef4c5913d9ec8dcce714b0e7a",
+    "migrated_sha256": "3fd0df4410ab9fac12ce87b93ed3a7ed8daf520b8e82d7f3934424fb6dd94275"
+  },
+  {
+    "source": "src/content/docs/ru/index.mdx",
+    "target": "sedrava-next/content/ru/home.md",
+    "route": "/ru/",
+    "reviewed_mdx": true,
+    "source_sha256": "5b9c0dedff910b97f7c05b0bef01255240fa9a72c3c3deca07c6678557097305",
+    "migrated_sha256": "a41c57be47d6420c1ec7767f8f6527cbdb23ba864e10cbf0cccce2e15bb9de46"
+  },
+  {
+    "source": "src/content/docs/ru/language-overview.md",
+    "target": "sedrava-next/content/ru/language-overview.md",
+    "route": "/ru/language-overview/",
+    "reviewed_mdx": false,
+    "source_sha256": "12bfb2032b71e5bc827fe871c0856e977d76b4d4a34bb512c4255f63e7a3b19c",
+    "migrated_sha256": "12bfb2032b71e5bc827fe871c0856e977d76b4d4a34bb512c4255f63e7a3b19c"
+  },
+  {
+    "source": "src/content/docs/ru/roadmap.md",
+    "target": "sedrava-next/content/ru/roadmap.md",
+    "route": "/ru/roadmap/",
+    "reviewed_mdx": false,
+    "source_sha256": "4dc0d533dd08def7f19f70fd76298f51e4a309f391ceae43bf14e9168dbc267c",
+    "migrated_sha256": "a7cf1a15753a1f3881dc7e023a7cd2fadfced3dc96cbeffcd8f32841a3aa74c0"
+  },
+  {
+    "source": "src/content/docs/ru/text-010.md",
+    "target": "sedrava-next/content/ru/text-010.md",
+    "route": "/ru/text-010/",
+    "reviewed_mdx": false,
+    "source_sha256": "9d1b36c6ee76427784bda6ec129b09770069c94fbf61b5887d7a8d16a7b6839d",
+    "migrated_sha256": "9d1b36c6ee76427784bda6ec129b09770069c94fbf61b5887d7a8d16a7b6839d"
+  },
+  {
+    "source": "src/content/docs/text-010.md",
+    "target": "sedrava-next/content/en/text-010.md",
+    "route": "/text-010/",
+    "reviewed_mdx": false,
+    "source_sha256": "574b770d1bb31303a78256b63296cdb32519d49822887ed1a4d50cf8835cbe2d",
+    "migrated_sha256": "574b770d1bb31303a78256b63296cdb32519d49822887ed1a4d50cf8835cbe2d"
+  }
+]

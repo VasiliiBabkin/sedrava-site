@@ -1,0 +1,2 @@
+/* No competing document scroll animation inside the live documentation frame. */
+html{scroll-behavior:auto}

@@ -1,0 +1,637 @@
+site "Sedrava · native documentation"
+origin "https://dev.virtreal.ru"
+clean-urls true
+robots false
+stylesheet "assets/brand.css"
+license "assets/INTER_LICENSE.txt"
+license "assets/LICENSE_COMPILER.txt"
+license "assets/LICENSE_SITE.txt"
+favicon "assets/mark.svg"
+social-image "assets/mark.svg"
+import "components/chrome.sdr"
+theme:
+    background "#F5F0E8"
+    surface "#FFFFFF"
+    foreground "#231A35"
+    accent "#583C82"
+    gold "#8B6419"
+    muted "#62596D"
+    border "#D6CBDD"
+
+page en_home at "/":
+    title "This website is built with Sedrava — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/"
+            column gap 24 class "hero":
+                image "assets/mark.svg" alt "Sedrava folded amethyst ribbon with a gold cut" class "hero-image"
+                paragraph "SEDRAVA · DESCRIBE → GENERATE" variant eyebrow
+                heading "This website is built with Sedrava"
+                paragraph "Describe the application. Generate the application. Typed data, rules and interface in one readable source." variant lead
+                row:
+                    button "Start building" to "/getting-started/"
+                    button "Run live examples" to "/examples/" variant secondary
+                    button "Open calculator" to "/examples/#calculator" variant secondary
+                paragraph "Published 0.10.0 · Experimental website compiler 0.11" class "brand-label"
+            search label "Search documentation"
+            grid columns 2 class "brand-grid":
+                card:
+                    column:
+                        heading "A stateful counter" level 2
+                        paragraph "The running application and its exact .sdr source on the same page."
+                        link "Open example" to "/examples/#counter"
+                card:
+                    column:
+                        heading "An offline task manager" level 2
+                        paragraph "The running application and its exact .sdr source on the same page."
+                        link "Open example" to "/examples/#tasks"
+                card:
+                    column:
+                        heading "A related-record client desk" level 2
+                        paragraph "The running application and its exact .sdr source on the same page."
+                        link "Open example" to "/examples/#crm"
+                card:
+                    column:
+                        heading "A typed HTTP catalog · CI endpoint" level 2
+                        paragraph "The running application and its exact .sdr source on the same page."
+                        link "Open example" to "/examples/#catalog"
+            markdown "content/en/home.md"
+    use EnglishFooter
+
+page en_getting_started at "/getting-started/":
+    title "Getting started — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/getting-started/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Getting started"
+                    search label "Search documentation"
+                    markdown "content/en/getting-started.md"
+                    row justify between class "next-prev":
+                        link "← Home" to "/"
+                        link "Language overview →" to "/language-overview/"
+    use EnglishFooter
+
+page en_language_overview at "/language-overview/":
+    title "Language overview — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/language-overview/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Language overview"
+                    search label "Search documentation"
+                    markdown "content/en/language-overview.md"
+                    row justify between class "next-prev":
+                        link "← Getting started" to "/getting-started/"
+                        link "Text values · 0.10 →" to "/text-010/"
+    use EnglishFooter
+
+page en_text_010 at "/text-010/":
+    title "Text values · 0.10 — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/text-010/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Text values · 0.10"
+                    search label "Search documentation"
+                    markdown "content/en/text-010.md"
+                    row justify between class "next-prev":
+                        link "← Language overview" to "/language-overview/"
+                        link "Records and navigation →" to "/records-navigation/"
+    use EnglishFooter
+
+page en_records_navigation at "/records-navigation/":
+    title "Records and navigation — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/records-navigation/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Records and navigation"
+                    search label "Search documentation"
+                    markdown "content/en/records-navigation.md"
+                    row justify between class "next-prev":
+                        link "← Text values · 0.10" to "/text-010/"
+                        link "CLI and builds →" to "/cli/"
+    use EnglishFooter
+
+page en_cli at "/cli/":
+    title "CLI and builds — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/cli/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "CLI and builds"
+                    search label "Search documentation"
+                    markdown "content/en/cli.md"
+                    row justify between class "next-prev":
+                        link "← Records and navigation" to "/records-navigation/"
+                        link "Examples and source →" to "/examples/"
+    use EnglishFooter
+
+page en_examples at "/examples/":
+    title "Examples and source — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/examples/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Examples and source"
+                    search label "Search documentation"
+                    markdown "content/en/examples.md"
+                    callout variant warning:
+                        paragraph "The live examples below use experimental 0.11. The HTTP catalog uses a real controlled endpoint only in CI; static dev hosting reports an honest HTTP error until an endpoint is provided."
+                    demo "demos/counter.sdr" at "/live/counter/" label "Counter · persistent state" id counter
+                    demo "demos/calculator.sdr" at "/live/calculator/" label "Calculator · signed integer arithmetic" id calculator
+                    paragraph "The calculator uses integer arithmetic: 7 ÷ 2 = 3 and −7 ÷ 2 = −3. Floating-point numbers are not yet available in Sedrava."
+                    demo "demos/tasks.sdr" at "/live/tasks/" label "Tasks · CRUD and routes" id tasks
+                    demo "demos/crm.sdr" at "/live/crm/" label "CRM · related records and themes" id crm
+                    demo "demos/catalog.sdr" at "/live/catalog/" label "HTTP catalog · CI-only endpoint" id catalog
+                    row justify between class "next-prev":
+                        link "← CLI and builds" to "/cli/"
+                        link "Release notes →" to "/release-notes/"
+    use EnglishFooter
+
+page en_release_notes at "/release-notes/":
+    title "Release notes — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/release-notes/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Release notes"
+                    search label "Search documentation"
+                    markdown "content/en/release-notes.md"
+                    row justify between class "next-prev":
+                        link "← Examples and source" to "/examples/"
+                        link "Compatibility and storage →" to "/compatibility/"
+    use EnglishFooter
+
+page en_compatibility at "/compatibility/":
+    title "Compatibility and storage — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/compatibility/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Compatibility and storage"
+                    search label "Search documentation"
+                    markdown "content/en/compatibility.md"
+                    row justify between class "next-prev":
+                        link "← Release notes" to "/release-notes/"
+                        link "Roadmap →" to "/roadmap/"
+    use EnglishFooter
+
+page en_roadmap at "/roadmap/":
+    title "Roadmap — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/roadmap/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Roadmap"
+                    search label "Search documentation"
+                    markdown "content/en/roadmap.md"
+                    row justify between class "next-prev":
+                        link "← Compatibility and storage" to "/compatibility/"
+                        link "Experimental Web · 0.11 →" to "/web-preview/"
+    use EnglishFooter
+
+page en_web_preview at "/web-preview/":
+    title "Experimental Web · 0.11 — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/web-preview/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Experimental Web · 0.11"
+                    search label "Search documentation"
+                    markdown "content/en/web-preview.md"
+                    row justify between class "next-prev":
+                        link "← Roadmap" to "/roadmap/"
+                        link "Web platform reference →" to "/web-platform/"
+    use EnglishFooter
+
+page en_web_platform at "/web-platform/":
+    title "Web platform reference — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/web-platform/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Web platform reference"
+                    search label "Search documentation"
+                    markdown "content/en/web-platform.md"
+                    row justify between class "next-prev":
+                        link "← Experimental Web · 0.11" to "/web-preview/"
+                        link "Native site authoring →" to "/site-authoring/"
+    use EnglishFooter
+
+page en_site_authoring at "/site-authoring/":
+    title "Native site authoring — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/site-authoring/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Native site authoring"
+                    search label "Search documentation"
+                    markdown "content/en/site-authoring.md"
+                    row justify between class "next-prev":
+                        link "← Web platform reference" to "/web-platform/"
+                        link "Project and dedication →" to "/project/"
+    use EnglishFooter
+
+page en_project at "/project/":
+    title "Project and dedication — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/project/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Project and dedication"
+                    search label "Search documentation"
+                    markdown "content/en/project.md"
+                    row justify between class "next-prev":
+                        link "← Native site authoring" to "/site-authoring/"
+    use EnglishFooter
+
+page en_provenance at "/provenance/":
+    title "Build provenance — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/provenance/"
+            heading "Build provenance"
+            markdown "generated/provenance.md"
+    use EnglishFooter
+
+page ru_home at "/ru/":
+    title "Этот сайт написан на Sedrava — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/"
+            column gap 24 class "hero":
+                image "assets/mark.svg" alt "Знак Sedrava: аметистовая складка с золотым разрезом" class "hero-image"
+                paragraph "SEDRAVA · DESCRIBE → GENERATE" variant eyebrow
+                heading "Этот сайт написан на Sedrava"
+                paragraph "Опиши приложение — получи приложение. Данные, правила и интерфейс в одном понятном исходнике." variant lead
+                row:
+                    button "Начать разработку" to "/ru/getting-started/"
+                    button "Запустить примеры" to "/ru/examples/" variant secondary
+                    button "Калькулятор" to "/ru/examples/#calculator" variant secondary
+                paragraph "Опубликована 0.10.0 · Экспериментальный компилятор сайта 0.11" class "brand-label"
+            search label "Поиск по документации"
+            grid columns 2 class "brand-grid":
+                card:
+                    column:
+                        heading "Счётчик с состоянием" level 2
+                        paragraph "Настоящее приложение и точный .sdr-исходник на одной странице."
+                        link "Открыть пример" to "/ru/examples/#counter"
+                card:
+                    column:
+                        heading "Офлайн-менеджер задач" level 2
+                        paragraph "Настоящее приложение и точный .sdr-исходник на одной странице."
+                        link "Открыть пример" to "/ru/examples/#tasks"
+                card:
+                    column:
+                        heading "Компании и контакты" level 2
+                        paragraph "Настоящее приложение и точный .sdr-исходник на одной странице."
+                        link "Открыть пример" to "/ru/examples/#crm"
+                card:
+                    column:
+                        heading "HTTP-каталог · сервер CI" level 2
+                        paragraph "Настоящее приложение и точный .sdr-исходник на одной странице."
+                        link "Открыть пример" to "/ru/examples/#catalog"
+            markdown "content/ru/home.md"
+    use RussianFooter
+
+page ru_getting_started at "/ru/getting-started/":
+    title "Начало работы — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/getting-started/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Начало работы"
+                    search label "Поиск по документации"
+                    markdown "content/ru/getting-started.md"
+                    row justify between class "next-prev":
+                        link "← Главная" to "/ru/"
+                        link "Возможности языка →" to "/ru/language-overview/"
+    use RussianFooter
+
+page ru_language_overview at "/ru/language-overview/":
+    title "Возможности языка — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/language-overview/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Возможности языка"
+                    search label "Поиск по документации"
+                    markdown "content/ru/language-overview.md"
+                    row justify between class "next-prev":
+                        link "← Начало работы" to "/ru/getting-started/"
+                        link "Текст · 0.10 →" to "/ru/text-010/"
+    use RussianFooter
+
+page ru_text_010 at "/ru/text-010/":
+    title "Текст · 0.10 — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/text-010/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Текст · 0.10"
+                    search label "Поиск по документации"
+                    markdown "content/ru/text-010.md"
+                    row justify between class "next-prev":
+                        link "← Возможности языка" to "/ru/language-overview/"
+                        link "Записи и навигация →" to "/ru/records-navigation/"
+    use RussianFooter
+
+page ru_records_navigation at "/ru/records-navigation/":
+    title "Записи и навигация — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/records-navigation/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Записи и навигация"
+                    search label "Поиск по документации"
+                    markdown "content/ru/records-navigation.md"
+                    row justify between class "next-prev":
+                        link "← Текст · 0.10" to "/ru/text-010/"
+                        link "CLI и сборка →" to "/ru/cli/"
+    use RussianFooter
+
+page ru_cli at "/ru/cli/":
+    title "CLI и сборка — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/cli/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "CLI и сборка"
+                    search label "Поиск по документации"
+                    markdown "content/ru/cli.md"
+                    row justify between class "next-prev":
+                        link "← Записи и навигация" to "/ru/records-navigation/"
+                        link "Примеры и исходники →" to "/ru/examples/"
+    use RussianFooter
+
+page ru_examples at "/ru/examples/":
+    title "Примеры и исходники — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/examples/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Примеры и исходники"
+                    search label "Поиск по документации"
+                    markdown "content/ru/examples.md"
+                    callout variant warning:
+                        paragraph "Примеры ниже используют экспериментальную 0.11. HTTP-каталог работает с настоящим сервером только в CI; на статическом dev-сайте честно показывает ошибку HTTP, пока endpoint не предоставлен."
+                    demo "demos/counter.sdr" at "/live/counter/" label "Счётчик · сохранение состояния" id counter
+                    demo "demos/calculator.sdr" at "/live/calculator/" label "Калькулятор · арифметика целых чисел" id calculator
+                    paragraph "Калькулятор работает с целыми числами: 7 ÷ 2 = 3, −7 ÷ 2 = −3. Дробные числа в Sedrava пока не поддерживаются."
+                    demo "demos/tasks.sdr" at "/live/tasks/" label "Задачи · CRUD и переходы" id tasks
+                    demo "demos/crm.sdr" at "/live/crm/" label "CRM · связанные записи и темы" id crm
+                    demo "demos/catalog.sdr" at "/live/catalog/" label "HTTP-каталог · endpoint только в CI" id catalog
+                    row justify between class "next-prev":
+                        link "← CLI и сборка" to "/ru/cli/"
+                        link "Заметки о выпуске →" to "/ru/release-notes/"
+    use RussianFooter
+
+page ru_release_notes at "/ru/release-notes/":
+    title "Заметки о выпуске — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/release-notes/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Заметки о выпуске"
+                    search label "Поиск по документации"
+                    markdown "content/ru/release-notes.md"
+                    row justify between class "next-prev":
+                        link "← Примеры и исходники" to "/ru/examples/"
+                        link "Совместимость и хранение →" to "/ru/compatibility/"
+    use RussianFooter
+
+page ru_compatibility at "/ru/compatibility/":
+    title "Совместимость и хранение — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/compatibility/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Совместимость и хранение"
+                    search label "Поиск по документации"
+                    markdown "content/ru/compatibility.md"
+                    row justify between class "next-prev":
+                        link "← Заметки о выпуске" to "/ru/release-notes/"
+                        link "Дорожная карта →" to "/ru/roadmap/"
+    use RussianFooter
+
+page ru_roadmap at "/ru/roadmap/":
+    title "Дорожная карта — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/roadmap/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Дорожная карта"
+                    search label "Поиск по документации"
+                    markdown "content/ru/roadmap.md"
+                    row justify between class "next-prev":
+                        link "← Совместимость и хранение" to "/ru/compatibility/"
+                        link "Экспериментальный Web · 0.11 →" to "/ru/web-preview/"
+    use RussianFooter
+
+page ru_web_preview at "/ru/web-preview/":
+    title "Экспериментальный Web · 0.11 — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/web-preview/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Экспериментальный Web · 0.11"
+                    search label "Поиск по документации"
+                    markdown "content/ru/web-preview.md"
+                    row justify between class "next-prev":
+                        link "← Дорожная карта" to "/ru/roadmap/"
+                        link "Справочник Web-платформы →" to "/ru/web-platform/"
+    use RussianFooter
+
+page ru_web_platform at "/ru/web-platform/":
+    title "Справочник Web-платформы — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/web-platform/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Справочник Web-платформы"
+                    search label "Поиск по документации"
+                    markdown "content/ru/web-platform.md"
+                    row justify between class "next-prev":
+                        link "← Экспериментальный Web · 0.11" to "/ru/web-preview/"
+                        link "Создание нативного сайта →" to "/ru/site-authoring/"
+    use RussianFooter
+
+page ru_site_authoring at "/ru/site-authoring/":
+    title "Создание нативного сайта — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/site-authoring/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Создание нативного сайта"
+                    search label "Поиск по документации"
+                    markdown "content/ru/site-authoring.md"
+                    row justify between class "next-prev":
+                        link "← Справочник Web-платформы" to "/ru/web-platform/"
+                        link "Проект и посвящение →" to "/ru/project/"
+    use RussianFooter
+
+page ru_project at "/ru/project/":
+    title "Проект и посвящение — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/project/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Проект и посвящение"
+                    search label "Поиск по документации"
+                    markdown "content/ru/project.md"
+                    row justify between class "next-prev":
+                        link "← Создание нативного сайта" to "/ru/site-authoring/"
+    use RussianFooter
+
+page ru_provenance at "/ru/provenance/":
+    title "Происхождение сборки — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/provenance/"
+            heading "Происхождение сборки"
+            markdown "generated/provenance.md"
+    use RussianFooter

@@ -1,0 +1,11 @@
+webapp "Counter"
+state count = 0
+persist count
+action add: count = count + 1
+view main:
+    container max 720 padding 24:
+        column gap 16:
+            heading "A live Sedrava counter"
+            paragraph "Click the button to update accepted state. Reload to test persistence."
+            value count label "Current count"
+            button "Add one" action add

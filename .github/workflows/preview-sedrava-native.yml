@@ -1,0 +1,86 @@
+name: Preview official site written in Sedrava (no deploy)
+on:
+  push:
+    branches: [feature/sedrava-native-docs-live-examples]
+    paths: ['sedrava-next/**', '.github/workflows/preview-sedrava-native.yml', '.github/workflows/stage-sedrava-native.yml']
+  pull_request:
+    paths: ['sedrava-next/**', '.github/workflows/preview-sedrava-native.yml', '.github/workflows/stage-sedrava-native.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: native-site-preview-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native-site:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chromium, firefox, webkit]
+    env:
+      SEDRAVA_BROWSER: ${{ matrix.engine }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          repository: VasiliiBabkin/sedrava
+          ref: e997d1b1b3c9dfd1ab87e2e54fee8722004892f9
+          path: .sedrava-compiler
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '22'
+      - name: Install optional reviewed documentation compiler and browser
+        run: |
+          python -m pip install './.sedrava-compiler[docs]' playwright==1.62.0
+          python -m playwright install --with-deps ${{ matrix.engine }}
+          npm install --prefix build/a11y --no-audit --no-fund axe-core@4.10.3
+      - name: Compiler-level contract tests
+        run: python -m unittest discover -s .sedrava-compiler/tests -p test_native_docs.py -v
+      - name: Compile source-authored native site and four source-bound WebApps
+        run: python sedrava-next/build.py --compiler .sedrava-compiler
+      - name: Check staging safety helpers without publishing
+        run: |
+          python -m unittest discover -s sedrava-next -p test_staging.py -v
+          bash -n sedrava-next/stage_remote.sh
+      - name: All old routes, internal links, source hashes and resources
+        run: |
+          python sedrava-next/import_compiler_guides.py --compiler .sedrava-compiler --check
+          python sedrava-next/check_preview.py
+      - name: Browser interactions, offline search, HTTP, accessibility and screenshots
+        run: |
+          set -o pipefail
+          mkdir -p build/native-browser-evidence
+          python sedrava-next/test_browser.py 2>&1 | tee build/native-browser-evidence/results.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sedrava-native-site-${{ matrix.engine }}
+          if-no-files-found: error
+          path: |
+            build/native-site/
+            build/native-independent/
+            build/native-provenance.json
+            build/native-parity.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sedrava-native-evidence-${{ matrix.engine }}
+          if-no-files-found: error
+          path: |
+            build/native-browser-evidence/*.png
+            build/native-browser-evidence/*.json
+            build/native-browser-evidence/*.log
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sedrava-native-traces-${{ matrix.engine }}
+          if-no-files-found: warn
+          path: build/native-browser-evidence/*.zip

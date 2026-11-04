@@ -1,0 +1,19 @@
+/* Calculator-specific styling. Only layout/visuals, all logic is Sedrava. */
+html{scroll-behavior:auto}body{min-height:100vh;background:radial-gradient(circle at top,#31294a 0%,#161320 72%);color:var(--foreground)}
+.calc-shell{padding-top:32px;padding-bottom:36px;max-width:510px;margin-inline:auto}
+.calc-shell h1{letter-spacing:-.055em;font-size:clamp(2rem,6vw,3rem);margin:0}
+.calc-screen{background:#231e33;border:1px solid #5d527c;border-radius:22px;padding:24px;box-shadow:0 22px 50px #0004}
+.calc-screen output[data-state=current]{display:block;font-weight:750;font-size:clamp(2.4rem,9vw,4.2rem);line-height:1.12;overflow-wrap:anywhere;font-variant-numeric:tabular-nums;letter-spacing:-.06em}
+.calc-keys{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+.calc-keys .s-button{min-height:68px;min-width:0;border-radius:16px;font-size:1.45rem;font-weight:700;touch-action:manipulation;transition:background .15s,transform .15s}
+.calc-keys .s-button:active{transform:scale(.95)}
+.calc-keys .calc-key{background:#373148;color:#f8f5ff;border:1px solid #514962}
+.calc-keys .calc-key:hover{background:#4e4369}
+.calc-keys .calc-op{background:#4d396c;color:#e3d7ff;border-color:#6f5594}
+.calc-keys .calc-clear{background:#713b50;color:#ffe1e8;border-color:#93546b}
+.calc-keys .calc-aux{background:#3d4058;color:#e9eafb}
+.calc-keys .calc-equals{grid-column:1 / -1;min-height:72px;background:#c8a7ff;color:#251638;border-color:#c8a7ff}
+.calc-keys .calc-equals:hover{background:#dfc9ff}
+.calc-keys .s-button:focus-visible{outline:3px solid #f5c87b;outline-offset:3px}
+@media (max-width:400px){.calc-keys .s-button{min-height:58px;font-size:1.28rem}.calc-screen{padding:18px}}
+@media (prefers-reduced-motion:reduce){.calc-keys .s-button{transition:none}}

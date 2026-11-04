@@ -1,0 +1,16 @@
+[
+  {
+    "source": "docs/011_WEB_PLATFORM.en.md",
+    "compiler_sha": "e997d1b1b3c9dfd1ab87e2e54fee8722004892f9",
+    "source_sha256": "6995a7003b2b11320be5752db42656730c44b17328998d30eb0818c332f6c520",
+    "target": "content/en/web-platform.md",
+    "target_sha256": "b4db57745fe4db4a025bcfff98cd220a962da243bf06215fc21f94c1452a670e"
+  },
+  {
+    "source": "docs/011_WEB_PLATFORM.ru.md",
+    "compiler_sha": "e997d1b1b3c9dfd1ab87e2e54fee8722004892f9",
+    "source_sha256": "986edacc049518fcbcea040adeb641dbbdd4ce6819660831ea84c91df223e011",
+    "target": "content/ru/web-platform.md",
+    "target_sha256": "6ac8b631188a3d5487eaacb2e39a6463e2fef61c4d445c25fabf7bc0adc3c756"
+  }
+]
