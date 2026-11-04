@@ -26,6 +26,10 @@ Independent checks covered actual 0.10.0 to 0.11.0rc1 upgrade and rollback, brow
 
 Limitations: no built-in trusted backend, SQLite/PostgreSQL, authentication, multiuser authorization, automatic schema migrations, namespaced packages or physical-device certification. A browser HTTP client needs a separately provided server. Production Android downgrade is not guaranteed.
 
+## Stable 0.11.0 — in preparation, NOT published
+
+The [stable release preparation PR #44](https://github.com/VasiliiBabkin/sedrava/pull/44) is open for exact-head CI and installation/rollback acceptance. Its source version is `0.11.0`, Android versionCode `11002` (published RC: `11001`). **The stable package is not available for installation yet.** Continue to use stable 0.10.0 or the explicitly pinned 0.11.0rc1 prerelease. Publication requires new owner approval.
+
 ## 0.12.0a1 — proposed experimental alpha, NOT published
 
 The following changes are implemented on **unmerged experimental branches**, not in published Sedrava: [namespaced modules PR #39](https://github.com/VasiliiBabkin/sedrava/pull/39), [original-file diagnostics PR #40](https://github.com/VasiliiBabkin/sedrava/pull/40), and [offline local packages/lockfile PR #41](https://github.com/VasiliiBabkin/sedrava/pull/41). Version `0.12.0a1` is a release plan, not an available download. The experimental modules still use lexical lowering rather than complete typed-IR symbol identity, and the package system has no online registry.

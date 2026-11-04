@@ -9,7 +9,7 @@ Sedrava [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) 
 | --- | --- | --- |
 | **0.10.0** | Text, records, collections, multi-screen applications | **Published** |
 | **0.11.0rc1** | Responsive sites, interactive WebApps, typed client HTTP | **Published experimental prerelease** ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) · [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)) |
-| **0.11.0** | Reviewed Web platform | Planned stable release after candidate acceptance |
+| **0.11.0** | Reviewed Web platform | Source candidate in [PR #44](https://github.com/VasiliiBabkin/sedrava/pull/44); not published |
 | **0.12.0a1** | Aliased namespaces, source diagnostics, offline local dependency locking | Implemented experimental stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41), alpha not published |
 | **0.13+** | Trusted server target, SQLite then authentication/migrations | Architecture proposal, not implemented |
 | **1.0** | Frozen specification, supported APIs and compatibility rules | Long-term objective |
