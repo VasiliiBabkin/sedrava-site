@@ -60,4 +60,4 @@ sedrava build android hello.sdr --output build/hello-android
 
 [Возможности языка](/ru/language-overview/), [строки](/ru/text-010/), [примеры](/ru/examples/), [дорожная карта](/ru/roadmap/). Основная [документация 0.10](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.ru.md) и [ограничения](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
 
-**Важно:** `sedrava build site` ещё не входит в опубликованную 0.10.0: функция развивается в [черновом PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22). Действующий сайт собирается через Astro/Starlight; этот отдельный нативный предпросмотр создаётся на Sedrava экспериментальным компилятором PR #36.
+**Важно:** `sedrava build site` ещё не входит в опубликованную 0.10.0: функция развивается в [черновом PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22). Этот сайт документации создаётся из исходников Sedrava с экспериментальным компилятором PR #37 на базе PR #36. В опубликованную версию 0.10.0 генерация сайтов не входит.

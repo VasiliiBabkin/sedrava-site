@@ -60,4 +60,4 @@ This generates Android/Compose sources, **not an APK**. Building an APK needs JD
 
 Read [language overview](/language-overview/), [text semantics](/text-010/), [examples](/examples/) and [roadmap](/roadmap/). Also see [current language documentation](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.en.md) and [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
 
-**Important:** general-purpose `sedrava build site` is **not** included in 0.10.0. It is being developed in [experimental PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22). The current production site uses Astro/Starlight; this separate native preview is compiled from Sedrava with the experimental compiler in PR #36.
+**Important:** general-purpose `sedrava build site` is **not** included in 0.10.0. It is being developed in [experimental PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22). This documentation website is generated from Sedrava sources with the experimental compiler in PR #37, based on PR #36. Website generation is not part of the published 0.10.0 package.

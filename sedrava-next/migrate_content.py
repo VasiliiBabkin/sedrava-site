@@ -36,10 +36,13 @@ def migrate(check=False):
             body='\n'.join(out).strip()+'\n'
         else:body=raw
         # Correct the obsolete implementation claim only in the migrated copy. Production content stays unchanged.
-        body=body.replace('This official documentation site uses Astro/Starlight separately.','The current production site uses Astro/Starlight; this separate native preview is compiled from Sedrava with the experimental compiler in PR #36.')
-        body=body.replace('Сайт документации отдельно собирается через Astro/Starlight.','Действующий сайт собирается через Astro/Starlight; этот отдельный нативный предпросмотр создаётся на Sedrava экспериментальным компилятором PR #36.')
-        body=body.replace('which is independently built with Astro/Starlight in','whose current production version is built with Astro/Starlight; this native preview uses experimental Sedrava in')
-        body=body.replace('Этот официальный сайт документации создаётся отдельно через Astro/Starlight в','Действующий сайт документации создан через Astro/Starlight; отдельный нативный предпросмотр на Sedrava находится в')
+        body=body.replace('This official documentation site uses Astro/Starlight separately.','This documentation website is generated from Sedrava sources with the experimental compiler in PR #37, based on PR #36. Website generation is not part of the published 0.10.0 package.')
+        body=body.replace('Сайт документации отдельно собирается через Astro/Starlight.','Этот сайт документации создаётся из исходников Sedrava с экспериментальным компилятором PR #37 на базе PR #36. В опубликованную версию 0.10.0 генерация сайтов не входит.')
+        body=body.replace('which is independently built with Astro/Starlight in','which is generated directly by the experimental Sedrava compiler from the sources in')
+        body=body.replace('Этот официальный сайт документации создаётся отдельно через Astro/Starlight в','Этот сайт документации создан на Sedrava из исходников в')
+        # Migrated website release claims follow the actual native Sedrava integration.
+        body=body.replace('**Draft PR #22**, not included in 0.10.0','**Experimental PRs #36 and #37**, not included in 0.10.0')
+        body=body.replace('**Черновой PR №22**, отсутствует в 0.10.0','**Экспериментальные PR №36 и №37**, отсутствует в 0.10.0')
         fenced=lambda value:re.findall(r'(?:~~~|```)[^\n]*\n(.*?)(?:~~~|```)',value,re.S)
         assert fenced(raw)==fenced(body),'Code indentation/content lost during migration: '+str(source)
         if check:

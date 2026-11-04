@@ -13,7 +13,7 @@
     "route": "/getting-started/",
     "reviewed_mdx": false,
     "source_sha256": "4e8fad7671b5d1a39bede86ce5020c0ab4637fa33125a3ffd95879de89406330",
-    "migrated_sha256": "646103ae634d62d281ee91cf4407148cec7da1454077778df5d9b4f4fb84363f"
+    "migrated_sha256": "b2dd8226ae36736b6653cd0afb85ec7a96f7380e78979f6926ab05265dc1ca32"
   },
   {
     "source": "src/content/docs/index.mdx",
@@ -37,7 +37,7 @@
     "route": "/roadmap/",
     "reviewed_mdx": false,
     "source_sha256": "57ab4aa88ea014d503446e59918ffc923983e6bd94201d7d396dcbb2824b7054",
-    "migrated_sha256": "41ad16bdc4ea093144fe09d2d763d81ce575aae3c35478f5386ae5aa09a433b4"
+    "migrated_sha256": "355866190554be533f2c7786d6ede67af73ea8c6ab0db37c0c558f8d478a3daa"
   },
   {
     "source": "src/content/docs/ru/examples.md",
@@ -53,7 +53,7 @@
     "route": "/ru/getting-started/",
     "reviewed_mdx": false,
     "source_sha256": "efa09a441861569d3cbe35fb2902f10d49e83aaef4c5913d9ec8dcce714b0e7a",
-    "migrated_sha256": "72289ce34d8d7ac5e490255fcabc7ab2b1b7e628ed25a87b848e76d8d173df03"
+    "migrated_sha256": "3fd0df4410ab9fac12ce87b93ed3a7ed8daf520b8e82d7f3934424fb6dd94275"
   },
   {
     "source": "src/content/docs/ru/index.mdx",
@@ -77,7 +77,7 @@
     "route": "/ru/roadmap/",
     "reviewed_mdx": false,
     "source_sha256": "4dc0d533dd08def7f19f70fd76298f51e4a309f391ceae43bf14e9168dbc267c",
-    "migrated_sha256": "f6081086e66329d7cf6a2b089703862aa136677cb0b7b66e8763673f0fcf8824"
+    "migrated_sha256": "a7cf1a15753a1f3881dc7e023a7cd2fadfced3dc96cbeffcd8f32841a3aa74c0"
   },
   {
     "source": "src/content/docs/ru/text-010.md",
