@@ -46,3 +46,7 @@ Run `check_preview.py`, then the browser suite; fix real failures without loosen
 ## Integer calculator demo
 
 `demos/calculator.sdr` defines every keypad action and calculation in Sedrava, with presentation in local `demos/assets/calculator.css` only. Browser acceptance checks +, −, ×, integer division truncating toward zero, chained operations, zero divisor, input limits and a large product. The language does not support floating-point decimals yet; never present 7 ÷ 2 as 3.5 in this example. Generated WebApp entry point: `/live/calculator/`, alongside source on `/examples/` and `/ru/examples/`.
+
+## Legacy build CI compatibility
+
+The separate legacy Astro documentation build workflow on this feature branch pins Node.js 22.23.4 because the currently resolved Astro version rejects Node 22.23.3. This does not change the source of the native Sedrava website, and the main branch remains untouched.
