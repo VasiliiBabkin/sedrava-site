@@ -41,3 +41,17 @@ python -m http.server 8000 --directory build/navigation-web
 Откройте **http://localhost:8000** для просмотра Web-приложения. Android-генератор создаёт исходники, а не APK; см. [руководство по сборке](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md).
 
 В [полном каталоге](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) также есть счётчик, ручной обратный отсчёт и учёт привычек. Примеры предназначены для изучения, не для промышленной эксплуатации.
+
+## Четыре новых примера в экспериментальной 0.11.0rc1
+
+[Опубликованный кандидат](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) доступен на [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). Сначала скачайте [исходники примеров из тега выпуска](https://github.com/VasiliiBabkin/sedrava/tree/v0.11.0rc1/examples), затем:
+
+~~~sh
+python -m pip install sedrava==0.11.0rc1
+sedrava build site examples/platform_site.sdr --output build/platform/site
+sedrava build webapp examples/platform_tasks.sdr --output build/platform/tasks
+sedrava build webapp examples/platform_catalog.sdr --output build/platform/catalog
+sedrava build webapp examples/platform_crm.sdr --output build/platform/crm
+~~~
+
+Каталогу требуется отдельно созданный серверный HTTP API; обычный статический сервер его не заменяет. [Ограничения](/ru/releases/).

@@ -22,6 +22,17 @@ sedrava --version
 
 Ожидаемая версия — `0.10.0`. Для разработки из исходников клонируйте [репозиторий](https://github.com/VasiliiBabkin/sedrava) и выполните там `python -m pip install .`.
 
+## Предварительная версия 0.11.0rc1
+
+Экспериментальная [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) опубликована на [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). Для генерации сайтов и WebApp установите именно этот кандидат в отдельном виртуальном окружении:
+
+~~~sh
+python -m pip install sedrava==0.11.0rc1
+sedrava --version
+~~~
+
+Это не стабильная 0.11.0; встроенной базы данных и автоматической миграции схем пока нет. [Подробности](/ru/releases/).
+
 ## Первая программа
 
 Сохраните UTF-8 файл **hello.sdr**:
@@ -60,4 +71,4 @@ sedrava build android hello.sdr --output build/hello-android
 
 [Возможности языка](/ru/language-overview/), [строки](/ru/text-010/), [примеры](/ru/examples/), [дорожная карта](/ru/roadmap/). Основная [документация 0.10](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.ru.md) и [ограничения](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
 
-**Важно:** `sedrava build site` ещё не входит в опубликованную 0.10.0: функция развивается в [черновом PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22). Сайт документации отдельно собирается через Astro/Starlight.
+**Важно:** генерация сайтов и WebApp отсутствует в стабильной 0.10.0, но доступна в [опубликованной предварительной 0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). Сайт документации по-прежнему собирается с помощью Astro/Starlight.

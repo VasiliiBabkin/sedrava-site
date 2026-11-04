@@ -52,6 +52,8 @@ jobs:
           test -s dist/ru/index.html
           test -s dist/text-010/index.html
           test -s dist/ru/text-010/index.html
+          test -s dist/releases/index.html
+          test -s dist/ru/releases/index.html
 
       - name: Upload site files over SSH
         env:
@@ -77,5 +79,5 @@ jobs:
 
           # Verify the actual VDS target, not only the local Astro dist/ tree.
           ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" \
-            "test -s '$TARGET/index.html' && test -s '$TARGET/ru/index.html' && grep -Fq '0.10.0' '$TARGET/index.html' && grep -Fq '0.10.0' '$TARGET/ru/index.html'"
-          echo "Remote smoke check passed: EN/RU 0.10.0 entry pages exist."
+            "test -s '$TARGET/index.html' && test -s '$TARGET/ru/index.html' && grep -Fq '0.10.0' '$TARGET/index.html' && grep -Fq '0.10.0' '$TARGET/ru/index.html' && grep -Fq '0.11.0rc1' '$TARGET/index.html' && grep -Fq '0.11.0rc1' '$TARGET/ru/index.html' && test -s '$TARGET/releases/index.html' && test -s '$TARGET/ru/releases/index.html'"
+          echo "Remote smoke check passed: EN/RU stable 0.10 and published 0.11 RC pages exist."

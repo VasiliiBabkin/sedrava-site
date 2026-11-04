@@ -55,7 +55,7 @@ screen main:
 | `sedrava build web FILE --output PATH` | Генерация автономного HTML |
 | `sedrava build android FILE --output DIR` | Генерация исходников Kotlin/Compose |
 
-Сборка APK выполняется отдельно. Экспериментальная команда `build site` для адаптивных сайтов разрабатывается в [черновом PR №22](https://github.com/VasiliiBabkin/sedrava/pull/22) и **не входит в 0.10.0**.
+Сборка APK выполняется отдельно. Генерация сайтов и WebApp теперь доступна в [опубликованной экспериментальной 0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)), но **отсутствует в стабильной 0.10.0**. Эта страница описывает стабильное ядро 0.10; см. [руководство по кандидату](/ru/releases/).
 
 ## Ограничения
 

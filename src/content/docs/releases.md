@@ -1,19 +1,30 @@
 ---
 title: Releases and previews
-description: Published Sedrava version and explicitly unpublished 0.11 and 0.12 development tracks.
+description: Published Sedrava version and published 0.11.0rc1 candidate and unpublished 0.12 experiments.
 ---
 
-## Published version: Sedrava 0.10.0
+## Stable published version: Sedrava 0.10.0
 
 Sedrava **0.10.0** was released on 31 October 2026: [GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) · [PyPI package](https://pypi.org/project/sedrava/0.10.0/). This is the latest verified public stable-version identifier in the project. It supports typed text, records, bounded collections and checked multi-screen navigation on existing application targets.
 
-## 0.11.0rc1 — preparing a release candidate, NOT published
+## 0.11.0rc1 — published experimental prerelease
 
-[Candidate preparation PR #42](https://github.com/VasiliiBabkin/sedrava/pull/42) is open and contains a source version bump, read-only CI gates and bilingual release notes. **No `v0.11.0rc1` GitHub release or PyPI package is asserted here.** Do not install it by an unverified package version.
+[GitHub Pre-release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) · [PyPI package](https://pypi.org/project/sedrava/0.11.0rc1/).
 
-The planned candidate focuses on what the experimental Web integration actually implements: `build site`, `build webapp`, typed reusable components, functions, bounded collection operations, forms, routes and guarded public HTTP clients. Four source examples are under test. The existing Web/Android application targets remain supported in the candidate code.
+Sedrava **0.11.0rc1** is published from audited commit 6051310a2ba2d542966588f12e0360c3f7c2a4d9. The GitHub and PyPI publication workflows completed successfully. This is an **experimental release candidate, not stable 0.11.0**.
 
-Read the [English](https://github.com/VasiliiBabkin/sedrava/blob/release/011-rc1-preparation/docs/RELEASE_NOTES_0_11_0rc1.en.md) or [Russian](https://github.com/VasiliiBabkin/sedrava/blob/release/011-rc1-preparation/docs/RELEASE_NOTES_0_11_0rc1.ru.md) draft notes and [release gates](https://github.com/VasiliiBabkin/sedrava/blob/release/011-rc1-preparation/docs/RELEASE_TRACK_011.md).
+To install in a separate virtual environment:
+
+~~~sh
+python -m pip install sedrava==0.11.0rc1
+sedrava --version
+~~~
+
+The prerelease adds responsive site generation (build site), interactive browser applications (build webapp), typed reusable components and pure functions, bounded collection queries, forms, tables, dialogs, routes and validated public HTTP clients. Previous Web/Android application targets are retained. Source examples: [site, tasks, catalog, CRM](https://github.com/VasiliiBabkin/sedrava/tree/v0.11.0rc1/examples).
+
+Independent checks covered actual 0.10.0 to 0.11.0rc1 upgrade and rollback, browser storage in Chromium/Firefox/WebKit and an Android API35 debug upgrade. See the [verified audit](https://github.com/VasiliiBabkin/sedrava/blob/v0.11.0rc1/docs/UPGRADE_AUDIT_011.md).
+
+Limitations: no built-in trusted backend, SQLite/PostgreSQL, authentication, multiuser authorization, automatic schema migrations, namespaced packages or physical-device certification. A browser HTTP client needs a separately provided server. Production Android downgrade is not guaranteed.
 
 ## 0.12.0a1 — proposed experimental alpha, NOT published
 

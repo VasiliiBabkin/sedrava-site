@@ -23,6 +23,8 @@ jobs:
           test -s dist/ru/index.html
           test -s dist/text-010/index.html
           test -s dist/ru/text-010/index.html
+          test -s dist/releases/index.html
+          test -s dist/ru/releases/index.html
           for page in getting-started examples language-overview roadmap text-010; do
             test -s "dist/$page/index.html"
             test -s "dist/ru/$page/index.html"

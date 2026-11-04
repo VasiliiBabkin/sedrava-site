@@ -22,6 +22,17 @@ sedrava --version
 
 The expected version is `0.10.0`. To develop from sources instead, clone the [repository](https://github.com/VasiliiBabkin/sedrava) and run `python -m pip install .` there.
 
+## Optional 0.11.0rc1 prerelease
+
+The experimental [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) is now published on [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). To try the new site and WebApp targets, install that exact version in a separate virtual environment:
+
+~~~sh
+python -m pip install sedrava==0.11.0rc1
+sedrava --version
+~~~
+
+This is not stable 0.11.0; no built-in database or automatic schema migration exists. [Release details](/releases/).
+
 ## Your first program
 
 Save this UTF-8 file as **hello.sdr**:
@@ -60,4 +71,4 @@ This generates Android/Compose sources, **not an APK**. Building an APK needs JD
 
 Read [language overview](/language-overview/), [text semantics](/text-010/), [examples](/examples/) and [roadmap](/roadmap/). Also see [current language documentation](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.en.md) and [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
 
-**Important:** general-purpose `sedrava build site` is **not** included in 0.10.0. It is being developed in [experimental PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22). This official documentation site uses Astro/Starlight separately.
+**Important:** site and WebApp generation are absent from stable 0.10.0 but available in the [published 0.11.0rc1 prerelease](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). This official documentation site still uses Astro/Starlight.
