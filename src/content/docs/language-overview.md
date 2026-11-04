@@ -55,7 +55,7 @@ screen main:
 | `sedrava build web FILE --output PATH` | Generate standalone HTML |
 | `sedrava build android FILE --output DIR` | Generate Kotlin/Compose project sources |
 
-Android APK compilation is a separate task. The experimental `build site` for responsive websites belongs to [draft PR #22](https://github.com/VasiliiBabkin/sedrava/pull/22), **not** the 0.10.0 CLI.
+Android APK compilation is a separate task. Site and WebApp targets are now available in the [published experimental 0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)), **not** in stable 0.10.0. This page documents the stable 0.10.0 language core; see the [prerelease guide](/releases/) for details.
 
 ## Limitations
 
