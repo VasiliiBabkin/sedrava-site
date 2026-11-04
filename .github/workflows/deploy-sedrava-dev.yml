@@ -25,7 +25,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           set -euo pipefail
-          gh api "repos/$GITHUB_REPOSITORY/actions/workflows/preview-sedrava-native.yml/runs?head_sha=$GITHUB_SHA&status=success&per_page=60" > successful-previews.json
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$GITHUB_SHA&status=success&per_page=100" > successful-previews.json
           python3 - <<'PY'
           import json, os
           runs = json.load(open('successful-previews.json'))['workflow_runs']
