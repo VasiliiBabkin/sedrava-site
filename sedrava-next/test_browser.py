@@ -1,5 +1,5 @@
 """Independent browser acceptance of the actual source-generated native site and embeds."""
-import functools,hashlib,importlib.metadata,json,os,re,shutil,threading,time,unittest
+import functools,hashlib,html,importlib.metadata,json,os,re,shutil,tempfile,threading,time,unittest
 from http.server import SimpleHTTPRequestHandler,ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -30,20 +30,26 @@ class ControlledEndpoint(SimpleHTTPRequestHandler):
 class NativeSiteBrowser(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(ControlledEndpoint,directory=str(OUT)));cls.thread=threading.Thread(target=cls.server.serve_forever,daemon=True);cls.thread.start()
+        cls.fixture=tempfile.TemporaryDirectory(prefix='native-site-acceptance-');cls.output=Path(cls.fixture.name)/'site';shutil.copytree(OUT,cls.output)
+        cls.demo_sources={name:(ROOT/'sedrava-next/demos'/f'{name}.sdr').read_text() for name in ('counter','tasks','crm','catalog')}
+        cls.server=ThreadingHTTPServer(('127.0.0.1',0),functools.partial(ControlledEndpoint,directory=str(cls.output)));cls.thread=threading.Thread(target=cls.server.serve_forever,daemon=True);cls.thread.start()
         cls.pw=sync_playwright().start();cls.engine=os.environ.get('SEDRAVA_BROWSER','chromium')
         options={'executable_path':os.environ.get('SEDRAVA_CHROMIUM') or shutil.which('chromium'),'args':['--no-sandbox']} if cls.engine=='chromium' else {}
         cls.browser=getattr(cls.pw,cls.engine).launch(**options);cls.base='http://127.0.0.1:'+str(cls.server.server_port);EVIDENCE.mkdir(parents=True,exist_ok=True)
         (EVIDENCE/'toolchain.json').write_text(json.dumps({'engine':cls.engine,'version':cls.browser.version,'playwright':importlib.metadata.version('playwright')},indent=2))
     @classmethod
-    def tearDownClass(cls):cls.browser.close();cls.pw.stop();cls.server.shutdown();cls.server.server_close();cls.thread.join()
+    def tearDownClass(cls):cls.browser.close();cls.pw.stop();cls.server.shutdown();cls.server.server_close();cls.thread.join();cls.fixture.cleanup()
     def setUp(self):
         ControlledEndpoint.mode='normal';ControlledEndpoint.rows=[{'id':1,'title':'Real CI product','available':True}];ControlledEndpoint.calls=[]
-        self.context=self.browser.new_context();self.page=self.context.new_page();self.errors=[];self.page.on('pageerror',lambda e:self.errors.append(str(e)))
+        self.context=self.browser.new_context();self.context.tracing.start(screenshots=True,snapshots=True);self.page=self.context.new_page();self.errors=[];self.page.on('pageerror',lambda e:self.errors.append(str(e)))
     def tearDown(self):
-        self.context.close();self.assertEqual(self.errors,[],'Unhandled JavaScript exception')
+        self.context.tracing.stop(path=str(EVIDENCE/(self._testMethodName+'.zip')));self.context.close();self.assertEqual(self.errors,[],'Unhandled JavaScript exception')
     def goto(self,path):
-        response=self.page.goto(self.base+path);self.assertEqual(response.status,200);return self.page
+        response=self.page.goto(self.base+path);self.assertIn(response.status,(200,304))
+        # Firefox/WebKit expose a legitimate 304 for a revalidated navigation.
+        # Verify the rendered cached page, not merely a permissive status code.
+        file=self.output/path.strip('/')/'index.html';expected=html.unescape(re.search(r'<title>(.*?)</title>',file.read_text(),re.S)[1])
+        expect(self.page).to_have_title(expected);expect(self.page.get_by_role('heading',level=1)).to_be_visible();return self.page
     def demo(self,name):
         panel=self.page.locator('[data-demo="/live/'+name+'/"]');panel.locator('iframe').scroll_into_view_if_needed();return panel,panel.frame_locator('iframe')
     def reload_demo(self,panel,reset=False):
@@ -52,10 +58,15 @@ class NativeSiteBrowser(unittest.TestCase):
             panel.get_by_role('button',name='Reset this demo / Сбросить пример' if reset else 'Reload / Перезагрузить',exact=True).click()
     def test_bilingual_routes_navigation_metadata_and_provenance(self):
         p=self.goto('/');self.assertTrue(p.get_by_role('heading',name='This website is built with Sedrava',exact=True).is_visible())
+        self.assertEqual(p.evaluate('async()=>{await document.fonts.ready;const faces=await document.fonts.load("400 16px SedravaInter","Alice Алиса");return faces.map(f=>f.status)}'),['loaded','loaded'])
         self.assertEqual(p.locator('astro-island').count(),0);p.get_by_role('link',name='Documentation',exact=True).click()
         p.get_by_role('link',name='Русский',exact=True).click();self.assertTrue(p.url.endswith('/ru/getting-started/'))
         self.assertTrue(p.get_by_role('heading',name='Начало работы',exact=True).is_visible())
         self.assertTrue(p.locator('.s-sidebar a[aria-current=page]').is_visible())
+        p.set_viewport_size({'width':390,'height':900});expect(p.locator('.s-sidebar')).not_to_have_attribute('open','')
+        p.locator('.s-sidebar summary').click();expect(p.locator('.s-sidebar a[aria-current=page]')).to_be_visible()
+        p.locator('.s-sidebar summary').click();expect(p.locator('.s-sidebar')).not_to_have_attribute('open','')
+        p.set_viewport_size({'width':1440,'height':900});expect(p.locator('.s-sidebar')).to_have_attribute('open','');expect(p.locator('.s-sidebar a[aria-current=page]')).to_be_visible()
         p.get_by_role('link',name='Происхождение сборки',exact=True).click();self.assertIn(json.loads((ROOT/'sedrava-next/compiler.json').read_text())['sha'],p.inner_text('body'))
         self.assertEqual(p.locator('link[rel=canonical]').get_attribute('href'),'https://dev.virtreal.ru/ru/provenance/')
         self.assertIn('Disallow: /',p.request.get(self.base+'/robots.txt').text())
@@ -68,7 +79,7 @@ class NativeSiteBrowser(unittest.TestCase):
         field.fill('<img src=x onerror=alert(1)>');self.assertEqual(p.locator('[data-search-results] img').count(),0);self.assertIn('No results',p.locator('[data-search-status]').inner_text())
         field.press('Escape');self.assertEqual(field.input_value(),'');self.assertEqual(p.locator('[data-search-results] a').count(),0)
     def test_counter_inline_exact_source_copy_persistence_and_scoped_reset(self):
-        p=self.goto('/examples/');panel,frame=self.demo('counter');source=(ROOT/'sedrava-next/demos/counter.sdr').read_text()
+        p=self.goto('/examples/');panel,frame=self.demo('counter');source=self.demo_sources['counter']
         self.assertEqual(panel.locator('code').text_content(),source)
         self.assertEqual(p.request.get(self.base+'/'+panel.get_attribute('data-demo').strip('/')+'/index.html').status,200)
         frame.get_by_role('button',name='Add one',exact=True).click();frame.get_by_role('button',name='Add one',exact=True).click();expect(frame.locator('output[data-state=count]')).to_have_text('2')
@@ -125,13 +136,14 @@ class NativeSiteBrowser(unittest.TestCase):
     def test_accessibility_keyboard_toc_and_source_downloads(self):
         axe=(ROOT/'build/a11y/node_modules/axe-core/axe.min.js').read_text();reports={}
         p=self.page
-        for route in ('/','/getting-started/','/ru/getting-started/','/examples/'):
+        for route in ('/','/getting-started/','/ru/getting-started/','/examples/','/web-platform/','/ru/web-platform/','/site-authoring/','/ru/site-authoring/'):
             self.goto(route);p.evaluate('document.fonts.ready');p.evaluate(axe)
             result=p.evaluate('async()=>await axe.run(document,{runOnly:{type:"tag",values:["wcag2a","wcag2aa","wcag21aa"]}})');reports[route]=result['violations'];self.assertEqual(result['violations'],[],json.dumps(result['violations'],ensure_ascii=False,indent=2))
         (EVIDENCE/'accessibility.json').write_text(json.dumps(reports,ensure_ascii=False,indent=2))
-        self.goto('/getting-started/');p.locator('.doc-toc summary').click();p.locator('.doc-toc a').first.click();self.assertTrue(urlsplit(p.url).fragment)
+        self.goto('/getting-started/');p.keyboard.press('Tab');self.assertEqual(p.evaluate('document.activeElement.textContent'),'Skip to content');p.keyboard.press('Enter');self.assertEqual(p.evaluate('document.activeElement.id'),'content')
+        p.locator('.doc-toc summary').click();p.locator('.doc-toc a').first.click();self.assertTrue(urlsplit(p.url).fragment)
         self.goto('/examples/')
-        demos=json.loads((OUT/'docs-demos.json').read_text())
+        demos=json.loads((self.output/'docs-demos.json').read_text())
         for route,entry in demos.items():
-            panel=p.locator('[data-demo="'+route+'"]');self.assertEqual(panel.locator('code').text_content(),(OUT/entry['source_url']).read_text());self.assertEqual(p.request.get(self.base+'/'+entry['source_url']).body(),(OUT/entry['source_url']).read_bytes())
+            panel=p.locator('[data-demo="'+route+'"]');self.assertEqual(panel.locator('code').text_content(),(self.output/entry['source_url']).read_text());self.assertEqual(p.request.get(self.base+'/'+entry['source_url']).body(),(self.output/entry['source_url']).read_bytes())
 if __name__=='__main__':unittest.main(verbosity=2)

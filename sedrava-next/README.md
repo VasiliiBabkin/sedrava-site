@@ -14,7 +14,7 @@ python sedrava-next/check_preview.py
 python -m http.server 8000 --directory build/native-site
 ```
 
-`build/native-site/` is the complete static tree (26 site pages + 4 demo routes). `native-provenance.json` records actual website/compiler SHA, dirty-tree status, dependency versions and file hashes. Each demo has exact downloadable `.sdr`, source SHA and generated-file hashes in `docs-demos.json`. Local fonts include the Inter OFL notice. `migrate_content.py --check` proves all 12 original canonical pages and their fenced source are preserved under the reviewed transformation; the production `src/content/docs` is not modified.
+`build/native-site/` is the complete static tree (30 site pages + 4 demo routes). `native-provenance.json` records actual website/compiler SHA, dirty-tree status, dependency versions and file hashes. Each demo has exact downloadable `.sdr`, source SHA and generated-file hashes in `docs-demos.json`. Local fonts include the Inter OFL notice. `migrate_content.py --check` proves all 12 original canonical pages and their fenced source are preserved under the reviewed transformation; the production `src/content/docs` is not modified.
 
 ## Implemented and under acceptance
 
@@ -33,7 +33,7 @@ python -m playwright install chromium
 python sedrava-next/test_browser.py
 ```
 
-The preview workflow tests Chromium/Firefox/WebKit, 320/360/390/768/1024/1440 widths, source/download parity, actions/persistence/reset, offline Cyrillic/English search, real HTTP methods/errors and axe. Static parity currently verifies **12 retained routes, 26 native pages, four compiled demos, eight exact source panels, 792 local links/resources**. Latest local Chromium acceptance: **8/8 passed** after fixing clean-route navigation, hash-preserving reload and modal visibility inside iframe. The compiler full suite passed **271 tests**; its pinned SHA passed native-docs Chromium/Firefox/WebKit and the existing packaging/Android CI. Website cross-engine CI for the next published checkpoint remains pending. Independent standard `build webapp` runs match the embedded bytes for all four demos. CI links/counts will be added after actual runs on the published SHA.
+The preview workflow tests Chromium/Firefox/WebKit, 320/360/390/768/1024/1440 widths, source/download parity, actions/persistence/reset, offline Cyrillic/English search, real HTTP methods/errors and axe. Static parity currently verifies **12 retained routes, 30 native pages, four compiled demos, eight exact source panels, 1047 local links/resources**. Latest local Chromium acceptance: **8/8 passed** on the pinned compiler, including the complete reference pages and local font faces. The compiler full suite passed **272 tests**; its pinned SHA passed native-docs Chromium/Firefox/WebKit and packaging CI; longer Android/integration jobs are tracked separately. Website cross-engine CI for the next published checkpoint remains pending. Independent standard `build webapp` runs match the embedded bytes for all four demos. CI links/counts will be added after actual runs on the published SHA.
 
 ## Staging and production
 
@@ -41,4 +41,4 @@ Current Astro production and `sedrava-dev` deployment are untouched. This workfl
 
 ## Resume
 
-Run `check_preview.py`, then the browser suite; fix real failures without loosening requirements. Inspect compiler #37 WebKit lazy-frame test result and keep both compiler pins synchronized. Finish cross-engine/visual review, immutable provenance/CI evidence and the gated staging/rollback instructions before proposing any publication.
+Run `check_preview.py`, then the browser suite; fix real failures without loosening requirements. Keep both compiler pins synchronized. Finish cross-engine/visual review, immutable provenance/CI evidence and the gated staging/rollback instructions before proposing any publication.

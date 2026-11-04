@@ -4,6 +4,8 @@ clean-urls true
 robots false
 stylesheet "assets/brand.css"
 license "assets/INTER_LICENSE.txt"
+license "assets/LICENSE_COMPILER.txt"
+license "assets/LICENSE_SITE.txt"
 favicon "assets/mark.svg"
 social-image "assets/mark.svg"
 import "components/chrome.sdr"
@@ -251,6 +253,44 @@ page en_web_preview at "/web-preview/":
                     markdown "content/en/web-preview.md"
                     row justify between class "next-prev":
                         link "← Roadmap" to "/roadmap/"
+                        link "Web platform reference →" to "/web-platform/"
+    use EnglishFooter
+
+page en_web_platform at "/web-platform/":
+    title "Web platform reference — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/web-platform/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Web platform reference"
+                    search label "Search documentation"
+                    markdown "content/en/web-platform.md"
+                    row justify between class "next-prev":
+                        link "← Experimental Web · 0.11" to "/web-preview/"
+                        link "Native site authoring →" to "/site-authoring/"
+    use EnglishFooter
+
+page en_site_authoring at "/site-authoring/":
+    title "Native site authoring — Sedrava"
+    description "Official Sedrava documentation. Published language 0.10.0; this native website uses experimental 0.11."
+    lang "en"
+    use EnglishHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "Русский" to "/ru/site-authoring/"
+            grid columns 2 class "doc-layout":
+                use EnglishSidebar
+                column gap 24 class "doc-body":
+                    heading "Native site authoring"
+                    search label "Search documentation"
+                    markdown "content/en/site-authoring.md"
+                    row justify between class "next-prev":
+                        link "← Web platform reference" to "/web-platform/"
                         link "Project and dedication →" to "/project/"
     use EnglishFooter
 
@@ -269,7 +309,7 @@ page en_project at "/project/":
                     search label "Search documentation"
                     markdown "content/en/project.md"
                     row justify between class "next-prev":
-                        link "← Experimental Web · 0.11" to "/web-preview/"
+                        link "← Native site authoring" to "/site-authoring/"
     use EnglishFooter
 
 page en_provenance at "/provenance/":
@@ -519,6 +559,44 @@ page ru_web_preview at "/ru/web-preview/":
                     markdown "content/ru/web-preview.md"
                     row justify between class "next-prev":
                         link "← Дорожная карта" to "/ru/roadmap/"
+                        link "Справочник Web-платформы →" to "/ru/web-platform/"
+    use RussianFooter
+
+page ru_web_platform at "/ru/web-platform/":
+    title "Справочник Web-платформы — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/web-platform/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Справочник Web-платформы"
+                    search label "Поиск по документации"
+                    markdown "content/ru/web-platform.md"
+                    row justify between class "next-prev":
+                        link "← Экспериментальный Web · 0.11" to "/ru/web-preview/"
+                        link "Создание нативного сайта →" to "/ru/site-authoring/"
+    use RussianFooter
+
+page ru_site_authoring at "/ru/site-authoring/":
+    title "Создание нативного сайта — Sedrava"
+    description "Официальная документация Sedrava. Опубликована 0.10.0; возможности этого сайта — экспериментальная 0.11."
+    lang "ru"
+    use RussianHeader
+    container max 1320 padding 24:
+        column gap 24:
+            link "English" to "/site-authoring/"
+            grid columns 2 class "doc-layout":
+                use RussianSidebar
+                column gap 24 class "doc-body":
+                    heading "Создание нативного сайта"
+                    search label "Поиск по документации"
+                    markdown "content/ru/site-authoring.md"
+                    row justify between class "next-prev":
+                        link "← Справочник Web-платформы" to "/ru/web-platform/"
                         link "Проект и посвящение →" to "/ru/project/"
     use RussianFooter
 
@@ -537,7 +615,7 @@ page ru_project at "/ru/project/":
                     search label "Поиск по документации"
                     markdown "content/ru/project.md"
                     row justify between class "next-prev":
-                        link "← Экспериментальный Web · 0.11" to "/ru/web-preview/"
+                        link "← Создание нативного сайта" to "/ru/site-authoring/"
     use RussianFooter
 
 page ru_provenance at "/ru/provenance/":

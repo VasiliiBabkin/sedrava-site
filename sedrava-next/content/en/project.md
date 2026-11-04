@@ -9,3 +9,6 @@ Sedrava is dedicated to Gennady Ivanovich Smirnykh, the computer science teacher
 ## Licenses and visual identity
 
 The website repository is MIT-licensed; the compiler is Apache-2.0. This preview uses a local flat-color adaptation of the repository's amethyst/gold mark. Local Inter is licensed under SIL OFL 1.1; its full license is included in generated assets. [Build provenance](/provenance/) identifies exact source/compiler commits and artifact hashes.
+
+
+Full MIT, Apache-2.0 and Inter OFL license notices are bundled in generated local assets. Полные тексты MIT, Apache-2.0 и OFL включены в локальные ресурсы сборки.

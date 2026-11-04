@@ -21,6 +21,8 @@ component EnglishSidebar:
         link "Compatibility and storage" to "/compatibility/"
         link "Roadmap" to "/roadmap/"
         link "Experimental Web · 0.11" to "/web-preview/"
+        link "Web platform reference" to "/web-platform/"
+        link "Native site authoring" to "/site-authoring/"
         link "Project and dedication" to "/project/"
 component RussianHeader:
     navbar label "Навигация":
@@ -45,4 +47,6 @@ component RussianSidebar:
         link "Совместимость и хранение" to "/ru/compatibility/"
         link "Дорожная карта" to "/ru/roadmap/"
         link "Экспериментальный Web · 0.11" to "/ru/web-preview/"
+        link "Справочник Web-платформы" to "/ru/web-platform/"
+        link "Создание нативного сайта" to "/ru/site-authoring/"
         link "Проект и посвящение" to "/ru/project/"

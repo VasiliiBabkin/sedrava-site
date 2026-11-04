@@ -2,7 +2,7 @@
 from pathlib import Path
 import json
 ROOT=Path(__file__).parent
-PAGES=[('getting-started','Getting started','Начало работы'),('language-overview','Language overview','Возможности языка'),('text-010','Text values · 0.10','Текст · 0.10'),('records-navigation','Records and navigation','Записи и навигация'),('cli','CLI and builds','CLI и сборка'),('examples','Examples and source','Примеры и исходники'),('release-notes','Release notes','Заметки о выпуске'),('compatibility','Compatibility and storage','Совместимость и хранение'),('roadmap','Roadmap','Дорожная карта'),('web-preview','Experimental Web · 0.11','Экспериментальный Web · 0.11'),('project','Project and dedication','Проект и посвящение')]
+PAGES=[('getting-started','Getting started','Начало работы'),('language-overview','Language overview','Возможности языка'),('text-010','Text values · 0.10','Текст · 0.10'),('records-navigation','Records and navigation','Записи и навигация'),('cli','CLI and builds','CLI и сборка'),('examples','Examples and source','Примеры и исходники'),('release-notes','Release notes','Заметки о выпуске'),('compatibility','Compatibility and storage','Совместимость и хранение'),('roadmap','Roadmap','Дорожная карта'),('web-preview','Experimental Web · 0.11','Экспериментальный Web · 0.11'),('web-platform','Web platform reference','Справочник Web-платформы'),('site-authoring','Native site authoring','Создание нативного сайта'),('project','Project and dedication','Проект и посвящение')]
 def q(text):return json.dumps(text,ensure_ascii=False)
 def main():
     chrome=[]
@@ -13,7 +13,7 @@ def main():
         chrome += ['component '+name+'Sidebar:','    sidebar label '+q('Документация' if lang=='ru' else 'Documentation')+':']
         chrome += ['        link '+q(ru if lang=='ru' else en)+' to '+q(prefix+slug+'/') for slug,en,ru in PAGES]
     (ROOT/'components/chrome.sdr').write_text('\n'.join(chrome)+'\n')
-    out=['site "Sedrava · native documentation"','origin "https://dev.virtreal.ru"','clean-urls true','robots false','stylesheet "assets/brand.css"','license "assets/INTER_LICENSE.txt"','favicon "assets/mark.svg"','social-image "assets/mark.svg"','import "components/chrome.sdr"','theme:','    background "#F5F0E8"','    surface "#FFFFFF"','    foreground "#231A35"','    accent "#583C82"','    gold "#8B6419"','    muted "#62596D"','    border "#D6CBDD"']
+    out=['site "Sedrava · native documentation"','origin "https://dev.virtreal.ru"','clean-urls true','robots false','stylesheet "assets/brand.css"','license "assets/INTER_LICENSE.txt"','license "assets/LICENSE_COMPILER.txt"','license "assets/LICENSE_SITE.txt"','favicon "assets/mark.svg"','social-image "assets/mark.svg"','import "components/chrome.sdr"','theme:','    background "#F5F0E8"','    surface "#FFFFFF"','    foreground "#231A35"','    accent "#583C82"','    gold "#8B6419"','    muted "#62596D"','    border "#D6CBDD"']
     for lang in ('en','ru'):
         pre='/ru/' if lang=='ru' else '/';name='Russian' if lang=='ru' else 'English';other='/' if lang=='ru' else '/ru/';locale='English' if lang=='ru' else 'Русский'
         def page(slug,title):

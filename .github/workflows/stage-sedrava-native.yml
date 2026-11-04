@@ -1,0 +1,118 @@
+name: Prepare or manually stage accepted native docs (dev only)
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Successful native preview workflow run for this exact commit'
+        required: true
+        type: string
+      publish:
+        description: 'Explicitly replace dev preview after backup and verification'
+        type: boolean
+        default: false
+      confirm_domain:
+        description: 'For publication, type dev.virtreal.ru exactly'
+        type: string
+        default: ''
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: sedrava-dev-preview
+  cancel-in-progress: false
+jobs:
+  accepted-bundle:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Require complete successful cross-engine acceptance on this SHA
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_ID: ${{ inputs.run_id }}
+        run: |
+          set -euo pipefail
+          [[ "$RUN_ID" =~ ^[0-9]+$ ]]
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID" > accepted-run.json
+          python - <<'PY'
+          import json,os
+          run=json.load(open('accepted-run.json'))
+          assert run['head_sha']==os.environ['GITHUB_SHA']
+          assert run['conclusion']=='success' and run['status']=='completed'
+          assert run['path']=='.github/workflows/preview-sedrava-native.yml'
+          assert run['head_repository']['full_name']==os.environ['GITHUB_REPOSITORY']
+          PY
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ inputs.run_id }}
+          name: sedrava-native-site-chromium
+          path: build/accepted
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Verify accepted bytes and package deterministically without rebuilding
+        run: python sedrava-next/stage_bundle.py build/accepted "$GITHUB_SHA" build/staging
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: sedrava-native-accepted-staging-bundle
+          path: build/staging/
+  stage-dev:
+    if: ${{ inputs.publish && inputs.confirm_domain == 'dev.virtreal.ru' && github.ref == 'refs/heads/feature/sedrava-native-docs-live-examples' }}
+    needs: accepted-bundle
+    runs-on: ubuntu-24.04
+    environment: production # Existing SSH credentials; target is strictly the documented dev root.
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: sedrava-native-accepted-staging-bundle
+          path: build/staging
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Configure existing reviewed SSH identity
+        env:
+          DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          test -n "$DEPLOY_KEY" && test -n "$KNOWN_HOSTS"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+          chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
+      - name: Publish dev only, verify actual HTTP and roll back on failure
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          BACKUP_DIR: ${{ vars.SEDRAVA_STAGING_BACKUP_DIR }}
+        run: |
+          set -euo pipefail
+          test -n "$SSH_HOST" && test -n "$SSH_USER"
+          [[ "$BACKUP_DIR" =~ ^/[A-Za-z0-9_./-]+$ && "$BACKUP_DIR" != *'..'* ]]
+          [[ "$BACKUP_DIR/" != /var/www/virtreal_ru_usr27/data/www/* ]]
+          PORT="${SSH_PORT:-22}"
+          [[ "$PORT" =~ ^[0-9]+$ ]]
+          SSH_OPTS=(-o BatchMode=yes -o StrictHostKeyChecking=yes -o IdentitiesOnly=yes -p "$PORT")
+          DEPLOYMENT="$GITHUB_SHA-$GITHUB_RUN_ID"
+          DIGEST="$(python -c 'import json;print(json.load(open("build/staging/manifest.json"))["archive_sha256"])')"
+          ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "test -d '$BACKUP_DIR' && test -w '$BACKUP_DIR' && test \"\$(readlink -f '$BACKUP_DIR')\" = '$BACKUP_DIR' && test ! -e '$BACKUP_DIR/$DEPLOYMENT.tar.gz'"
+          ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "umask 077; cat > '$BACKUP_DIR/$DEPLOYMENT.tar.gz'" < build/staging/native-site.tar.gz
+          ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "umask 077; cat > '$BACKUP_DIR/$DEPLOYMENT.files.sha256'" < build/staging/files.sha256
+          ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "bash -s -- install '$BACKUP_DIR' '$DEPLOYMENT' '$DIGEST'" < sedrava-next/stage_remote.sh
+          if ! python sedrava-next/verify_staging.py build/staging/manifest.json --output build/staging/http-verification.json; then
+            ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" "bash -s -- rollback '$BACKUP_DIR' '$DEPLOYMENT'" < sedrava-next/stage_remote.sh
+            exit 1
+          fi
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: sedrava-native-staging-http-evidence
+          path: build/staging/

@@ -52,8 +52,10 @@ def main():
             assert matches==[source.decode()],f'{path}: source drift for {name}'
     for path,claim in [('index.html','This website is built with Sedrava'),('ru/index.html','Этот сайт написан на Sedrava')]:assert claim in ''.join(pages[path].text)
     assert 'Disallow: /' in (OUTPUT/'robots.txt').read_text()
-    assert (OUTPUT/'sitemap.xml').read_text().count('<url>')==26
+    native_count=sum(not path.startswith('live/') for path in pages)
+    assert native_count==30
+    assert (OUTPUT/'sitemap.xml').read_text().count('<url>')==native_count
     assert list((OUTPUT/'assets').glob('*.woff2')) and list((OUTPUT/'assets').glob('license-*.txt'))
-    report={'status':'PASS','site_pages':26,'live_demos':len(demos),'legacy_routes':len(migration),'checked_local_links':checked,'displayed_source_panels':8}
+    report={'status':'PASS','site_pages':native_count,'live_demos':len(demos),'legacy_routes':len(migration),'checked_local_links':checked,'displayed_source_panels':8}
     (ROOT/'build/native-parity.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))
 if __name__=='__main__':main()
