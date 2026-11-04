@@ -34,7 +34,7 @@ page en_home at "/":
                 row:
                     button "Start building" to "/getting-started/"
                     button "Run live examples" to "/examples/" variant secondary
-                    button "Open calculator" to "/live/calculator/" variant secondary
+                    button "Open calculator" to "/examples/#calculator" variant secondary
                 paragraph "Published 0.10.0 · Experimental website compiler 0.11" class "brand-label"
             search label "Search documentation"
             grid columns 2 class "brand-grid":
@@ -343,7 +343,7 @@ page ru_home at "/ru/":
                 row:
                     button "Начать разработку" to "/ru/getting-started/"
                     button "Запустить примеры" to "/ru/examples/" variant secondary
-                    button "Калькулятор" to "/live/calculator/" variant secondary
+                    button "Калькулятор" to "/ru/examples/#calculator" variant secondary
                 paragraph "Опубликована 0.10.0 · Экспериментальный компилятор сайта 0.11" class "brand-label"
             search label "Поиск по документации"
             grid columns 2 class "brand-grid":
