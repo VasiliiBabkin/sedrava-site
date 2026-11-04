@@ -91,6 +91,9 @@ class NativeSiteBrowser(unittest.TestCase):
         self.assertEqual(p.evaluate('localStorage.getItem("unrelated-site-state")'),'retained')
     def test_tasks_crud_search_filter_routes_reload_validation_and_delete(self):
         p=self.goto('/ru/examples/');panel,f=self.demo('tasks')
+        self.assertEqual(p.locator('html').evaluate('e=>getComputedStyle(e).scrollBehavior'),'auto')
+        self.assertEqual(p.locator('.s-navbar').evaluate('e=>getComputedStyle(e).position'),'static')
+        self.assertEqual(f.locator('html').evaluate('e=>getComputedStyle(e).scrollBehavior'),'auto')
         f.get_by_label('New task',exact=True).fill('Native docs task');f.get_by_role('button',name='Add task',exact=True).click()
         f.get_by_role('button',name='Select Native docs task',exact=True).click();f.get_by_role('button',name='Open selected task',exact=True).click()
         f.get_by_label('Rename selected task',exact=True).fill('Renamed in frame');f.get_by_role('button',name='Rename task',exact=True).click();f.get_by_role('button',name='Toggle completion',exact=True).click()

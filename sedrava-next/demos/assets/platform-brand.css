@@ -10,3 +10,5 @@ body{background:var(--background);font-family:PlatformInter,ui-sans-serif,system
 .s-button:focus-visible{outline-offset:4px}.s-webapp input,.s-webapp textarea,.s-webapp select{min-height:48px}
 @media(min-width:768px){.brand-shell{padding-block:52px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Keep form/action hit targets stable when the app is scrolled inside docs. */
+html{scroll-behavior:auto}

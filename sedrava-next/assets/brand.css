@@ -11,3 +11,7 @@ body{font-family:SedravaInter,ui-sans-serif,system-ui,sans-serif}.s-heading{font
 /* Standard visually-hidden skip link, revealed on keyboard focus. Explicit clipping
    also keeps off-screen fixed content out of browser element screenshots. */
 .s-skip:not(:focus){clip-path:inset(50%);width:1px;height:1px;overflow:hidden;white-space:nowrap;padding:0;transform:none}
+/* Native embeds own a scrollable viewport. Avoid competing animated scrolls and
+   sticky parent hit targets while interacting with a child document. */
+html{scroll-behavior:auto;scroll-padding-top:6rem}
+body:has(.doc-demo) .s-navbar{position:static}

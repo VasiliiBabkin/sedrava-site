@@ -1,6 +1,6 @@
 # Native site acceptance evidence / Проверка нативного сайта
 
-Status: implementation and final cross-engine verification in progress. No production replacement, package publication, release or tag. See the draft [website PR #10](https://github.com/VasiliiBabkin/sedrava-site/pull/10) and separate [compiler PR #37](https://github.com/VasiliiBabkin/sedrava/pull/37), based on [#36](https://github.com/VasiliiBabkin/sedrava/pull/36).
+Status: final exact-SHA verification and remote acceptance gates are recorded in the PR/CI receipts. No production replacement, package publication, release or tag. See the draft [website PR #10](https://github.com/VasiliiBabkin/sedrava-site/pull/10) and separate [compiler PR #37](https://github.com/VasiliiBabkin/sedrava/pull/37), based on [#36](https://github.com/VasiliiBabkin/sedrava/pull/36).
 
 ## Actual implementation
 
@@ -20,12 +20,13 @@ Local subsequent runs: **272 full compiler Python tests**, four dedicated docs u
 
 The native website's **eight local Chromium scenarios** passed with the full references and final typography (51.321 seconds). They verify counter persistence and copy, task CRUD/search/filter/routes/delete, CRM relations/forms/dialog/theme/reset isolation, real HTTP methods/schema/errors/retry/cancel/404, offline bilingual search, source downloads, six widths and representative axe checks. Four local staging-safety unit cases pass; these are not remote-deployment tests.
 
-The first website cross-engine run on `373c3a6` passed Chromium but failed Firefox/WebKit: the tests incorrectly rejected legitimate cached `304` navigations, and WebKit exposed joint iframe history interference. The response check now verifies the actual rendered title/h1 for 200/304. The compiler now gives embeds a bounded owned route trail, preserving the parent/sibling history and standalone behavior. These corrections must pass final hosted runs; earlier failures are not hidden.
+The first website cross-engine run on `373c3a6` passed Chromium but failed Firefox/WebKit: the tests incorrectly rejected legitimate cached `304` navigations, and WebKit exposed joint iframe history interference. A later Chromium run on `3f18d49` exposed animated scrolling/sticky-parent interference with actual task clicks. Authored CSS now avoids competing scroll animations and uses a static parent header on live-example pages; three consecutive local repetitions of the complete task scenario passed. The response check verifies the actual rendered title/h1 for 200/304. The compiler now gives embeds a bounded owned route trail, preserving the parent/sibling history and standalone behavior. These corrections must pass final hosted runs; earlier failures are not hidden.
 
 ## Defects found and corrected
 
 | Issue | Correction and regression evidence |
 |---|---|
+| Competing animated document/frame scrolling and a sticky parent header blocked real Chromium task clicks intermittently | Instant scroll policy in authored site/demo CSS; static header on live-example pages; unchanged real-click CRUD regression |
 | Compiler SHA was overwritten by an independent-demo hash dictionary in provenance | Separate variables; static acceptance now checks exact compiler/website SHA and all output hashes |
 | MDX conversion stripped indentation inside complete examples | Preserve fences separately; migration checker compares every original fence |
 | Reload reset the selected detail route | Child reload preserves current URL/hash; real browser route/state assertion |
