@@ -1,9 +1,9 @@
 ---
 title: Examples
-description: Executable examples included in Sedrava 0.10.0.
+description: Executable examples in stable Sedrava 0.11.0.
 ---
 
-These examples work with the [published Sedrava 0.10.0](https://pypi.org/project/sedrava/0.10.0/) CLI. [GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0). Clone the [language repository](https://github.com/VasiliiBabkin/sedrava) for the `examples/` source files.
+These examples work with [stable Sedrava 0.11.0](https://pypi.org/project/sedrava/0.11.0/) ([GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0)) and the earlier [0.10.0](https://pypi.org/project/sedrava/0.10.0/) ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0)). Clone the [language repository](https://github.com/VasiliiBabkin/sedrava) for the `examples/` source files.
 
 ## Goal and progress: historical 0.9 example
 
@@ -42,12 +42,12 @@ Open **http://localhost:8000** to try the generated Web app. Android generation 
 
 The [full example index](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) also includes a constrained counter, manual countdown and habit progress. Examples are for learning and conformance, not production templates.
 
-## Four new examples in experimental 0.11.0rc1
+## Four Web platform examples in stable 0.11.0
 
-The [published prerelease](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) is available on [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). Check out the [release-tag example sources](https://github.com/VasiliiBabkin/sedrava/tree/v0.11.0rc1/examples) first, then:
+Use [stable 0.11.0](https://pypi.org/project/sedrava/0.11.0/) with [versioned example sources](https://github.com/VasiliiBabkin/sedrava/tree/v0.11.0/examples). The earlier [RC](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) is still available on [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/) for comparison:
 
 ~~~sh
-python -m pip install sedrava==0.11.0rc1
+python -m pip install sedrava==0.11.0
 sedrava build site examples/platform_site.sdr --output build/platform/site
 sedrava build webapp examples/platform_tasks.sdr --output build/platform/tasks
 sedrava build webapp examples/platform_catalog.sdr --output build/platform/catalog
