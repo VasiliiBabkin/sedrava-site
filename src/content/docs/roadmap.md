@@ -1,6 +1,6 @@
 ---
 title: Roadmap
-description: Published Sedrava 0.10.0 and verified experimental 0.11/0.12 development.
+description: Stable Sedrava 0.11.0, earlier 0.10 and experimental 0.12 development.
 ---
 
 Sedrava **0.11.0** is published as the [latest stable release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) ([PyPI](https://pypi.org/project/sedrava/0.11.0/)); [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) remains available as the previous stable version. The 0.11.0rc1 experimental candidate is historical; 0.12 and later stages are not yet released.
