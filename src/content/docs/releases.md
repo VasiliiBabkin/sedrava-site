@@ -1,6 +1,6 @@
 ---
 title: Releases and previews
-description: Published Sedrava version and published 0.11.0rc1 candidate and unpublished 0.12 experiments.
+description: Published stable Sedrava 0.11.0, previous 0.10/RC and unpublished 0.12 experiments.
 ---
 
 ## Previous stable: Sedrava 0.10.0
