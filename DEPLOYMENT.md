@@ -21,6 +21,6 @@ Domain: https://sedrava.virtreal.ru
 
 The workflow checks that the destination directory exists and is writable. It uses `tar` over SSH rather than `rsync`, because `rsync` is not installed on this VDS. No remote package installation is needed.
 
-Deployment currently runs automatically on pushes to `main` and can also be started manually. It verifies the bilingual 0.10.0 stable and published 0.11.0rc1 prerelease pages on the VDS after uploading. It does not delete files already on the server, and the tar extraction is not atomic; true atomic releases/rollback remain future improvements. The deploy workflow builds and checks the content itself, but it does not wait for the separate build workflow's completion.
+Deployment currently runs automatically on pushes to `main` and can also be started manually. It verifies published stable 0.11.0 pages in both languages along with historical 0.10.0 and 0.11.0rc1 after uploading. It does not delete files already on the server, and the tar extraction is not atomic; true atomic releases/rollback remain future improvements. The deploy workflow builds and checks the content itself, but it does not wait for the separate build workflow's completion.
 
 Never commit private keys, passwords, or other server credentials.
