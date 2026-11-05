@@ -1,4 +1,4 @@
-// Verify stable 0.10, published experimental 0.11 RC, and unpublished 0.12 status before deployment.
+// Verify stable 0.11, historical 0.10/RC and unpublished experimental 0.12 before deployment.
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 
@@ -8,6 +8,8 @@ const published = 'https://pypi.org/project/sedrava/0.10.0/';
 const release = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0';
 const preview = 'https://pypi.org/project/sedrava/0.11.0rc1/';
 const previewRelease = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1';
+const stable = 'https://pypi.org/project/sedrava/0.11.0/';
+const stableRelease = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0';
 const stale = [
   /0\.10\.0\.dev0/i,
   /0\.10\.0rc2\s*[·—-]\s*(?:published|опубликован)/i,
@@ -29,7 +31,7 @@ for (const prefix of ['', 'ru/']) {
       if (!text.includes(required)) throw new Error('Missing release fact (' + required + '): ' + path);
     }
     if (['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases'].includes(slug)) {
-      for (const required of [preview, previewRelease]) {
+      for (const required of [preview, previewRelease, stable, stableRelease]) {
         if (!text.includes(required)) throw new Error('Missing published prerelease fact (' + required + '): ' + path);
       }
     }
@@ -47,4 +49,4 @@ for (const prefix of ['', 'ru/']) {
     checked++;
   }
 }
-console.log('PASS: ' + checked + ' EN/RU pages include stable 0.10, published 0.11 RC and valid local routes');
+console.log('PASS: ' + checked + ' EN/RU pages include stable 0.11, old 0.10/RC, and valid local routes');
