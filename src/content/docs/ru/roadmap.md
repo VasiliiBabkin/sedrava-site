@@ -1,6 +1,6 @@
 ---
 title: Дорожная карта
-description: Опубликованная версия Sedrava 0.10.0 и фактический статус разработки 0.11/0.12.
+description: Стабильная Sedrava 0.11.0, предыдущая 0.10 и экспериментальная 0.12.
 ---
 
 Последняя стабильная **Sedrava 0.11.0** [опубликована на GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) и [PyPI](https://pypi.org/project/sedrava/0.11.0/); [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) остаётся доступной как предыдущая стабильная версия. Кандидат 0.11.0rc1 теперь исторический, а 0.12 и последующие этапы пока не выпущены.
