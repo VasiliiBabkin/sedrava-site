@@ -11,7 +11,7 @@ Sedrava **0.11.0** is published as the [latest stable release](https://github.co
 | **0.11.0rc1** | Responsive sites, interactive WebApps, typed client HTTP | **Published experimental prerelease** ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) · [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)) |
 | **0.11.0** | Reviewed Web platform | **Published stable** ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) · [PyPI](https://pypi.org/project/sedrava/0.11.0/)) |
 | **0.12.0a1** | Aliased namespaces, source diagnostics, offline local dependency locking | Implemented experimental stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41), alpha not published |
-| **0.13+** | Trusted server target, SQLite then authentication/migrations | Architecture proposal, not implemented |
+| **0.13 A1 (draft)** | Restricted ASGI health server, SQLite schema and forward-only migrations | [Experimental PR #48](https://github.com/VasiliiBabkin/sedrava/pull/48), source only; not released, no public data API |
 | **1.0** | Frozen specification, supported APIs and compatibility rules | Long-term objective |
 
 ## Current work

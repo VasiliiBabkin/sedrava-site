@@ -47,6 +47,10 @@ The [stable acceptance contract](https://github.com/VasiliiBabkin/sedrava/blob/v
 
 The following changes are implemented on **unmerged experimental branches**, not in published Sedrava: [namespaced modules PR #39](https://github.com/VasiliiBabkin/sedrava/pull/39), [original-file diagnostics PR #40](https://github.com/VasiliiBabkin/sedrava/pull/40), and [offline local packages/lockfile PR #41](https://github.com/VasiliiBabkin/sedrava/pull/41). Version `0.12.0a1` is a release plan, not an available download. The experimental modules still use lexical lowering rather than complete typed-IR symbol identity, and the package system has no online registry.
 
+## Experimental server platform — draft work, NOT released
+
+[PR #48](https://github.com/VasiliiBabkin/sedrava/pull/48) introduces a restricted experimental ASGI health-server target with SQLite table declarations, checked forward-only migrations and explicit backup operations. It is **not included** in published 0.11.0 or unpublished 0.12. No generated CRUD endpoints, authentication, user isolation or production deployment are claimed. See [experimental server documentation](https://github.com/VasiliiBabkin/sedrava/blob/feature/013-server-sqlite-migrations-a1/docs/SERVER_013_EXPERIMENTAL.en.md).
+
 ## Explicit boundaries
 
 No released or candidate version currently provides a trusted Sedrava-generated backend, SQLite/PostgreSQL database, authentication or multi-user authorization. Browser HTTP requests are clients of an independently operated service, not a built-in server.
