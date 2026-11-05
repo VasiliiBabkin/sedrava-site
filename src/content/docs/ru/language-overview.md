@@ -1,9 +1,9 @@
 ---
 title: Возможности языка
-description: Состояния, строки, записи, действия и навигация в опубликованной Sedrava 0.10.0.
+description: Типизированный язык, состояние, Web и Android в стабильной Sedrava 0.11.0.
 ---
 
-[**Sedrava 0.10.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) доступна на [PyPI](https://pypi.org/project/sedrava/0.10.0/). Язык экспериментальный: версия 0.10.0 ещё не гарантирует совместимости со всеми последующими изменениями.
+[**Sedrava 0.11.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) — актуальная стабильная версия на [PyPI](https://pypi.org/project/sedrava/0.11.0/); прежняя [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) остаётся доступной на [PyPI](https://pypi.org/project/sedrava/0.10.0/). Язык по-прежнему экспериментальный: даже стабильная 0.11 не означает обязательств совместимости уровня 1.0.
 
 ## Состояния и текст
 
@@ -54,9 +54,11 @@ screen main:
 | `sedrava run FILE ACTION...` | Выполнение действий, вывод JSON |
 | `sedrava build web FILE --output PATH` | Генерация автономного HTML |
 | `sedrava build android FILE --output DIR` | Генерация исходников Kotlin/Compose |
+| `sedrava build site FILE --output DIR` | Генерация адаптивного многостраничного сайта (0.11+) |
+| `sedrava build webapp FILE --output DIR` | Генерация типизированного WebApp (0.11+) |
 
-Сборка APK выполняется отдельно. Генерация сайтов и WebApp теперь доступна в [опубликованной экспериментальной 0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)), но **отсутствует в стабильной 0.10.0**. Эта страница описывает стабильное ядро 0.10; см. [руководство по кандидату](/ru/releases/).
+Сборка APK выполняется отдельно. Генерация сайтов и WebApp доступна в [стабильной 0.11.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) ([PyPI](https://pypi.org/project/sedrava/0.11.0/)), но отсутствует в 0.10.0. Впервые эти команды появились в исторической [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)). [Состав и ограничения выпуска](/ru/releases/).
 
 ## Ограничения
 
-Нет автоматических миграций, зашифрованного хранения, настоящих таймеров, произвольной вёрстки, модулей, асинхронных сервисов и гарантий API 1.0. [Ограничения](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md), [совместимость](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/COMPATIBILITY_010.md), [справочник текста 0.10](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/LANGUAGE_0_10_TEXT.md). Проверка конечного APK 0.10 на физическом телефоне пока не подтверждена.
+Нет автоматических миграций, зашифрованного хранения, доверенного сервера, встроенной авторизации, пакетов с пространствами имён из 0.12 и гарантий API 1.0. [Ограничения](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md), [совместимость](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/COMPATIBILITY_010.md), [справочник текста 0.10](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/LANGUAGE_0_10_TEXT.md). Проверка конечного APK 0.10 на физическом телефоне пока не подтверждена.
