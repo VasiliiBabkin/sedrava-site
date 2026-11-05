@@ -1,9 +1,9 @@
 ---
 title: Language overview
-description: State, text, records, actions and navigation in the published Sedrava 0.10.0.
+description: Typed language, state, Web and Android targets in stable Sedrava 0.11.0.
 ---
 
-[**Sedrava 0.10.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) is published on [PyPI](https://pypi.org/project/sedrava/0.10.0/). The language is experimental: version 0.10.0 does not imply compatibility with all future changes.
+[**Sedrava 0.11.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) is the current stable release on [PyPI](https://pypi.org/project/sedrava/0.11.0/); earlier [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) remains available on [PyPI](https://pypi.org/project/sedrava/0.10.0/). The language remains experimental; the stable version name does not imply a full 1.0 compatibility promise.
 
 ## State, text and derived values
 
@@ -54,9 +54,11 @@ screen main:
 | `sedrava run FILE ACTION...` | Run actions, output JSON state |
 | `sedrava build web FILE --output PATH` | Generate standalone HTML |
 | `sedrava build android FILE --output DIR` | Generate Kotlin/Compose project sources |
+| `sedrava build site FILE --output DIR` | Generate a responsive multi-page website (0.11+) |
+| `sedrava build webapp FILE --output DIR` | Generate a typed interactive WebApp (0.11+) |
 
-Android APK compilation is a separate task. Site and WebApp targets are now available in the [published experimental 0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)), **not** in stable 0.10.0. This page documents the stable 0.10.0 language core; see the [prerelease guide](/releases/) for details.
+Android APK compilation is a separate task. Multi-page sites and interactive WebApps are available in [stable 0.11.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) ([PyPI](https://pypi.org/project/sedrava/0.11.0/)), not in 0.10.0. They first appeared in the historical [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)). See [release details](/releases/) for HTTP client and storage limitations.
 
 ## Limitations
 
-No automatic data migrations, encrypted persistence, real-time timers, general-purpose layout system, modules, async services or 1.0 API stability promise. [Known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md), [compatibility](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/COMPATIBILITY_010.md), [0.10 text reference](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/LANGUAGE_0_10_TEXT.md). The physical-device acceptance of the final 0.10 Android APK is not yet documented.
+No automatic data migrations, encrypted persistence, trusted server/backend, user authentication, full 0.12 namespaced packages or 1.0 API stability promise. [Known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md), [compatibility](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/COMPATIBILITY_010.md), [0.10 text reference](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/LANGUAGE_0_10_TEXT.md). The physical-device acceptance of the final 0.10 Android APK is not yet documented.

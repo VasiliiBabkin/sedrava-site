@@ -79,5 +79,5 @@ jobs:
 
           # Verify the actual VDS target, not only the local Astro dist/ tree.
           ssh "${SSH_OPTS[@]}" "$SSH_USER@$SSH_HOST" \
-            "test -s '$TARGET/index.html' && test -s '$TARGET/ru/index.html' && grep -Fq '0.10.0' '$TARGET/index.html' && grep -Fq '0.10.0' '$TARGET/ru/index.html' && grep -Fq '0.11.0rc1' '$TARGET/index.html' && grep -Fq '0.11.0rc1' '$TARGET/ru/index.html' && test -s '$TARGET/releases/index.html' && test -s '$TARGET/ru/releases/index.html'"
-          echo "Remote smoke check passed: EN/RU stable 0.10 and published 0.11 RC pages exist."
+            "test -s '$TARGET/index.html' && test -s '$TARGET/ru/index.html' && grep -Fq '0.10.0' '$TARGET/index.html' && grep -Fq '0.10.0' '$TARGET/ru/index.html' && grep -Fq '0.11.0rc1' '$TARGET/index.html' && grep -Fq '0.11.0rc1' '$TARGET/ru/index.html' && test -s '$TARGET/releases/index.html' && test -s '$TARGET/ru/releases/index.html' && grep -Fq 'releases/tag/v0.11.0' '$TARGET/index.html' && grep -Fq 'releases/tag/v0.11.0' '$TARGET/ru/index.html' && grep -Fq 'sedrava==0.11.0' '$TARGET/releases/index.html' && grep -Fq 'sedrava==0.11.0' '$TARGET/ru/releases/index.html'"
+          echo "Remote smoke check passed: stable 0.11 and historical 0.10/RC on both language sites."

@@ -1,9 +1,9 @@
 ---
 title: Getting started
-description: Install Sedrava 0.10.0 from PyPI and build your first Web application.
+description: Install stable Sedrava 0.11.0 from PyPI and build Web applications.
 ---
 
-Sedrava **0.10.0** is publicly released on [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) and [PyPI](https://pypi.org/project/sedrava/0.10.0/). It remains experimental and is intended for learning and smaller local apps rather than production deployment.
+Sedrava **0.11.0** is the current [stable GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) and [PyPI package](https://pypi.org/project/sedrava/0.11.0/), with responsive sites and interactive WebApps. The language is still experimental and not production certified. Previous stable [0.10.0](https://pypi.org/project/sedrava/0.10.0/) ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0)) is retained.
 
 ## Requirements
 
@@ -16,13 +16,13 @@ python -m venv .venv
 # Linux/macOS:
 . .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install sedrava==0.10.0
+python -m pip install sedrava==0.11.0
 sedrava --version
 ~~~
 
-The expected version is `0.10.0`. To develop from sources instead, clone the [repository](https://github.com/VasiliiBabkin/sedrava) and run `python -m pip install .` there.
+The expected version is `0.11.0`. To develop from sources instead, clone the [repository](https://github.com/VasiliiBabkin/sedrava) and run `python -m pip install .` there.
 
-## Optional 0.11.0rc1 prerelease
+## Historical 0.11.0rc1 prerelease
 
 The experimental [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) is now published on [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). To try the new site and WebApp targets, install that exact version in a separate virtual environment:
 
@@ -31,7 +31,7 @@ python -m pip install sedrava==0.11.0rc1
 sedrava --version
 ~~~
 
-This is not stable 0.11.0; no built-in database or automatic schema migration exists. [Release details](/releases/).
+The prerelease is preserved for reproducible testing. For new projects use [stable 0.11.0](https://pypi.org/project/sedrava/0.11.0/). Neither version includes a generated database or automatic schema migration. [Release details](/releases/).
 
 ## Your first program
 
@@ -71,4 +71,4 @@ This generates Android/Compose sources, **not an APK**. Building an APK needs JD
 
 Read [language overview](/language-overview/), [text semantics](/text-010/), [examples](/examples/) and [roadmap](/roadmap/). Also see [current language documentation](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.en.md) and [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
 
-**Important:** site and WebApp generation are absent from stable 0.10.0 but available in the [published 0.11.0rc1 prerelease](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). This official documentation site still uses Astro/Starlight.
+**Important:** site and WebApp generation are available in [stable 0.11.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0); they are absent from 0.10.0 but were introduced in the historical [0.11.0rc1 prerelease](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). The official documentation site itself still uses Astro/Starlight.

@@ -1,9 +1,9 @@
 ---
 title: Начало работы
-description: Установка Sedrava 0.10.0 из PyPI и создание первого веб-приложения.
+description: Установка стабильной Sedrava 0.11.0 из PyPI и создание первого приложения.
 ---
 
-Sedrava **0.10.0** опубликована на [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) и [PyPI](https://pypi.org/project/sedrava/0.10.0/). Язык экспериментальный и предназначен прежде всего для обучения и небольших локальных приложений.
+Sedrava **0.11.0** — актуальный [стабильный релиз GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) и [пакет PyPI](https://pypi.org/project/sedrava/0.11.0/). В этой версии появились адаптивные сайты и интерактивные WebApp. Язык остаётся экспериментальным и не сертифицирован для промышленной эксплуатации. Прежняя стабильная [0.10.0](https://pypi.org/project/sedrava/0.10.0/) ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0)) сохранена.
 
 ## Требования
 
@@ -16,13 +16,13 @@ python -m venv .venv
 # Linux/macOS:
 . .venv/bin/activate
 # Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install sedrava==0.10.0
+python -m pip install sedrava==0.11.0
 sedrava --version
 ~~~
 
-Ожидаемая версия — `0.10.0`. Для разработки из исходников клонируйте [репозиторий](https://github.com/VasiliiBabkin/sedrava) и выполните там `python -m pip install .`.
+Ожидаемая версия — `0.11.0`. Для разработки из исходников клонируйте [репозиторий](https://github.com/VasiliiBabkin/sedrava) и выполните там `python -m pip install .`.
 
-## Предварительная версия 0.11.0rc1
+## Исторический кандидат 0.11.0rc1
 
 Экспериментальная [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) опубликована на [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). Для генерации сайтов и WebApp установите именно этот кандидат в отдельном виртуальном окружении:
 
@@ -31,7 +31,7 @@ python -m pip install sedrava==0.11.0rc1
 sedrava --version
 ~~~
 
-Это не стабильная 0.11.0; встроенной базы данных и автоматической миграции схем пока нет. [Подробности](/ru/releases/).
+Кандидат сохранён для повторяемых испытаний. Новые проекты рекомендуется начинать со [стабильной 0.11.0](https://pypi.org/project/sedrava/0.11.0/). Ни один из этих выпусков не включает встроенную базу данных или автоматические миграции. [Подробности](/ru/releases/).
 
 ## Первая программа
 
@@ -71,4 +71,4 @@ sedrava build android hello.sdr --output build/hello-android
 
 [Возможности языка](/ru/language-overview/), [строки](/ru/text-010/), [примеры](/ru/examples/), [дорожная карта](/ru/roadmap/). Основная [документация 0.10](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.ru.md) и [ограничения](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
 
-**Важно:** генерация сайтов и WebApp отсутствует в стабильной 0.10.0, но доступна в [опубликованной предварительной 0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). Сайт документации по-прежнему собирается с помощью Astro/Starlight.
+**Важно:** генерация сайтов и WebApp доступна в [стабильной 0.11.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0), но отсутствует в 0.10.0; она впервые появилась в исторической [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). Сайт документации по-прежнему собирается с помощью Astro/Starlight.

@@ -1,9 +1,9 @@
 ---
 title: Примеры
-description: Исполняемые программы для Sedrava 0.10.0.
+description: Исполняемые примеры для стабильной Sedrava 0.11.0.
 ---
 
-Примеры работают с [опубликованной Sedrava 0.10.0](https://pypi.org/project/sedrava/0.10.0/). [Релиз на GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0). Для файлов `examples/` клонируйте [репозиторий языка](https://github.com/VasiliiBabkin/sedrava).
+Эти примеры работают со [стабильной Sedrava 0.11.0](https://pypi.org/project/sedrava/0.11.0/) ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0)) и прежней [0.10.0](https://pypi.org/project/sedrava/0.10.0/) ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0)). Для файлов `examples/` клонируйте [репозиторий языка](https://github.com/VasiliiBabkin/sedrava).
 
 ## Цель и прогресс: исторический пример 0.9
 
@@ -42,12 +42,12 @@ python -m http.server 8000 --directory build/navigation-web
 
 В [полном каталоге](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) также есть счётчик, ручной обратный отсчёт и учёт привычек. Примеры предназначены для изучения, не для промышленной эксплуатации.
 
-## Четыре новых примера в экспериментальной 0.11.0rc1
+## Четыре примера Web-платформы в стабильной 0.11.0
 
-[Опубликованный кандидат](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) доступен на [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). Сначала скачайте [исходники примеров из тега выпуска](https://github.com/VasiliiBabkin/sedrava/tree/v0.11.0rc1/examples), затем:
+Используйте [стабильную 0.11.0](https://pypi.org/project/sedrava/0.11.0/) и [исходники из тега выпуска](https://github.com/VasiliiBabkin/sedrava/tree/v0.11.0/examples). Исторический [кандидат](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) по-прежнему доступен на [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). Команды:
 
 ~~~sh
-python -m pip install sedrava==0.11.0rc1
+python -m pip install sedrava==0.11.0
 sedrava build site examples/platform_site.sdr --output build/platform/site
 sedrava build webapp examples/platform_tasks.sdr --output build/platform/tasks
 sedrava build webapp examples/platform_catalog.sdr --output build/platform/catalog
