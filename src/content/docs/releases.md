@@ -3,9 +3,9 @@ title: Releases and previews
 description: Published Sedrava version and published 0.11.0rc1 candidate and unpublished 0.12 experiments.
 ---
 
-## Stable published version: Sedrava 0.10.0
+## Previous stable: Sedrava 0.10.0
 
-Sedrava **0.10.0** was released on 31 October 2026: [GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) · [PyPI package](https://pypi.org/project/sedrava/0.10.0/). This is the latest verified public stable-version identifier in the project. It supports typed text, records, bounded collections and checked multi-screen navigation on existing application targets.
+Sedrava **0.10.0** was released on 31 October 2026: [GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) · [PyPI package](https://pypi.org/project/sedrava/0.10.0/). This is the previous stable version. It supports typed text, records, bounded collections and checked multi-screen navigation on existing application targets.
 
 ## 0.11.0rc1 — published experimental prerelease
 
@@ -26,9 +26,22 @@ Independent checks covered actual 0.10.0 to 0.11.0rc1 upgrade and rollback, brow
 
 Limitations: no built-in trusted backend, SQLite/PostgreSQL, authentication, multiuser authorization, automatic schema migrations, namespaced packages or physical-device certification. A browser HTTP client needs a separately provided server. Production Android downgrade is not guaranteed.
 
-## Stable 0.11.0 — in preparation, NOT published
+## Latest stable: Sedrava 0.11.0
 
-The [stable release preparation PR #44](https://github.com/VasiliiBabkin/sedrava/pull/44) is open for exact-head CI and installation/rollback acceptance. Its source version is `0.11.0`, Android versionCode `11002` (published RC: `11001`). **The stable package is not available for installation yet.** Continue to use stable 0.10.0 or the explicitly pinned 0.11.0rc1 prerelease. Publication requires new owner approval.
+[GitHub stable release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) · [PyPI 0.11.0](https://pypi.org/project/sedrava/0.11.0/).
+
+**0.11.0** is the published stable release following the independently tested 0.11.0rc1. Its reviewed source is commit `c9cde75e3d2e2c7eafeeaec10c73fec627816e68`; Android versionCode is `11002`, above the RC `11001`.
+
+Install in a dedicated Python virtual environment:
+
+~~~sh
+python -m pip install sedrava==0.11.0
+sedrava --version
+~~~
+
+Includes responsive multi-page sites (`build site`), interactive browser WebApps (`build webapp`), typed components, pure functions, bounded collections, forms, dialogs, tables, routes, and checked public HTTP GET/POST/PUT/PATCH/DELETE clients. Four sample sources: site, tasks, catalog and CRM. Previous 0.10 application, Web and Android targets remain supported.
+
+The [stable acceptance contract](https://github.com/VasiliiBabkin/sedrava/blob/v0.11.0/docs/STABLE_RELEASE_GATES_011.md) covers actual 0.10 → 0.11 → 0.10 and 0.11rc1 → 0.11 → RC in-place Python installs, Chromium/Firefox/WebKit and Android API35 debug update. This is **not** production certification. No generated trusted backend, SQLite/PostgreSQL, authentication, multiuser authorization, schema migrations, physical Android-device certification or production Android downgrade support is supplied. Namespaces and packages remain experimental 0.12 development.
 
 ## 0.12.0a1 — proposed experimental alpha, NOT published
 
