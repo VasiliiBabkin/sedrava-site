@@ -6,8 +6,8 @@ stylesheet "assets/brand.css"
 license "assets/INTER_LICENSE.txt"
 license "assets/LICENSE_COMPILER.txt"
 license "assets/LICENSE_SITE.txt"
-favicon "assets/mark.svg"
-social-image "assets/mark.svg"
+favicon "assets/brand/sedrava-logo-32.png"
+social-image "assets/brand/sedrava-og.png"
 import "components/chrome.sdr"
 theme:
     background "#F5F0E8"
@@ -27,7 +27,7 @@ page en_home at "/":
         column gap 24:
             link "Русский" to "/ru/"
             column gap 24 class "hero":
-                image "assets/mark.svg" alt "Sedrava folded amethyst ribbon with a gold cut" class "hero-image"
+                image "assets/brand/sedrava-logo-512.png" alt "Sedrava folded amethyst ribbon with a gold cut" class "hero-image"
                 paragraph "SEDRAVA · DESCRIBE → GENERATE" variant eyebrow
                 heading "This website is built with Sedrava"
                 paragraph "Describe the application. Generate the application. Typed data, rules and interface in one readable source." variant lead
@@ -336,7 +336,7 @@ page ru_home at "/ru/":
         column gap 24:
             link "English" to "/"
             column gap 24 class "hero":
-                image "assets/mark.svg" alt "Знак Sedrava: аметистовая складка с золотым разрезом" class "hero-image"
+                image "assets/brand/sedrava-logo-512.png" alt "Знак Sedrava: аметистовая складка с золотым разрезом" class "hero-image"
                 paragraph "SEDRAVA · DESCRIBE → GENERATE" variant eyebrow
                 heading "Этот сайт написан на Sedrava"
                 paragraph "Опиши приложение — получи приложение. Данные, правила и интерфейс в одном понятном исходнике." variant lead

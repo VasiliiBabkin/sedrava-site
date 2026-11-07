@@ -1,5 +1,6 @@
 component EnglishHeader:
     navbar label "Main navigation":
+        image "assets/brand/sedrava-logo-48.png" alt "Sedrava logo" width 40
         link "Sedrava" to "/"
         link "Documentation" to "/getting-started/"
         link "Examples" to "/examples/"
@@ -26,6 +27,7 @@ component EnglishSidebar:
         link "Project and dedication" to "/project/"
 component RussianHeader:
     navbar label "Навигация":
+        image "assets/brand/sedrava-logo-48.png" alt "Логотип Sedrava" width 40
         link "Sedrava" to "/ru/"
         link "Документация" to "/ru/getting-started/"
         link "Примеры" to "/ru/examples/"
