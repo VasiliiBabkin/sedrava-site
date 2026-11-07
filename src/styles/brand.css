@@ -25,7 +25,7 @@
   --sl-color-bg-sidebar: #191329;
 }
 .site-title { font-weight: 760; letter-spacing: -.045em; }
-.site-title img { width: 1.65rem; height: 1.85rem; object-fit: contain; }
+.site-title img { width: 2.5rem; height: 2.5rem; object-fit: contain; }
 .sl-markdown-content h2 { letter-spacing: -.035em; }
 .sl-markdown-content .sd-eyebrow { margin-top: 0; font-size: .77rem; letter-spacing: .16em; font-weight: 750; text-transform: uppercase; color: var(--sd-gold); }
 .sl-markdown-content .sd-intro {
@@ -68,7 +68,7 @@
   .sl-markdown-content .sd-intro { grid-template-columns:1fr 5.5rem; padding:1.4rem; gap:1rem; border-radius:1rem; }
   .sl-markdown-content .sd-intro h2 {font-size:1.45rem;}
   .sl-markdown-content .sd-status {display:block;}
-  .sl-markdown-content .sd-status strong {display:block; margin-bottom:.3rem;}
+  .sl-markdown-content .sd-status strong {display:block; margin-bottom:.3rem; white-space:normal; overflow-wrap:anywhere;}
 }
 @media (prefers-reduced-motion: reduce) {
   .sl-markdown-content .sd-links a {transition:none;}
