@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0a151c">
+  <meta name="description" content="Бесплатные инструменты для инженера: IPv4/CIDR, оценка потерь оптики, PoE-бюджет, генератор паролей и JSON. Без регистрации и отправки данных.">
+  <title>Полевой набор — инструменты инженера</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230a151c'/%3E%3Cpath d='M17 37L28 18l-2 17h20L35 46l2-12H17' fill='none' stroke='%2392efd9' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <style>
+    :root{color-scheme:dark;--bg:#081319;--panel:#10212a;--panel-2:#142831;--line:#26404a;--text:#f2f7f5;--muted:#9fb4bb;--accent:#92efd9;--accent-2:#c9ffed;--bad:#ffb4a9;--shadow:0 24px 65px rgba(0,0,0,.2)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse 64% 32% at 88% 4%,rgba(53,157,143,.14),transparent 72%),var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body:before{content:"";position:absolute;inset:0 0 auto;height:590px;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(148,239,217,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(148,239,217,.025) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(to bottom,#000,transparent)}
+    .wrap{max-width:1170px;margin:auto;padding:0 24px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:84px;border-bottom:1px solid rgba(171,230,223,.12)}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-weight:800;letter-spacing:-.025em;font-size:19px}.mark{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:var(--accent);color:#092019;font-weight:900;font-size:24px;box-shadow:0 0 40px rgba(146,239,217,.15)}.toplinks{display:flex;gap:24px;align-items:center}.toplinks a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:650}.toplinks a:hover,.footer a:hover{color:var(--accent)}.toplinks .pill{border:1px solid var(--line);border-radius:30px;padding:9px 14px}
+    .hero{padding:65px 0 48px;display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:36px;align-items:end}.eyebrow{color:var(--accent);letter-spacing:.16em;font-weight:750;font-size:11px;text-transform:uppercase}.hero h1{font-size:clamp(41px,6vw,72px);letter-spacing:-.066em;line-height:1.02;margin:20px 0 22px;max-width:800px}.hero h1 em{color:var(--accent);font-style:normal}.lead{color:#b5c8cc;max-width:630px;font-size:17px;line-height:1.65;margin:0}.hero-note{border:1px solid #304a52;background:rgba(16,33,42,.72);border-radius:18px;padding:22px;box-shadow:var(--shadow)}.hero-note .signal{font-size:22px;color:var(--accent);letter-spacing:.08em}.hero-note strong{display:block;font-size:14px;margin:9px 0}.hero-note small{display:block;color:var(--muted);line-height:1.6}
+    .section-title{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin:20px 0 19px}.section-title h2{font-size:21px;letter-spacing:-.035em;margin:0}.section-title span{color:var(--muted);font-size:12px}.tools{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}.tool{grid-column:span 6;min-width:0;border:1px solid var(--line);border-radius:21px;background:linear-gradient(150deg,rgba(25,48,58,.78),rgba(14,29,38,.96));padding:24px;box-shadow:var(--shadow)}.tool.wide{grid-column:span 12}.toolhead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:20px}.toolhead h3{margin:5px 0 3px;font-size:20px;letter-spacing:-.04em}.toolhead p{font-size:13px;line-height:1.6;color:var(--muted);margin:0;max-width:460px}.number{color:var(--accent);font-size:12px;letter-spacing:.1em;font-weight:800}.tool-icon{display:grid;place-items:center;flex:none;width:42px;height:42px;border:1px solid #35545a;border-radius:13px;color:var(--accent);font-size:21px}
+    .fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fields.three{grid-template-columns:repeat(3,minmax(0,1fr))}.field.full{grid-column:1/-1}label{display:block;color:#b6cacf;font-size:12px;font-weight:650;margin-bottom:6px}input,textarea,select{font:inherit;color:var(--text);background:#091b23;border:1px solid #2a4953;border-radius:11px;outline:none;width:100%;min-height:44px;padding:10px 12px;transition:border-color .2s,box-shadow .2s}input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(146,239,217,.09)}textarea{resize:vertical;min-height:145px;font:13px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace}input[type=checkbox]{width:17px;min-height:17px;height:17px;accent-color:var(--accent);margin:0}.checks{display:flex;flex-wrap:wrap;gap:10px 16px;margin:12px 0 15px}.checks label{display:flex;align-items:center;gap:7px;margin:0;cursor:pointer;font-size:12px}.hint{font-size:12px;color:var(--muted);line-height:1.6;margin:11px 0 0}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:16px}.button{width:auto;min-height:42px;padding:10px 16px;border-radius:11px;background:var(--accent);color:#0b2822;font-weight:800;border:1px solid var(--accent);cursor:pointer;line-height:1.25}.button:hover{background:var(--accent-2)}.button.secondary{background:transparent;color:var(--text);border-color:#37525c}.button.secondary:hover{border-color:var(--accent);color:var(--accent)}.button:focus-visible{outline:2px solid white;outline-offset:2px}.output{margin-top:18px;background:rgba(3,16,21,.44);border:1px solid #29434b;border-radius:13px;padding:15px}.output.good{border-color:#3b746b}.output.error{border-color:#84504c;color:var(--bad)}.mini-title{font-size:11px;color:var(--muted);letter-spacing:.09em;text-transform:uppercase;font-weight:700;margin-bottom:9px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px 20px}.result-grid .key{font-size:12px;color:var(--muted)}.result-grid strong{display:block;overflow-wrap:anywhere;font-size:15px;font-variant-numeric:tabular-nums;margin-top:3px}.highlight{font-size:22px;color:var(--accent);font-weight:750;letter-spacing:-.03em;overflow-wrap:anywhere}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.line{height:1px;background:var(--line);margin:15px 0}.status{font-size:12px;margin:10px 0 0;min-height:20px;color:var(--accent);overflow-wrap:anywhere}.status.bad{color:var(--bad)}.poe-meter{height:9px;overflow:hidden;border-radius:10px;background:#30444b;margin:14px 0 8px}.poe-fill{height:100%;width:0;background:linear-gradient(90deg,#4ec4ab,#b2ef9d);border-radius:10px;transition:width .3s}.poe-fill.warn{background:linear-gradient(90deg,#d4a34f,#e16c5c)}.footer{border-top:1px solid var(--line);margin-top:54px;padding:24px 0 42px;display:flex;justify-content:space-between;gap:18px;color:var(--muted);font-size:12px}.footer strong{color:var(--text)}.chips{display:flex;flex-wrap:wrap;gap:7px}.chip{color:#bbd0d3;background:rgba(12,38,44,.7);border:1px solid #2d4e58;border-radius:22px;padding:5px 10px;font-size:11px}.smallcaps{font-weight:750;letter-spacing:.07em;color:#cde6e2;font-size:11px;text-transform:uppercase}button[disabled]{opacity:.6;cursor:not-allowed}
+    @media(max-width:850px){.hero{grid-template-columns:1fr}.hero-note{max-width:500px}.tool{grid-column:span 12}.toplinks{gap:10px}.toplinks a:not(.pill){display:none}}
+    @media(max-width:540px){.wrap{padding:0 16px}.topbar{min-height:69px}.hero{padding:44px 0 34px}.hero h1{font-size:43px}.lead{font-size:15px}.tool{padding:19px;border-radius:17px}.fields.three{grid-template-columns:repeat(2,minmax(0,1fr))}.fields.three .field:last-child{grid-column:1/-1}.result-grid{gap:12px}.footer{flex-direction:column}.section-title span{display:none}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <a class="brand" href="#start" aria-label="Полевой набор, в начало"><span class="mark">⌁</span><span>Полевой набор</span></a>
+      <nav class="toplinks" aria-label="Навигация"><a href="#network">Сеть</a><a href="#power">Расчёты</a><a href="#code">Разработка</a><a class="pill" href="#security">Безопасность</a></nav>
+    </header>
+    <main id="start">
+      <section class="hero" aria-labelledby="main-title">
+        <div><div class="eyebrow">ИНСТРУМЕНТЫ ДЛЯ РАБОТЫ / 01—06</div><h1 id="main-title">Меньше вкладок.<br><em>Больше дела.</em></h1><p class="lead">Быстрые расчёты для сетей, оптики и PoE. Проверка JSON и генерация паролей — в одном месте, без регистрации, рекламы и отправки введённых данных на сервер.</p></div>
+        <aside class="hero-note"><div class="signal" aria-hidden="true">▰ ▰ ▰ ▰</div><strong>Работает прямо в браузере</strong><small>Ни учётной записи, ни установки. Все вычисления происходят на твоём устройстве. Для работы инструментов интернет после загрузки страницы не нужен.</small></aside>
+      </section>
+      <div class="section-title" id="network"><h2>Сетевые инструменты</h2><span>Рассчитать · Проверить · Скопировать</span></div>
+      <section class="tools" aria-label="Сетевые инструменты">
+        <article class="tool" aria-labelledby="cidr-heading">
+          <div class="toolhead"><div><span class="number">01 / IPv4</span><h3 id="cidr-heading">Калькулятор подсети</h3><p>Адрес сети, маска, диапазон и количество узлов.</p></div><span class="tool-icon" aria-hidden="true">⌗</span></div>
+          <div class="fields"><div class="field full"><label for="cidr">IPv4 и префикс CIDR</label><input id="cidr" spellcheck="false" value="192.168.10.25/27" placeholder="192.168.1.10/24" inputmode="text"></div></div>
+          <div class="actions"><button class="button" id="cidr-run">Рассчитать</button><button class="button secondary" id="cidr-copy">Скопировать результат</button></div>
+          <div class="output" id="cidr-out" aria-live="polite"></div>
+        </article>
+        <article class="tool" id="security" aria-labelledby="pass-heading">
+          <div class="toolhead"><div><span class="number">02 / SECURITY</span><h3 id="pass-heading">Генератор паролей</h3><p>Криптографически стойкий случайный пароль без отправки на сервер.</p></div><span class="tool-icon" aria-hidden="true">✳</span></div>
+          <div class="fields"><div class="field"><label for="pass-length">Длина (8–128)</label><input id="pass-length" type="number" min="8" max="128" value="24"></div></div>
+          <div class="checks"><label><input type="checkbox" id="p-lower" checked> a–z</label><label><input type="checkbox" id="p-upper" checked> A–Z</label><label><input type="checkbox" id="p-digit" checked> 0–9</label><label><input type="checkbox" id="p-symbol" checked> Символы</label></div>
+          <div class="output" id="pass-out" aria-live="polite"><div class="mini-title">Новый пароль</div><div class="highlight mono" style="font-size:17px">Нажми «Сгенерировать»</div></div>
+          <div class="actions"><button class="button" id="pass-run">Сгенерировать</button><button class="button secondary" id="pass-copy">Скопировать пароль</button></div>
+          <p class="hint">Используется Crypto API браузера. Пароль не сохраняется на сервере. Для важных учётных записей используй менеджер паролей.</p>
+        </article>
+      </section>
+      <div class="section-title" id="power"><h2>Расчёты для оборудования</h2><span>Оценочные расчёты — исходные параметры можно менять</span></div>
+      <section class="tools" aria-label="Расчёты для оборудования">
+        <article class="tool" aria-labelledby="fiber-heading">
+          <div class="toolhead"><div><span class="number">03 / FIBER</span><h3 id="fiber-heading">Потери в оптической линии</h3><p>Оценка затухания по длине, соединителям, сваркам и запасу.</p></div><span class="tool-icon" aria-hidden="true">⟷</span></div>
+          <div class="fields three">
+            <div class="field"><label for="fiber-km">Длина, км</label><input id="fiber-km" type="number" min="0" step="0.1" value="2.5"></div>
+            <div class="field"><label for="fiber-dbkm">дБ/км</label><input id="fiber-dbkm" type="number" min="0" step="0.01" value="0.35"></div>
+            <div class="field"><label for="fiber-con">Соединители, шт.</label><input id="fiber-con" type="number" min="0" step="1" value="2"></div>
+            <div class="field"><label for="fiber-condb">дБ/соединитель</label><input id="fiber-condb" type="number" min="0" step="0.01" value="0.3"></div>
+            <div class="field"><label for="fiber-splices">Сварки, шт.</label><input id="fiber-splices" type="number" min="0" step="1" value="2"></div>
+            <div class="field"><label for="fiber-splicedb">дБ/сварка</label><input id="fiber-splicedb" type="number" min="0" step="0.01" value="0.1"></div>
+            <div class="field"><label for="fiber-reserve">Запас, дБ</label><input id="fiber-reserve" type="number" min="0" step="0.1" value="3"></div>
+          </div>
+          <div class="actions"><button class="button" id="fiber-run">Рассчитать</button></div>
+          <div class="output" id="fiber-out" aria-live="polite"></div>
+          <p class="hint">Значения в полях — пример, не норматив. Для проекта подставь параметры кабеля, соединений и оборудования; реальные потери проверяют измерениями.</p>
+        </article>
+        <article class="tool" aria-labelledby="poe-heading">
+          <div class="toolhead"><div><span class="number">04 / PoE</span><h3 id="poe-heading">Бюджет PoE-коммутатора</h3><p>Быстрая оценка запаса мощности при подключении устройств.</p></div><span class="tool-icon" aria-hidden="true">ϟ</span></div>
+          <div class="fields"><div class="field"><label for="poe-budget">Бюджет коммутатора, Вт</label><input id="poe-budget" type="number" min="0" step="1" value="120"></div><div class="field"><label for="poe-count">Устройств, шт.</label><input id="poe-count" type="number" min="1" step="1" value="6"></div><div class="field"><label for="poe-power">На одно устройство, Вт</label><input id="poe-power" type="number" min="0" step="0.1" value="12"></div><div class="field"><label for="poe-loss">Запас на потери, %</label><input id="poe-loss" type="number" min="0" max="99" step="1" value="10"></div></div>
+          <div class="actions"><button class="button" id="poe-run">Рассчитать</button></div>
+          <div class="output" id="poe-out" aria-live="polite"></div>
+          <p class="hint">Приближённая оценка. Проверяй стандарты PoE, мощность на конкретном порту и фактическое потребление устройств.</p>
+        </article>
+      </section>
+      <div class="section-title" id="code"><h2>Разработка и данные</h2><span>Текст остаётся в твоём браузере</span></div>
+      <section class="tools" aria-label="Инструменты для разработки">
+        <article class="tool" aria-labelledby="json-heading">
+          <div class="toolhead"><div><span class="number">05 / JSON</span><h3 id="json-heading">JSON: проверить и форматировать</h3><p>Проверка синтаксиса, красивый вывод и минимизация.</p></div><span class="tool-icon" aria-hidden="true">{ }</span></div>
+          <label for="json-input">Данные JSON</label><textarea id="json-input" spellcheck="false" placeholder='{"device":"camera","online":true}'>{"device":"camera","online":true}</textarea>
+          <div class="actions"><button class="button" id="json-format">Форматировать</button><button class="button secondary" id="json-minify">Минимизировать</button><button class="button secondary" id="json-copy">Скопировать</button></div>
+          <p class="status" id="json-status" role="status" aria-live="polite"></p>
+        </article>
+        <article class="tool" aria-labelledby="hash-heading">
+          <div class="toolhead"><div><span class="number">06 / SHA-256</span><h3 id="hash-heading">Контрольная сумма текста</h3><p>Посчитать SHA-256 для строки прямо в браузере.</p></div><span class="tool-icon" aria-hidden="true">#</span></div>
+          <label for="hash-input">Текст для проверки</label><textarea id="hash-input" spellcheck="false" placeholder="Введи текст — посчитаем SHA-256"></textarea>
+          <div class="actions"><button class="button" id="hash-run">Посчитать SHA-256</button><button class="button secondary" id="hash-copy">Скопировать хеш</button></div>
+          <div class="output" id="hash-out" aria-live="polite"><div class="mini-title">Результат</div><div class="mono" style="overflow-wrap:anywhere;color:var(--muted)">Пока нет данных</div></div>
+          <p class="hint">Расчёт по байтам UTF-8. SHA-256 — хеш, а не шифрование: не используй его как способ скрыть секретный текст.</p>
+        </article>
+      </section>
+    </main>
+    <footer class="footer"><div><strong>Полевой набор</strong> · Небольшие инструменты для реальных задач.</div><div class="chips"><span class="chip">Без аналитики</span><span class="chip">Без регистрации</span><span class="chip">Без внешних библиотек</span></div></footer>
+  </div>
+  <script>
+  'use strict';
+  const $ = (id) => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const formatted = n => Number(n).toLocaleString('ru-RU', {maximumFractionDigits:3});
+  const status = (id,message,isError=false) => {$(id).textContent=message;$(id).className='status'+(isError?' bad':'');};
+  async function copyText(text,messageId){
+    try {if (!navigator.clipboard || !window.isSecureContext) throw Error('Clipboard API недоступен');await navigator.clipboard.writeText(text);if(messageId) status(messageId,'Скопировано');}
+    catch(e){if(messageId) status(messageId,'Не удалось скопировать. Проверь разрешения браузера.',true);else alert('Не удалось скопировать. Проверь разрешения браузера.');}
+  }
+  function num(id,{integer=false,max=1e12}={}){let val=$(id).value.trim();if(val==='')throw Error('Заполни все поля');let x=Number(val);if(!Number.isFinite(x)||x<0||x>max||(integer&&!Number.isInteger(x)))throw Error('Проверь числовые значения');return x;}
+  function ipv4ToNum(s){let a=s.split('.');if(a.length!==4 || a.some(o=>!/^(0|[1-9]\d{0,2})$/.test(o)||Number(o)>255))throw Error('Некорректный IPv4-адрес');return a.reduce((acc,v)=>((acc*256)+Number(v))>>>0,0);}
+  function numToIpv4(n){return [24,16,8,0].map(s=>(n>>>s)&255).join('.');}
+  let cidrText='';
+  function calcCidr(){const out=$('cidr-out');try{
+    const value=$('cidr').value.trim();const parts=value.split('/');if(parts.length!==2||!/^(0|[1-9]|[12][0-9]|3[0-2])$/.test(parts[1]))throw Error('Введи адрес в формате 192.168.1.10/24');
+    const prefix=Number(parts[1]),ip=ipv4ToNum(parts[0]),mask=prefix===0?0:(0xffffffff << (32-prefix))>>>0,net=(ip & mask)>>>0,broad=(net | (~mask>>>0))>>>0;
+    const total=2**(32-prefix),usable=prefix===32?1:prefix===31?2:Math.max(total-2,0),first=prefix>=31?net:net+1,last=prefix>=31?broad:broad-1;
+    const items=[['Адрес сети',numToIpv4(net)],['Маска',numToIpv4(mask)],['Broadcast',numToIpv4(broad)],['Первый адрес',numToIpv4(first)],['Последний адрес',numToIpv4(last)],['Всего адресов',formatted(total)],['Адресов для узлов',formatted(usable)],['Префикс','/'+prefix]];
+    cidrText=items.map(([a,b])=>a+': '+b).join('\n');out.className='output good';out.innerHTML='<div class="mini-title">Результат</div><div class="result-grid">'+items.map(([a,b])=>'<div><span class="key">'+esc(a)+'</span><strong class="mono">'+esc(b)+'</strong></div>').join('')+'</div>';
+  } catch(e){cidrText='';out.className='output error';out.textContent=e.message;}}
+  $('cidr-run').addEventListener('click',calcCidr);$('cidr').addEventListener('keydown',e=>{if(e.key==='Enter')calcCidr()});$('cidr-copy').addEventListener('click',()=>cidrText?copyText(cidrText):alert('Сначала рассчитай подсеть'));
+  const sets=[['p-lower','abcdefghjkmnpqrstuvwxyz'],['p-upper','ABCDEFGHJKMNPQRSTUVWXYZ'],['p-digit','23456789'],['p-symbol','!@#$%&*+-_=?']];
+  function randomIndex(n){const threshold=Math.floor(256/n)*n;const x=new Uint8Array(1);do{crypto.getRandomValues(x)}while(x[0]>=threshold);return x[0]%n;}
+  let lastPass='';
+  function generatePassword(){const out=$('pass-out');try{
+    const len=num('pass-length',{integer:true,max:128});if(len<8)throw Error('Минимальная длина — 8');if(!window.crypto?.getRandomValues)throw Error('Криптографический генератор недоступен');
+    const chosen=sets.filter(([id])=>$(id).checked).map(([,alphabet])=>alphabet);if(!chosen.length)throw Error('Выбери хотя бы один набор символов');
+    const pool=chosen.join('');const chars=chosen.map(a=>a[randomIndex(a.length)]);while(chars.length<len)chars.push(pool[randomIndex(pool.length)]);
+    for(let i=chars.length-1;i>0;i--){const j=randomIndex(i+1);[chars[i],chars[j]]=[chars[j],chars[i]];}
+    lastPass=chars.join('');out.className='output good';out.innerHTML='<div class="mini-title">Новый пароль</div><div class="highlight mono" style="font-size:17px">'+esc(lastPass)+'</div>';
+  }catch(e){lastPass='';out.className='output error';out.textContent=e.message;}}
+  $('pass-run').addEventListener('click',generatePassword);$('pass-copy').addEventListener('click',()=>lastPass?copyText(lastPass):alert('Сначала сгенерируй пароль'));
+  function fiber(){let out=$('fiber-out');try{
+    const km=num('fiber-km'),dbkm=num('fiber-dbkm'),conn=num('fiber-con',{integer:true,max:1e6}),connDb=num('fiber-condb'),splices=num('fiber-splices',{integer:true,max:1e6}),spliceDb=num('fiber-splicedb'),reserve=num('fiber-reserve');
+    const cable=km*dbkm,term=conn*connDb,weld=splices*spliceDb,total=cable+term+weld+reserve;if(total>1e15)throw Error('Слишком большие значения');
+    out.className='output good';out.innerHTML='<div class="mini-title">Расчётная сумма потерь с запасом</div><div class="highlight">'+formatted(total)+' дБ</div><div class="line"></div><div class="result-grid"><div><span class="key">Кабель</span><strong>'+formatted(cable)+' дБ</strong></div><div><span class="key">Соединители</span><strong>'+formatted(term)+' дБ</strong></div><div><span class="key">Сварки</span><strong>'+formatted(weld)+' дБ</strong></div><div><span class="key">Запас</span><strong>'+formatted(reserve)+' дБ</strong></div></div>';
+  }catch(e){out.className='output error';out.textContent=e.message;}}
+  $('fiber-run').addEventListener('click',fiber);
+  function poe(){let out=$('poe-out');try{
+    const budget=num('poe-budget'),count=num('poe-count',{integer:true,max:1e6}),power=num('poe-power'),loss=num('poe-loss',{max:99});if(count<1)throw Error('Укажи хотя бы одно устройство');
+    const total=count*power/(1-loss/100),remaining=budget-total,used=budget===0?(total===0?0:100):total/budget*100;if(total>1e15)throw Error('Слишком большие значения');
+    out.className='output '+(remaining>=0?'good':'error');out.innerHTML='<div class="mini-title">Оценка потребления с учётом запаса</div><div class="highlight">'+formatted(total)+' Вт <span style="font-size:13px;color:var(--muted)">из '+formatted(budget)+' Вт</span></div><div class="poe-meter"><div class="poe-fill '+(remaining<0?'warn':'')+'" style="width:'+Math.min(100,Math.max(0,used))+'%"></div></div><div class="result-grid"><div><span class="key">'+(remaining>=0?'Остаток бюджета':'Нехватка мощности')+'</span><strong>'+formatted(Math.abs(remaining))+' Вт</strong></div><div><span class="key">Загрузка бюджета</span><strong>'+formatted(used)+'%</strong></div></div>';
+  }catch(e){out.className='output error';out.textContent=e.message;}}
+  $('poe-run').addEventListener('click',poe);
+  function jsonTransform(spaces){try{const result=JSON.stringify(JSON.parse($('json-input').value),null,spaces);$('json-input').value=result;status('json-status','JSON корректен');}catch(e){status('json-status','Ошибка JSON: '+e.message,true);}}
+  $('json-format').addEventListener('click',()=>jsonTransform(2));$('json-minify').addEventListener('click',()=>jsonTransform(0));$('json-copy').addEventListener('click',()=>copyText($('json-input').value,'json-status'));
+  let lastHash='';
+  async function hash(){const out=$('hash-out');try{
+    if(!crypto?.subtle)throw Error('Web Crypto недоступен: требуется HTTPS');
+    const bytes=new TextEncoder().encode($('hash-input').value);const value=await crypto.subtle.digest('SHA-256',bytes);lastHash=Array.from(new Uint8Array(value),n=>n.toString(16).padStart(2,'0')).join('');
+    out.className='output good';out.innerHTML='<div class="mini-title">SHA-256 · HEX</div><div class="mono" style="overflow-wrap:anywhere">'+lastHash+'</div>';
+  }catch(e){lastHash='';out.className='output error';out.textContent=e.message;}}
+  $('hash-run').addEventListener('click',hash);$('hash-copy').addEventListener('click',()=>lastHash?copyText(lastHash):alert('Сначала посчитай хеш'));
+  calcCidr();fiber();poe();
+  </script>
+</body>
+</html>
