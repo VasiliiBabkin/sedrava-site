@@ -22,7 +22,7 @@ page home at "/":
         column gap 64 md-gap 96:
             row justify between gap 20:
                 row gap 12 align center:
-                    image "assets/sedrava-mark.svg" alt "Фирменный знак Sedrava" width 58
+                    image "assets/sedrava-logo-512.png" alt "Фирменный знак Sedrava" width 58
                     paragraph "Sedrava" variant brand size 30
                 row gap 20:
                     link "Идея" to "#idea" variant quiet
@@ -39,7 +39,7 @@ page home at "/":
                     paragraph "Открытый исходный код · Экспериментальная разработка" variant muted size 13
                 card style tile variant highlight:
                     column gap 24:
-                        image "assets/sedrava-mark.svg" alt "Знак Sedrava — аметистовые формы и золотая лента" width 240
+                        image "assets/sedrava-logo-512.png" alt "Логотип Sedrava" width 240
                         paragraph "SED RAVA / A NEW WAY TO BUILD" variant eyebrow
                         heading "Сначала смысл.\nПотом технология." size 34
                         paragraph "Простая идея: человеку не обязательно думать о каждой технической детали, чтобы создавать полезные цифровые вещи." variant lead

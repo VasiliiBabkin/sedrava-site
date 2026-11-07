@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,3 +32,14 @@ jobs:
             test -s "dist/$page/index.html"
             test -s "dist/ru/$page/index.html"
           done
+      - name: Check branding in Chromium
+        run: |
+          python -m pip install playwright==1.62.0
+          python -m playwright install --with-deps chromium
+          python scripts/check-branding.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sedrava-site-branding-preview
+          path: |
+            dist/
+            build/branding-check/

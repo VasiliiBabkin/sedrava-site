@@ -1,3 +1,5 @@
+<p align="center"><img src="public/brand/sedrava-logo-primary.png" width="220" alt="Sedrava logo" /></p>
+
 # Sedrava — official website
 
 **https://sedrava.virtreal.ru**
@@ -23,9 +25,9 @@ The output of the static build is written to dist/.
 
 - src/content/docs/ — English content
 - src/content/docs/ru/ — Russian content
-- src/assets/sedrava-mark.svg — vector interpretation of the approved mark concept
+- public/brand/sedrava-logo-primary.png — unchanged approved PNG master
 - src/styles/brand.css — amethyst and matte gold visual theme
-- public/branding/ — public assets
+- public/brand/ — official logo, icons and social image
 - scripts/check-docs.mjs — bilingual release-status and navigation-link guard
 - .github/workflows/build.yml — CI build
 - .github/workflows/deploy.yml — manual VDS deployment
@@ -44,4 +46,4 @@ For details, see DEPLOYMENT.md. Never commit SSH keys or any other server creden
 
 ## Visual identity
 
-Amethyst #583C82, deep amethyst #35234F, matte gold #D5AD60 and ivory #F5F0E8. The SVG mark is a vector approximation of the approved Dynamic Cut brand concept and should receive a final visual comparison before production.
+The approved PNG is preserved byte for byte in `public/brand/sedrava-logo-primary.png`. Icons and the social image are mechanical derivatives, never redrawn. See [brand asset notes](public/brand/README.md).
