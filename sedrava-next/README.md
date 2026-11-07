@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/brand/sedrava-logo-primary.png" width="180" alt="Sedrava" /></p>
+
 # Native Sedrava documentation preview
 
 **Work in progress; no production replacement or release.** Website branch `feature/sedrava-native-docs-live-examples`, draft [site PR #10](https://github.com/VasiliiBabkin/sedrava-site/pull/10). Compiler [PR #36](https://github.com/VasiliiBabkin/sedrava/pull/36), separate native-docs extension [PR #37](https://github.com/VasiliiBabkin/sedrava/pull/37). Exact SHA in `compiler.json` and the read-only preview workflow.
@@ -50,3 +52,7 @@ Run `check_preview.py`, then the browser suite; fix real failures without loosen
 ## Legacy build CI compatibility
 
 The separate legacy Astro documentation build workflow on this feature branch pins Node.js 22.23.4 because the currently resolved Astro version rejects Node 22.23.3. This does not change the source of the native Sedrava website, and the main branch remains untouched.
+
+## Approved branding
+
+`assets/brand/sedrava-logo-primary.png` is the byte-exact approved master. Header, homepages, favicon and social preview use mechanical derivatives only. See `assets/brand/README.md` and `SHA256SUMS`. No deployment is included.
