@@ -51,6 +51,12 @@ The following changes are implemented on **unmerged experimental branches**, not
 
 [PR #48](https://github.com/VasiliiBabkin/sedrava/pull/48) introduces a restricted experimental ASGI health-server target with SQLite table declarations, checked forward-only migrations and explicit backup operations. It is **not included** in published 0.11.0 or unpublished 0.12. No generated CRUD endpoints, authentication, user isolation or production deployment are claimed. See [experimental server documentation](https://github.com/VasiliiBabkin/sedrava/blob/feature/013-server-sqlite-migrations-a1/docs/SERVER_013_EXPERIMENTAL.en.md).
 
+## Native Rust: a separate experimental track
+
+The native Rust compiler and server are developed in the same public repository, but are **not included** in the published Python 0.11.0 package. The [native preview guide](/rust-native/) explains how to build the Rust binary, its A1–A6 server experiments, and what has **not** been verified.
+
+[SedravaSQL](/sedravasql/) is a separate experimental Rust+SQLite database project. Server A6 adds durable SQL-backed application receipts and read-only db_get("namespace/key") in GET responses. It is **not a production database, public server, or released SQL language**.
+
 ## Explicit boundaries
 
 No released or candidate version currently provides a trusted Sedrava-generated backend, SQLite/PostgreSQL database, authentication or multi-user authorization. Browser HTTP requests are clients of an independently operated service, not a built-in server.

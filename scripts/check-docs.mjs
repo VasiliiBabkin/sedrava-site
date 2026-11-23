@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 
 const root = resolve('src/content/docs');
-const slugs = ['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases', 'text-010'];
+const slugs = ['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases', 'text-010', 'rust-native', 'sedravasql'];
 const published = 'https://pypi.org/project/sedrava/0.10.0/';
 const release = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0';
 const preview = 'https://pypi.org/project/sedrava/0.11.0rc1/';
@@ -27,8 +27,15 @@ for (const prefix of ['', 'ru/']) {
     if (!existsSync(path)) throw new Error('Missing bilingual page: ' + path);
     const text = readFileSync(path, 'utf8');
     if (!text.startsWith('---\n')) throw new Error('Missing frontmatter: ' + path);
-    for (const required of ['0.10.0', published, release]) {
-      if (!text.includes(required)) throw new Error('Missing release fact (' + required + '): ' + path);
+    if (slug === 'rust-native' || slug === 'sedravasql') {
+      const required = slug === 'rust-native'
+        ? 'https://github.com/VasiliiBabkin/sedrava'
+        : 'https://github.com/VasiliiBabkin/sedravasql';
+      if (!text.includes(required)) throw new Error('Missing source link (' + required + '): ' + path);
+    } else {
+      for (const required of ['0.10.0', published, release]) {
+        if (!text.includes(required)) throw new Error('Missing release fact (' + required + '): ' + path);
+      }
     }
     if (['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases'].includes(slug)) {
       for (const required of [preview, previewRelease, stable, stableRelease]) {
@@ -49,4 +56,4 @@ for (const prefix of ['', 'ru/']) {
     checked++;
   }
 }
-console.log('PASS: ' + checked + ' EN/RU pages include stable 0.11, old 0.10/RC, and valid local routes');
+console.log('PASS: ' + checked + ' EN/RU pages include release status, Rust/SQL source links, and valid local routes');

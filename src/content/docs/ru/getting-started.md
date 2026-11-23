@@ -22,6 +22,20 @@ sedrava --version
 
 Ожидаемая версия — `0.11.0`. Для разработки из исходников клонируйте [репозиторий](https://github.com/VasiliiBabkin/sedrava) и выполните там `python -m pip install .`.
 
+## Экспериментальная нативная версия на Rust
+
+Python 0.11.0 и версия на Rust — разные контуры. Для проверки **ещё не выпущенного** самостоятельного компилятора установите Rust/Cargo и соберите его из репозитория:
+
+~~~sh
+git clone https://github.com/VasiliiBabkin/sedrava.git
+cd sedrava
+cargo build --manifest-path rust/Cargo.toml --locked --bin sedrava-native
+cargo test --manifest-path rust/Cargo.toml --locked --all-targets
+./rust/target/debug/sedrava-native server check examples/native_server/sqlite_a5.sdr
+~~~
+
+Это не заменяет установку через PyPI и не означает наличие проверенных бинарников для всех ОС. Экспериментальный Server A6 использует отдельную SQLite-базу и **не предназначен для публичной эксплуатации**. [Нативная версия](/ru/rust-native/) · [SedravaSQL](/ru/sedravasql/).
+
 ## Исторический кандидат 0.11.0rc1
 
 Экспериментальная [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) опубликована на [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). Для генерации сайтов и WebApp установите именно этот кандидат в отдельном виртуальном окружении:

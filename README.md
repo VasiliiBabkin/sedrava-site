@@ -38,6 +38,10 @@ The output of the static build is written to dist/.
 
 The earlier **0.11.0rc1 prerelease** remains available on [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) and [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/) for historical testing. Stable 0.11 passed practical upgrades/rollbacks against 0.10 and the RC. The separate experimental **0.12** stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41) adds namespaces, provenance and offline dependency locks and has **not** been published. See [bilingual status pages](src/content/docs/releases.md) and [RU](src/content/docs/ru/releases.md). This official site itself uses **Astro/Starlight**, not the published 0.10 language generator.
 
+## Native development and SedravaSQL
+
+The stable 0.11.0 Python release is distinct from the **experimental Rust native toolchain** and the separate **SedravaSQL** project. The site now includes bilingual [native Rust](/rust-native/) and [SedravaSQL](/sedravasql/) pages; these must never be mistaken for stable 0.11.0 features. Native A6 has verified local-only SQLite read support and durable SQL-backed response receipts, but no published general SQL DSL or public server. See the [A6 evidence](https://github.com/VasiliiBabkin/sedrava/blob/main/evidence/native-server/2026-11-23-a6-sqlite.md).
+
 ## Deployment
 
 The public site is statically served by Nginx with FASTPANEL on a VDS. Deployment runs automatically on pushes to main and can also be started manually via the [GitHub Actions workflow](https://github.com/VasiliiBabkin/sedrava-site/actions/workflows/deploy.yml), using SSH and tar.

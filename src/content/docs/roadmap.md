@@ -12,9 +12,15 @@ Sedrava **0.11.0** is published as the [latest stable release](https://github.co
 | **0.11.0** | Reviewed Web platform | **Published stable** ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) · [PyPI](https://pypi.org/project/sedrava/0.11.0/)) |
 | **0.12.0a1** | Aliased namespaces, source diagnostics, offline local dependency locking | Implemented experimental stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41), alpha not published |
 | **0.13 A1 (draft)** | Restricted ASGI health server, SQLite schema and forward-only migrations | [Experimental PR #48](https://github.com/VasiliiBabkin/sedrava/pull/48), source only; not released, no public data API |
+| **Rust native A1–A6** | Separate native compiler, local HTTP server, SQLite-backed state and durable receipts | **Merged experimental code**, not a stable release; [scope](/rust-native/) |
+| **SedravaSQL** | Standalone Rust+SQLite key/value database, audit, backup and response receipts | **Working experimental library and CLI**, [details](/sedravasql/) |
 | **1.0** | Frozen specification, supported APIs and compatibility rules | Long-term objective |
 
 ## Current work
+
+The Rust migration issue #65 was closed as a development milestone, but the native toolchain is still a **preview** with incomplete parity. Server A6 is merged into main while storage-engine issue #84 remains open. The separate SedravaSQL project has an executable experimental implementation; the site does not claim a network SQL server or production release.
+
+
 
 The candidate is based on [Web platform integration PR #36](https://github.com/VasiliiBabkin/sedrava/pull/36). Namespaces and packages are separate experimental work. Details and current availability are on the [release status page](/releases/).
 

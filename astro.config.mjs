@@ -55,6 +55,8 @@ export default defineConfig({
           items: [
             { slug: 'roadmap' },
             { slug: 'releases' },
+            { slug: 'rust-native' },
+            { slug: 'sedravasql' },
           ],
         },
       ],

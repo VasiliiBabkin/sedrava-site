@@ -28,6 +28,10 @@ jobs:
           test -s dist/ru/text-010/index.html
           test -s dist/releases/index.html
           test -s dist/ru/releases/index.html
+          for page in rust-native sedravasql; do
+            test -s "dist/$page/index.html"
+            test -s "dist/ru/$page/index.html"
+          done
           for page in getting-started examples language-overview roadmap text-010; do
             test -s "dist/$page/index.html"
             test -s "dist/ru/$page/index.html"
