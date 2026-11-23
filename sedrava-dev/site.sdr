@@ -1,13 +1,13 @@
 # Sedrava public-facing showcase — built with Sedrava Web UI 0.11
 site "Sedrava — идеи становятся приложениями"
 theme:
-    background "#F5F0E8"
-    surface "#FFFFFF"
-    foreground "#231A35"
-    accent "#583C82"
-    gold "#D5AD60"
-    muted "#62596D"
-    border "#DED5E5"
+    background "#141020"
+    surface "#20182F"
+    foreground "#F6F3FA"
+    accent "#CEB7EF"
+    gold "#D5AC70"
+    muted "#C6BED3"
+    border "#433350"
 
 style tile:
     padding 32
@@ -22,7 +22,7 @@ page home at "/":
         column gap 64 md-gap 96:
             row justify between gap 20:
                 row gap 12 align center:
-                    image "assets/sedrava-logo-512.png" alt "Фирменный знак Sedrava" width 58
+                    image "assets/sedrava-logo-primary.png" alt "Фирменный знак Sedrava" width 58
                     paragraph "Sedrava" variant brand size 30
                 row gap 20:
                     link "Идея" to "#idea" variant quiet
@@ -41,7 +41,7 @@ page home at "/":
                 card style tile variant highlight:
                     column gap 24:
                         image "assets/sedrava-logo-512.png" alt "Логотип Sedrava" width 240
-                        paragraph "SED RAVA / A NEW WAY TO BUILD" variant eyebrow
+                        paragraph "SEDRAVA / ИДЕЯ → ПРИЛОЖЕНИЕ" variant eyebrow
                         heading "Сначала смысл.\nПотом технология." size 34
                         paragraph "Простая идея: человеку не обязательно думать о каждой технической детали, чтобы создавать полезные цифровые вещи." variant lead
             column gap 26 id idea:

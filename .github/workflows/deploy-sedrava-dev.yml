@@ -1,7 +1,7 @@
 name: Build Sedrava dev website
 on:
   push:
-    branches: [feature/sedrava-dev-preview]
+    branches: [main]
     paths:
       - 'sedrava-dev/**'
       - '.github/workflows/deploy-sedrava-dev.yml'
@@ -38,18 +38,29 @@ jobs:
         env:
           PYTHONPATH: .sedrava-compiler
         run: |
-          python -m sedrava_cli build site sedrava-dev/site.sdr --output build/sedrava-dev
+          python scripts/build_dev_site.py
           test -s build/sedrava-dev/index.html
           test -s build/sedrava-dev/site.css
           test -s build/sedrava-dev/sedrava-site.json
+          test -s build/sedrava-dev/favicon.ico
+          grep -Fq 'site.css?v=' build/sedrava-dev/index.html
+          grep -Fq 'color-scheme" content="dark' build/sedrava-dev/index.html
+          grep -Fq 'SedravaSQL' build/sedrava-dev/index.html
+      - name: Verify real mobile browser layouts
+        run: |
+          python -m pip install playwright==1.62.0
+          python -m playwright install --with-deps chromium
+          python scripts/check_dev_responsive.py
       - name: Upload preview artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: sedrava-dev-preview
-          path: build/sedrava-dev/
+          path: |
+            build/sedrava-dev/
+            build/dev-mobile-check/
           if-no-files-found: error
       - name: Configure SSH
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
+        if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish) }}
         env:
           DEPLOY_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
@@ -62,7 +73,7 @@ jobs:
           printf '%s\n' "$KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 600 ~/.ssh/id_ed25519 ~/.ssh/known_hosts
       - name: Publish only to dev.virtreal.ru
-        if: ${{ github.event_name == 'workflow_dispatch' && inputs.publish }}
+        if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish) }}
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
