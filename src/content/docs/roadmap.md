@@ -1,40 +1,16 @@
 ---
 title: Roadmap
-description: Stable Sedrava 0.11.0, earlier 0.10 and experimental 0.12 development.
+description: Rust ecosystem milestones.
 ---
 
-Sedrava **0.11.0** is published as the [latest stable release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) ([PyPI](https://pypi.org/project/sedrava/0.11.0/)); [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) remains available as the previous stable version ( [PyPI 0.10.0](https://pypi.org/project/sedrava/0.10.0/)). The 0.11.0rc1 experimental candidate is historical; 0.12 and later stages are not yet released.
+**Sedrava 0.12.0-alpha.2** is the current Rust toolchain. Experimental alpha, not production-ready. [Downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.2/) · [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2).
 
-| Stage | Focus | Status |
-| --- | --- | --- |
-| **0.10.0** | Text, records, collections, multi-screen applications | Previous stable release |
-| **0.11.0rc1** | Responsive sites, interactive WebApps, typed client HTTP | **Published experimental prerelease** ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) · [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)) |
-| **0.11.0** | Reviewed Web platform | **Published stable** ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) · [PyPI](https://pypi.org/project/sedrava/0.11.0/)) |
-| **0.12.0a1** | Aliased namespaces, source diagnostics, offline local dependency locking | Implemented experimental stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41), alpha not published |
-| **0.13 A1 (draft)** | Restricted ASGI health server, SQLite schema and forward-only migrations | [Experimental PR #48](https://github.com/VasiliiBabkin/sedrava/pull/48), source only; not released, no public data API |
-| **Rust native A1–A6** | Separate native compiler, local HTTP server, SQLite-backed state and durable receipts | **Merged experimental code**, not a stable release; [scope](/rust-native/) |
-| **SedravaSQL** | Standalone Rust+SQLite key/value database, audit, backup and response receipts | **Working experimental library and CLI**, [details](/sedravasql/) |
-| **1.0** | Frozen specification, supported APIs and compatibility rules | Long-term objective |
+- Expand typing and Web/Android generators.
+- Optimize SQL, HTTP and UI.
+- Integrate B+Tree with SQL after recovery gates.
+- Generated client/API/database integration.
+- Develop self-host A5.11b.
+- Windows/macOS builds and actual browser/device tests.
+- Beta/stable acceptance gates.
 
-## Current work
-
-The Rust migration issue #65 was closed as a development milestone, but the native toolchain is still a **preview** with incomplete parity. Server A6 is merged into main while storage-engine issue #84 remains open. The separate SedravaSQL project has an executable experimental implementation; the site does not claim a network SQL server or production release.
-
-
-
-The candidate is based on [Web platform integration PR #36](https://github.com/VasiliiBabkin/sedrava/pull/36). Namespaces and packages are separate experimental work. Details and current availability are on the [release status page](/releases/).
-
-The official documentation site still uses **Astro/Starlight**; the [Sedrava-authored development preview](https://dev.virtreal.ru/) is separate. Server-side authentication, SQLite and a package registry must not be described as released capabilities.
-## Project principles
-
-- Express application behavior, typed state and invariants rather than platform boilerplate.
-- Preserve validated semantics between Python, generated Web and Android.
-- Prioritize explicit limits and local/offline operation where possible.
-- Keep experimental features separate from published releases.
-- Report validation limits, including unverified device configurations.
-
-Source of truth: [language roadmap](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/ROADMAP.md), [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md). Features may change as development progresses.
-
-## Native 0.12.0-alpha.1 track
-
-[Native downloads](/rust-native/) · [SedravaSQL B25](/sedravasql/) · [Benchmarks](/benchmarks/). A6 is a historical milestone; current SQL API A21. Stable Python 0.11.0 is unchanged.
+[Full roadmap](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/ROADMAP.md).

@@ -60,34 +60,16 @@ screen main:
 Команда <code>sedrava check</code> проверяет программу, <code>sedrava test</code> запускает встроенные тесты, а <code>sedrava build web</code> и <code>sedrava build android</code> создают приложения.
 
 <div className="sd-status">
-  <strong>Sedrava 0.11.0 · Стабильный выпуск на GitHub и PyPI</strong>
-  <span>В версии 0.11.0 добавлены адаптивные сайты, интерактивные WebApp и проверяемый HTTP-клиент; прежние Web/Android-приложения сохранены. Язык остаётся экспериментальным, физические устройства Android не сертифицированы. <a href="https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0">Релиз GitHub</a> · <a href="https://pypi.org/project/sedrava/0.11.0/">Установить 0.11.0 с PyPI</a>. Прежняя стабильная <a href="https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0">0.10.0 на GitHub</a> и <a href="https://pypi.org/project/sedrava/0.10.0/">PyPI</a> также доступна.</span>
+  <strong>Sedrava 0.12.0-alpha.2 · Основная реализация на Rust</strong>
+  <span>Готовый Linux CLI sedrava. <a href="https://sedrava.virtreal.ru/downloads/0.12.0-alpha.2/">Скачать</a> · <a href="https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2">GitHub</a>. Экспериментальная alpha.</span>
 </div>
 
-## Rust и SedravaSQL — в разработке
+## Единая экосистема
 
-Опубликованный Python-пакет 0.11.0 остаётся без изменений. Отдельно развивается нативный компилятор на Rust и ограниченный локальный сервер A6, проверенные на Ubuntu Linux. Экспериментальная интеграция с SedravaSQL поддерживает сохранённые квитанции запросов и чтение фиксированного значения из БД, **но не произвольный SQL и не промышленный сервер**.
+Типизированное состояние, записи, ограниченные коллекции, функции, навигация, Unicode, импорты и локальные пакеты. Web/Site/WebApp, Kotlin/Compose, trusted Host, локальный HTTP и SQL API A21 с ролями и ограниченными транзакциями. Self-host A5.11b — отдельный эксперимент. B25 пока не backend SQL.
 
-Подробнее: [нативная версия на Rust](/ru/rust-native/) и [проект SedravaSQL](/ru/sedravasql/). Эти возможности не входят в опубликованный пакет 0.11.0.
-
-## Следующие выпуски
-
-[**Стабильная 0.11.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) уже выпущена. Прежняя [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)) остаётся историческим кандидатом, а пространства имён и локальные пакеты 0.12 ещё экспериментальные и не опубликованы. [Статус выпусков и ограничения](/ru/releases/).
+[Начало работы](/ru/getting-started/) · [SedravaSQL](/ru/sedravasql/) · [Измерения](/ru/benchmarks/) · [Дорожная карта](/ru/roadmap/).
 
 ## Посвящение
 
-Sedrava посвящается Геннадию Ивановичу Смирных — учителю информатики, благодаря которому автор языка полюбил программирование. [Подробнее](https://github.com/VasiliiBabkin/sedrava/blob/main/DEDICATION.md).
-
-## Изучить Sedrava
-
-<div className="sd-links">
-  <a href="/ru/getting-started/">Установка</a>
-  <a href="/ru/examples/">Примеры</a>
-  <a href="/ru/language-overview/">Возможности языка</a>
-  <a href="/ru/roadmap/">Планы развития</a>
-  <a href="https://github.com/VasiliiBabkin/sedrava">Исходники на GitHub</a>
-</div>
-
-## Нативная alpha и SedravaSQL
-
-Sedrava Native 0.12.0-alpha.1, SQL API A21 и SedravaSQL B25. [Загрузки и документация](/ru/rust-native/) · [Измерения](/ru/benchmarks/). Python 0.11.0 остаётся стабильной. Не production.
+Sedrava посвящается Геннадию Ивановичу Смирных — учителю информатики. [Подробнее](https://github.com/VasiliiBabkin/sedrava/blob/main/DEDICATION.md).

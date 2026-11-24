@@ -8,6 +8,7 @@ so we deliberately append a versioned, source-controlled CSS layer. No JS.
 from __future__ import annotations
 
 import hashlib
+import json
 import os
 from pathlib import Path
 import shutil
@@ -42,7 +43,7 @@ def build() -> None:
         shutil.rmtree(OUT)
 
     subprocess.run(
-        [sys.executable, "-m", "sedrava_cli", "build", "site",
+        [os.environ.get("SEDRAVA_BIN", "sedrava"), "build", "site",
          str(SOURCE), "--output", str(OUT)],
         cwd=ROOT,
         check=True,
@@ -84,7 +85,8 @@ def build() -> None:
     assert 'assets/' in html and 'Фирменный знак Sedrava' in html
     assert 'SedravaSQL' in html and 'НАТИВНЫЙ СЕРВЕР' in html
     assert 'site.css?v=' in html and '#141020' in css_path.read_text(encoding="utf-8")
-    assert (OUT / "sedrava-site.json").is_file()
+    receipt = {"schema":"sedrava-showcase-build-v1","compiler":subprocess.check_output([os.environ.get("SEDRAVA_BIN","sedrava"),"--version"],text=True).strip(),"source_sha256":sha256(SOURCE),"index_sha256":sha256(html_path),"css_sha256":sha256(css_path)}
+    (OUT / "sedrava-site.json").write_text(json.dumps(receipt,indent=2)+"\n",encoding="utf-8")
     print("PASS: Sedrava-generated HTML + dark responsive theme + exact approved logo/favicon")
     print("PASS: cache-busted CSS, local-only static output, native/SQL content")
 

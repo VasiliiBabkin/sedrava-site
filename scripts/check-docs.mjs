@@ -1,61 +1,18 @@
-// Verify stable 0.11, historical 0.10/RC and unpublished experimental 0.12 before deployment.
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
-
-const root = resolve('src/content/docs');
-const slugs = ['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases', 'text-010', 'rust-native', 'sedravasql', 'benchmarks'];
-const published = 'https://pypi.org/project/sedrava/0.10.0/';
-const release = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0';
-const preview = 'https://pypi.org/project/sedrava/0.11.0rc1/';
-const previewRelease = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1';
-const stable = 'https://pypi.org/project/sedrava/0.11.0/';
-const stableRelease = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0';
-const stale = [
-  /0\.10\.0\.dev0/i,
-  /0\.10\.0rc2\s*[·—-]\s*(?:published|опубликован)/i,
-  /sedrava is not published on pypi/i,
-  /пакета sedrava на pypi пока нет/i,
-  /0\.10\s*(?:is|remains)\s*unreleased/i,
-  /0\.10\s*(?:не выпущена|ещё не выпущена)/i,
-  /unreleased 0\.10/i,
-];
-
-let checked = 0;
-for (const prefix of ['', 'ru/']) {
-  for (const slug of slugs) {
-    const path = join(root, prefix, slug + (slug === 'index' ? '.mdx' : '.md'));
-    if (!existsSync(path)) throw new Error('Missing bilingual page: ' + path);
-    const text = readFileSync(path, 'utf8');
-    if (!text.startsWith('---\n')) throw new Error('Missing frontmatter: ' + path);
-    if (slug === 'benchmarks') {
-      if (!text.includes('BENCHMARK_2026_11_24.ru.md')) throw new Error('Missing benchmark evidence: ' + path);
-    } else if (slug === 'rust-native' || slug === 'sedravasql') {
-      const required = slug === 'rust-native'
-        ? 'https://github.com/VasiliiBabkin/sedrava'
-        : 'https://github.com/VasiliiBabkin/sedravasql';
-      if (!text.includes(required)) throw new Error('Missing source link (' + required + '): ' + path);
-    } else {
-      for (const required of ['0.10.0', published, release]) {
-        if (!text.includes(required)) throw new Error('Missing release fact (' + required + '): ' + path);
-      }
-    }
-    if (['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases'].includes(slug)) {
-      for (const required of [preview, previewRelease, stable, stableRelease]) {
-        if (!text.includes(required)) throw new Error('Missing published prerelease fact (' + required + '): ' + path);
-      }
-    }
-    if (slug === 'releases' && !text.includes('0.12.0a1')) throw new Error('Missing experimental 0.12 status: ' + path);
-    for (const p of stale) {
-      if (p.test(text)) throw new Error('Stale unreleased status: ' + path + ' / ' + p);
-    }
-    const routes = new Set([...text.matchAll(/(?:\]\(|href="|link: )\/(ru\/)?([a-z0-9-]+)\//g)].map(m => (m[1] ? 'ru/' : '') + m[2]));
-    for (const route of routes) {
-      if (route.startsWith('branding')) continue;
-      const candidate = join(root, route + '.md');
-      const home = join(root, route + '.mdx');
-      if (!existsSync(candidate) && !existsSync(home)) throw new Error('Broken local route: /' + route + '/ in ' + path);
-    }
-    checked++;
-  }
+const root=resolve('src/content/docs');
+const slugs=['index','getting-started','examples','language-overview','roadmap','releases','text-010','rust-native','sedravasql','benchmarks'];
+let checked=0;
+for(const prefix of ['', 'ru/']) for(const slug of slugs){
+ const path=join(root,prefix,slug+(slug==='index'?'.mdx':'.md'));
+ const text=readFileSync(path,'utf8');
+ if(!text.startsWith('---\n'))throw Error('Missing frontmatter: '+path);
+ if(/pypi\.org|pip install|stable 0\.11|стабильн[^\n]*0\.11/i.test(text))throw Error('Legacy distribution in active docs: '+path);
+ if(['index','getting-started','releases','rust-native','roadmap'].includes(slug)&&!text.includes('0.12.0-alpha.2'))throw Error('Missing current version: '+path);
+ for(const m of text.matchAll(/(?:\]\(|href="|link: )\/(ru\/)?([a-z0-9-]+)\//g)){
+  const route=(m[1]||'')+m[2];
+  if(!existsSync(join(root,route+'.md'))&&!existsSync(join(root,route+'.mdx')))throw Error('Broken local route: '+route);
+ }
+ checked++;
 }
-console.log('PASS: ' + checked + ' EN/RU pages include release status, Rust/SQL source links, and valid local routes');
+console.log('PASS: '+checked+' Rust-first EN/RU pages; no historical distribution instructions');

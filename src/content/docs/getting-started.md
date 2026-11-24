@@ -1,57 +1,26 @@
 ---
 title: Getting started
-description: Install stable Sedrava 0.11.0 from PyPI and build Web applications.
+description: Install the Rust CLI.
 ---
 
-Sedrava **0.11.0** is the current [stable GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) and [PyPI package](https://pypi.org/project/sedrava/0.11.0/), with responsive sites and interactive WebApps. The language is still experimental and not production certified. Previous stable [0.10.0](https://pypi.org/project/sedrava/0.10.0/) ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0)) is retained.
+**Sedrava 0.12.0-alpha.2** is the current Rust toolchain. Experimental alpha, not production-ready. [Downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.2/) · [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2).
 
-## Requirements
-
-Python **3.10+**. Git is only needed to obtain repository examples. No third-party Python runtime dependencies are required.
-
-## Install the released package
+Download archive, SHA256SUMS, manifest.json, installer and RELEASE_NOTES.md together. No Python or Rust required for the executable. The installer refuses overwrite.
 
 ~~~sh
-python -m venv .venv
-# Linux/macOS:
-. .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install sedrava==0.11.0
+sha256sum -c SHA256SUMS
+ARCHIVE=sedrava-0.12.0-alpha.2-x86_64-unknown-linux-gnu.tar.gz
+HASH=$(sha256sum "$ARCHIVE" | cut -d ' ' -f 1)
+sh install_native_preview.sh "$ARCHIVE" "$HASH" "$HOME/.local/sedrava/0.12.0-alpha.2"
+export PATH="$HOME/.local/sedrava/0.12.0-alpha.2/bin:$PATH"
 sedrava --version
 ~~~
 
-The expected version is `0.11.0`. To develop from sources instead, clone the [repository](https://github.com/VasiliiBabkin/sedrava) and run `python -m pip install .` there.
+## First program
 
-## Experimental native Rust toolchain
+Save as hello.sdr (UTF-8).
 
-Python 0.11.0 and the Rust preview are different tracks. To try the standalone alpha compiler on a machine with Rust/Cargo, build it from the repository:
-
-~~~sh
-git clone https://github.com/VasiliiBabkin/sedrava.git
-cd sedrava
-cargo build --manifest-path rust/Cargo.toml --locked --bin sedrava-native
-cargo test --manifest-path rust/Cargo.toml --locked --all-targets
-./rust/target/debug/sedrava-native server check examples/native_server/sqlite_a5.sdr
-~~~
-
-This does not replace the PyPI package or automatically distribute supported cross-platform binaries. The experimental native Server A6 uses a separate SQLite database and is **not suitable for live public hosting**. [Rust preview guide](/rust-native/) · [SedravaSQL](/sedravasql/).
-
-## Historical 0.11.0rc1 prerelease
-
-The experimental [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) is now published on [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/). To try the new site and WebApp targets, install that exact version in a separate virtual environment:
-
-~~~sh
-python -m pip install sedrava==0.11.0rc1
-sedrava --version
-~~~
-
-The prerelease is preserved for reproducible testing. For new projects use [stable 0.11.0](https://pypi.org/project/sedrava/0.11.0/). Neither version includes a generated database or automatic schema migration. [Release details](/releases/).
-
-## Your first program
-
-Save this UTF-8 file as **hello.sdr**:
-
-~~~text title="hello.sdr"
+~~~text
 app "Hello Sedrava"
 state count = 0
 action add: count = count + 1
@@ -67,24 +36,8 @@ screen main:
 sedrava check hello.sdr
 sedrava test hello.sdr
 sedrava run hello.sdr add add
-sedrava build web hello.sdr --output build/web/index.html
-python -m http.server 8000 --directory build/web
+sedrava build web hello.sdr --output build/hello.html
+sedrava build android hello.sdr --output build/hello-android --application-id org.example.hello
 ~~~
 
-Open **http://localhost:8000**. The interpreter prints `{"count": 2}`. The Web output is a self-contained HTML application; it does not need a back-end server.
-
-## Generate an Android project
-
-~~~sh
-sedrava build android hello.sdr --output build/hello-android
-~~~
-
-This generates Android/Compose sources, **not an APK**. Building an APK needs JDK 17, Android SDK 35 and Gradle 8.11.1; see the [build guide](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md).
-
-## Next steps
-
-Read [language overview](/language-overview/), [text semantics](/text-010/), [examples](/examples/) and [roadmap](/roadmap/). Also see [current language documentation](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.en.md) and [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
-
-**Important:** site and WebApp generation are available in [stable 0.11.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0); they are absent from 0.10.0 but were introduced in the historical [0.11.0rc1 prerelease](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). The official documentation site itself still uses Astro/Starlight.
-
-Linux alpha downloads: [native guide](/rust-native/). SQL API has reached A21; B25 is a separate storage experiment.
+Android generates source; APK builds require JDK/SDK/Gradle. [Build](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md) · [Examples](/examples/).

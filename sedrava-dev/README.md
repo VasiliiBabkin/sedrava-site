@@ -2,9 +2,8 @@
 
 Public preview: https://dev.virtreal.ru/
 
-This static website is built from [site.sdr](site.sdr) using a pinned,
-experimental Sedrava generator. It is NOT the production Astro/Starlight
-documentation website, nor a publicly available Sedrava A6 server.
+This static website is built from [site.sdr](site.sdr) using the current pinned Rust Sedrava generator. It is NOT the production Astro/Starlight
+documentation website, nor a publicly available SQL API.
 
 ## Branding and styles
 
@@ -24,7 +23,7 @@ documentation website, nor a publicly available Sedrava A6 server.
 ## Verification / release
 
 Run with an environment containing the pinned Sedrava compiler
-and `PYTHONPATH` pointing to its checkout:
+and SEDRAVA_BIN pointing to its executable:
 
 ~~~sh
 python3 scripts/build_dev_site.py

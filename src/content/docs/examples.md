@@ -1,57 +1,17 @@
 ---
 title: Examples
-description: Executable examples in stable Sedrava 0.11.0.
+description: Examples for Rust CLI.
 ---
 
-These examples work with [stable Sedrava 0.11.0](https://pypi.org/project/sedrava/0.11.0/) ([GitHub release](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0)) and the earlier [0.10.0](https://pypi.org/project/sedrava/0.10.0/) ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0)). Clone the [language repository](https://github.com/VasiliiBabkin/sedrava) for the `examples/` source files.
-
-## Goal and progress: historical 0.9 example
-
-The [0.9 Lab](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/reference_09.sdr) remains a regression example for int32 input, derived values, rules and persistence.
+[Source](https://github.com/VasiliiBabkin/sedrava/tree/main/examples).
 
 ~~~sh
-sedrava check examples/reference_09.sdr
-sedrava test examples/reference_09.sdr
-sedrava build web examples/reference_09.sdr --output build/reference-web/index.html
+sedrava test examples/counter.sdr
+sedrava run examples/reference_09.sdr add add
+sedrava check examples/task_manager.sdr
+sedrava build webapp examples/service_journal.sdr --output build/journal
+sedrava build site examples/platform_site.sdr --output build/site
+sedrava database-api check examples/sales_demo/sales_api.sdr
 ~~~
 
-## Text profile: new in 0.10
-
-The [text profile](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/text_profile.sdr) demonstrates Unicode input, exact equality, persistence and atomic rejection.
-
-~~~sh
-sedrava check examples/text_profile.sdr
-sedrava test examples/text_profile.sdr
-sedrava build web examples/text_profile.sdr --output build/profile-web/index.html
-~~~
-
-See [text semantics](/text-010/).
-
-## Task managers: records and navigation
-
-The [single-screen task manager](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/task_manager.sdr) demonstrates typed records and bounded lists. The [two-screen task manager](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/task_manager_navigation.sdr) adds navigation and Back behavior.
-
-~~~sh
-sedrava check examples/task_manager_navigation.sdr
-sedrava test examples/task_manager_navigation.sdr
-sedrava build web examples/task_manager_navigation.sdr --output build/navigation-web/index.html
-python -m http.server 8000 --directory build/navigation-web
-~~~
-
-Open **http://localhost:8000** to try the generated Web app. Android generation produces sources, not an APK; see the [build guide](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md).
-
-The [full example index](https://github.com/VasiliiBabkin/sedrava/blob/main/examples/README.md) also includes a constrained counter, manual countdown and habit progress. Examples are for learning and conformance, not production templates.
-
-## Four Web platform examples in stable 0.11.0
-
-Use [stable 0.11.0](https://pypi.org/project/sedrava/0.11.0/) with [versioned example sources](https://github.com/VasiliiBabkin/sedrava/tree/v0.11.0/examples). The earlier [RC](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) is still available on [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/) for comparison:
-
-~~~sh
-python -m pip install sedrava==0.11.0
-sedrava build site examples/platform_site.sdr --output build/platform/site
-sedrava build webapp examples/platform_tasks.sdr --output build/platform/tasks
-sedrava build webapp examples/platform_catalog.sdr --output build/platform/catalog
-sedrava build webapp examples/platform_crm.sdr --output build/platform/crm
-~~~
-
-The catalog requires an independently provided HTTP API; a static file server cannot supply that endpoint. [Read the limitations](/releases/).
+[Service journal](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SERVICE_JOURNAL_DEMO.ru.md) · [SQL API](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SALES_DEMO_A21.ru.md).

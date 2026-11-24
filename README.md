@@ -1,53 +1,7 @@
-<p align="center"><img src="public/brand/sedrava-logo-primary.png" width="220" alt="Sedrava logo" /></p>
+# Sedrava official site
 
-# Sedrava — official website
+https://sedrava.virtreal.ru/
 
-**https://sedrava.virtreal.ru**
+Bilingual documentation for the primary Rust toolchain 0.12.0-alpha.2. [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2) · [Downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.2/). Experimental alpha. Historical releases are archived, not recommended.
 
-The official bilingual website and documentation for [Sedrava](https://github.com/VasiliiBabkin/sedrava), an experimental declarative programming language for small Web and Android applications.
-
-Built with Astro + Starlight. English content is published at the root; Russian translations use the /ru/ prefix.
-
-## Development
-
-Requires Node.js **22.23.4 or later** and npm (Astro 7 toolchain).
-
-~~~sh
-npm install
-npm run dev
-npm run lint:content
-npm run build
-~~~
-
-The output of the static build is written to dist/.
-
-## Repository layout
-
-- src/content/docs/ — English content
-- src/content/docs/ru/ — Russian content
-- public/brand/sedrava-logo-primary.png — unchanged approved PNG master
-- src/styles/brand.css — amethyst and matte gold visual theme
-- public/brand/ — official logo, icons and social image
-- scripts/check-docs.mjs — bilingual release-status and navigation-link guard
-- .github/workflows/build.yml — CI build
-- .github/workflows/deploy.yml — manual VDS deployment
-
-## Release status
-
-[**Sedrava 0.11.0**](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) is the current stable release, published on [PyPI](https://pypi.org/project/sedrava/0.11.0/). It adds responsive multi-page sites, interactive WebApps and a bounded typed HTTP client to existing 0.10 app/Web/Android capabilities. The language remains experimental and is not production-security certified. Previous stable [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) remains available on [PyPI](https://pypi.org/project/sedrava/0.10.0/).
-
-The earlier **0.11.0rc1 prerelease** remains available on [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) and [PyPI](https://pypi.org/project/sedrava/0.11.0rc1/) for historical testing. Stable 0.11 passed practical upgrades/rollbacks against 0.10 and the RC. The separate experimental **0.12** stacked [PR #39–41](https://github.com/VasiliiBabkin/sedrava/pull/41) adds namespaces, provenance and offline dependency locks and has **not** been published. See [bilingual status pages](src/content/docs/releases.md) and [RU](src/content/docs/ru/releases.md). This official site itself uses **Astro/Starlight**, not the published 0.10 language generator.
-
-## Native development and SedravaSQL
-
-Stable Python 0.11.0 is distinct from native Rust 0.12.0-alpha.1 and SedravaSQL 0.1.0-alpha.1. The native track includes local SQL API A21; SQL runs on NativeLog, not the separate B25 tree. Bilingual native, SQL and benchmark pages describe the verified experimental scope. Official downloads use versioned, SHA-256-checked Linux archives; do not infer production readiness.
-
-## Deployment
-
-The public site is statically served by Nginx with FASTPANEL on a VDS. Deployment runs automatically on pushes to main and can also be started manually via the [GitHub Actions workflow](https://github.com/VasiliiBabkin/sedrava-site/actions/workflows/deploy.yml), using SSH and tar.
-
-For details, see DEPLOYMENT.md. Never commit SSH keys or any other server credentials.
-
-## Visual identity
-
-The approved PNG is preserved byte for byte in `public/brand/sedrava-logo-primary.png`. Icons and the social image are mechanical derivatives, never redrawn. See [brand asset notes](public/brand/README.md).
+Astro/Starlight, Node 22.23.4+, npm ci, npm run lint:content, npm run build. Output dist/. Separate Sedrava-authored showcase: sedrava-dev/. Do not commit credentials.

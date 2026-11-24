@@ -1,4 +1,4 @@
-# Sedrava public-facing showcase — built with Sedrava Web UI 0.11
+# Sedrava public-facing showcase — built with current Sedrava Rust CLI
 site "Sedrava — идеи становятся приложениями"
 theme:
     background "#141020"
@@ -28,7 +28,7 @@ page home at "/":
                     link "Идея" to "#idea" variant quiet
                     link "Возможности" to "#features" variant quiet
                     link "Развитие" to "#future" variant quiet
-                    link "Rust и SQLite" to "#native" variant quiet
+                    link "Rust и SedravaSQL" to "#native" variant quiet
             grid columns 2 gap 44 align center:
                 column gap 26:
                     paragraph "НОВЫЙ ВЗГЛЯД НА СОЗДАНИЕ ПРОГРАММ" variant eyebrow
@@ -76,32 +76,32 @@ page home at "/":
                     card style tile:
                         column gap 14:
                             heading "Сайты" size 30
-                            paragraph "Экспериментальный Web UI 0.11 уже генерирует адаптивные статические страницы из файлов .sdr. Эта страница — пример." variant muted
-                            link "Посмотреть исходники ↗" to "https://github.com/VasiliiBabkin/sedrava/pull/22"
+                            paragraph "Rust-компилятор генерирует адаптивные статические страницы из файлов .sdr. Эта страница — пример." variant muted
+                            link "Посмотреть исходники ↗" to "https://github.com/VasiliiBabkin/sedrava-site/tree/main/sedrava-dev"
                     card style tile:
                         column gap 14:
                             heading "Нативный Rust" size 30
-                            paragraph "Отдельный экспериментальный компилятор и локальный HTTP-сервер A6 уже собираются без Python runtime. Это не промышленный сервер." variant muted
+                            paragraph "Основной компилятор на Rust, SQL API A21. Экспериментальная версия, не промышленный сервер." variant muted
                             link "Нативная реализация ↗" to "https://sedrava.virtreal.ru/ru/rust-native/"
                     card style tile:
                         column gap 14:
                             heading "SedravaSQL" size 30
-                            paragraph "Экспериментальная СУБД на Rust и SQLite: изменения, аудит, резервные копии и сохранённые квитанции. Проект развивается отдельно." variant muted
+                            paragraph "Экспериментальная СУБД: независимый NativeLog SQL и управляемый SQLite API. B25 — отдельный страничный прототип." variant muted
                             link "Документация SedravaSQL ↗" to "https://sedrava.virtreal.ru/ru/sedravasql/"
             card style tile id native:
                 column gap 18:
                     paragraph "НАТИВНЫЙ СЕРВЕР — ИССЛЕДОВАТЕЛЬСКИЙ ЭТАП" variant eyebrow
                     heading "Приложение и база данных начинают работать вместе."
-                    paragraph "В Sedrava Server A6 появилась возможность прочитать строковое значение из SedravaSQL через db_get. Проверены локальные HTTP-запросы, восстановление и повтор сохранённых ответов. Полноценные SQL-запросы и запись в БД из языка ещё не готовы." variant lead
-                    paragraph "Этот сайт — статическая демонстрация возможностей генератора Sedrava. Здесь нет подключения к публичному серверу A6 и нет доступа к пользовательским данным." variant muted
+                    paragraph "SQL API A21 поддерживает ограниченные типизированные SQL-запросы, авторизацию и последовательные транзакции с квитанциями. Проверен локальный контур." variant lead
+                    paragraph "Этот сайт — статическая демонстрация возможностей генератора Sedrava. Здесь нет подключения к публичному серверу и нет доступа к пользовательским данным." variant muted
                     row gap 14:
-                        button "Открыть примеры на Rust ↗" to "https://github.com/VasiliiBabkin/sedrava/blob/main/examples/native_server/sqlite_a6_read.sdr"
-                        button "Что уже проверено ↗" to "https://github.com/VasiliiBabkin/sedrava/blob/main/evidence/native-server/2026-11-23-a6-sqlite.md" variant secondary
+                        button "Открыть примеры на Rust ↗" to "https://github.com/VasiliiBabkin/sedrava/blob/main/examples/sales_demo/sales_api.sdr"
+                        button "Что уже проверено ↗" to "https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SALES_DEMO_A21.ru.md" variant secondary
             card style tile id future:
                 column gap 20:
                     paragraph "КУДА ДВИЖЕМСЯ" variant eyebrow
                     heading "Сайты, приложения и собственный сервер."
-                    paragraph "Продолжаем перенос на Rust и развитие SedravaSQL. Дальше — проверяемые транзакции, безопасные миграции и новые инструменты. Это направления разработки, а не объявление стабильного выпуска." variant lead
+                    paragraph "Rust — основная реализация Sedrava. Дальше — интеграция SQL со страничным хранилищем, проверяемые миграции и новые инструменты. Это направления разработки, а не объявление стабильного выпуска." variant lead
                     row gap 14:
                         button "Следить за развитием ↗" to "https://github.com/VasiliiBabkin/sedrava"
                         button "Техническая документация ↗" to "https://github.com/VasiliiBabkin/sedrava/tree/main/docs" variant secondary
