@@ -86,3 +86,5 @@ sedrava build android hello.sdr --output build/hello-android
 [Возможности языка](/ru/language-overview/), [строки](/ru/text-010/), [примеры](/ru/examples/), [дорожная карта](/ru/roadmap/). Основная [документация 0.10](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.ru.md) и [ограничения](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
 
 **Важно:** генерация сайтов и WebApp доступна в [стабильной 0.11.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0), но отсутствует в 0.10.0; она впервые появилась в исторической [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). Сайт документации по-прежнему собирается с помощью Astro/Starlight.
+
+Готовый Linux alpha: [нативные загрузки](/ru/rust-native/). SQL API достиг A21, B25 остаётся отдельным прототипом.

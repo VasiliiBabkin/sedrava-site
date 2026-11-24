@@ -40,7 +40,7 @@ The earlier **0.11.0rc1 prerelease** remains available on [GitHub](https://githu
 
 ## Native development and SedravaSQL
 
-The stable 0.11.0 Python release is distinct from the **experimental Rust native toolchain** and the separate **SedravaSQL** project. The site now includes bilingual [native Rust](/rust-native/) and [SedravaSQL](/sedravasql/) pages; these must never be mistaken for stable 0.11.0 features. Native A6 has verified local-only SQLite read support and durable SQL-backed response receipts, but no published general SQL DSL or public server. See the [A6 evidence](https://github.com/VasiliiBabkin/sedrava/blob/main/evidence/native-server/2026-11-23-a6-sqlite.md).
+Stable Python 0.11.0 is distinct from native Rust 0.12.0-alpha.1 and SedravaSQL 0.1.0-alpha.1. The native track includes local SQL API A21; SQL runs on NativeLog, not the separate B25 tree. Bilingual native, SQL and benchmark pages describe the verified experimental scope. Official downloads use versioned, SHA-256-checked Linux archives; do not infer production readiness.
 
 ## Deployment
 

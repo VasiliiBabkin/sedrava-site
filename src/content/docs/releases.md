@@ -62,3 +62,7 @@ The native Rust compiler and server are developed in the same public repository,
 No released or candidate version currently provides a trusted Sedrava-generated backend, SQLite/PostgreSQL database, authentication or multi-user authorization. Browser HTTP requests are clients of an independently operated service, not a built-in server.
 
 This production documentation site is built with **Astro/Starlight**. Separately, the team maintains a [Sedrava-authored development preview](https://dev.virtreal.ru/) and the [`sedrava-site` repository](https://github.com/VasiliiBabkin/sedrava-site). These are distinct build tracks.
+
+## Native 0.12.0-alpha.1 track
+
+[Native downloads](/rust-native/) · [SedravaSQL B25](/sedravasql/) · [Benchmarks](/benchmarks/). A6 is a historical milestone; current SQL API A21. Stable Python 0.11.0 is unchanged.

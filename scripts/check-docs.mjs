@@ -3,7 +3,7 @@ import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 
 const root = resolve('src/content/docs');
-const slugs = ['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases', 'text-010', 'rust-native', 'sedravasql'];
+const slugs = ['index', 'getting-started', 'examples', 'language-overview', 'roadmap', 'releases', 'text-010', 'rust-native', 'sedravasql', 'benchmarks'];
 const published = 'https://pypi.org/project/sedrava/0.10.0/';
 const release = 'https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0';
 const preview = 'https://pypi.org/project/sedrava/0.11.0rc1/';
@@ -27,7 +27,9 @@ for (const prefix of ['', 'ru/']) {
     if (!existsSync(path)) throw new Error('Missing bilingual page: ' + path);
     const text = readFileSync(path, 'utf8');
     if (!text.startsWith('---\n')) throw new Error('Missing frontmatter: ' + path);
-    if (slug === 'rust-native' || slug === 'sedravasql') {
+    if (slug === 'benchmarks') {
+      if (!text.includes('BENCHMARK_2026_11_24.ru.md')) throw new Error('Missing benchmark evidence: ' + path);
+    } else if (slug === 'rust-native' || slug === 'sedravasql') {
       const required = slug === 'rust-native'
         ? 'https://github.com/VasiliiBabkin/sedrava'
         : 'https://github.com/VasiliiBabkin/sedravasql';

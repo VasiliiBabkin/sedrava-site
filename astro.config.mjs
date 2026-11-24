@@ -57,6 +57,7 @@ export default defineConfig({
             { slug: 'releases' },
             { slug: 'rust-native' },
             { slug: 'sedravasql' },
+            { slug: 'benchmarks' },
           ],
         },
       ],

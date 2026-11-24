@@ -1,49 +1,33 @@
 ---
-title: Нативная версия на Rust
-description: Экспериментальная самостоятельная реализация Sedrava на Rust и локальный сервер A6.
+title: Sedrava Native — Rust
+description: Публичная alpha-линия нативного компилятора, Web/Android и локальный SQL API A21.
 ---
 
-В [основном репозитории Sedrava](https://github.com/VasiliiBabkin/sedrava) развивается **самостоятельная нативная реализация на Rust**. Она охватывает проверяемые части ядра языка, Web, Android, Host и серверных возможностей. Это **экспериментальная разработка**, а не новый стабильный релиз и не доказанная полная замена опубликованной Python-версии **0.11.0**.
+**Sedrava Native 0.12.0-alpha.1** — самостоятельный экспериментальный компилятор на Rust. Команда sedrava-native не заменяет стабильную Python 0.11.0 ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0), [PyPI](https://pypi.org/project/sedrava/0.11.0/)). Для разработки и изучения, не production.
 
-**Опубликованная версия:** [0.11.0 на GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) и [PyPI](https://pypi.org/project/sedrava/0.11.0/). Исторические [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) ([PyPI](https://pypi.org/project/sedrava/0.10.0/)) и [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)) также доступны. Экспериментальная 0.12.0a1 не является опубликованным стабильным выпуском.
+## Установка
 
-## Сборка экспериментальной версии
+Linux x86_64: [нативные дистрибутивы и SHA-256](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.1/). Готовому бинарнику не нужны Python и Rust. На Windows/macOS бинарники пока не проверены.
 
-Для этого нужны совместимые Rust и Cargo:
+Сборка из исходников:
 
 ~~~sh
 git clone https://github.com/VasiliiBabkin/sedrava.git
 cd sedrava
-cargo build --manifest-path rust/Cargo.toml --locked --bin sedrava-native
-cargo test --manifest-path rust/Cargo.toml --locked --all-targets
-./rust/target/debug/sedrava-native server check examples/native_server/sqlite_a5.sdr
+cargo build --manifest-path rust/Cargo.toml --locked --release --bin sedrava-native
+./rust/target/release/sedrava-native --version
+./rust/target/release/sedrava-native check examples/service_journal.sdr
+./rust/target/release/sedrava-native build webapp examples/service_journal.sdr --output build/journal
 ~~~
 
-Бинарник собирается из исходников. **Установка через pip не устанавливает экспериментальный сервер A6 на Rust.** Запущенный нативный бинарник не зависит от Python, хотя отдельные тестовые скрипты используют Python. Проверенный контур A6 — Ubuntu Linux x86_64; совместимость с другими ОС отдельно не подтверждена.
+## Проверенный объём
 
-## Этапы серверной реализации
+- Состояние, записи, ограниченные коллекции, функции, навигация, Unicode, проверка и исполнение программ.
+- Генерация WebApp/Site и Kotlin/Compose; сборка Android debug APK проверена, не вся матрица устройств.
+- Trusted Host с ограниченными файловыми операциями.
+- Локальный HTTP A1–A16; отдельный database-api A17–A21 с именованными параметрами, Bearer-ролями, SQL-запросами, ограниченными транзакциями и долговременными квитанциями.
+- Self-host A5.11b: отдельный экспериментальный компилятор на Sedrava с функциями и вложенными if/while. Не основной компилятор.
 
-| Режим | Что реализовано | Ограничения |
-| --- | --- | --- |
-| A1–A2 | Локальный HTTP, типизированное состояние, защищённые снимки | Только localhost |
-| A3 | Ключи повторных запросов, ревизии CAS и атомарный снимок | Максимум 32 сохраняемые квитанции |
-| A4 | Ограниченный журнал повторного применения записей | Нет checkpoint и доказанной сохранности при сбое питания |
-| A5 | Хранилище через SedravaSQL / SQLite, аудит и транзакционные ответы | Прежнее ограничение 32 квитанций |
-| **A6** | Отдельные постоянные квитанции SQLite, снят лимит 32; первый оператор чтения БД | Нет автоматической очистки, записи из DSL или авторизации |
+Сервер только loopback, один записывающий процесс, ограниченные бюджеты. Не размещайте публично и не используйте ценные данные. Полная совместимость с Python, реальный браузер, Windows/macOS и безопасность production не доказаны.
 
-A6 — **отдельный режим**, он не конвертирует базы A5 автоматически. Первый прямой оператор обращения к БД доступен только для чтения фиксированного ключа в GET-ответе:
-
-~~~text
-server "A6 SQL Read Example"
-state enabled: bool = true
-route GET "/note":
-    respond 200 { note: db_get("public_notes/welcome"), enabled: state.enabled }
-~~~
-
-Для запуска потребуется отдельная приватная SQLite-база SedravaSQL и экспериментальный флаг из [документации Server A6](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/RUST_NATIVE_SERVER_A6_SQLITE.ru.md). Это **не публичная интерактивная SQL-песочница**. Оператор не может выполнять произвольные SQL-запросы, менять записи или обращаться к внутренним пространствам имён сервера.
-
-## Проверки и дальнейшие задачи
-
-Зафиксированы **78 Rust-тестов**, реальные HTTP-запросы после превышения порога 32 записей, восстановление ранее сохранённого ответа после перезапуска и четыре *отладочных* принудительных завершения процесса около COMMIT. Это **не испытания при реальном отключении питания**. Нет произвольного SQL в языке, проверенной матрицы Windows/macOS/Linux, безопасного публичного сервера, автоматических миграций и оснований объявлять хранилище промышленным.
-
-[Протокол испытаний A6](https://github.com/VasiliiBabkin/sedrava/blob/main/evidence/native-server/2026-11-23-a6-sqlite.md) · [Задача #84](https://github.com/VasiliiBabkin/sedrava/issues/84) · [Проект SedravaSQL](/ru/sedravasql/)
+[Документация](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/DISTRIBUTION_NATIVE.ru.md) · [SQL API A21](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SALES_DEMO_A21.ru.md) · [SedravaSQL](/ru/sedravasql/) · [Измерения](/ru/benchmarks/)

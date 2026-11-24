@@ -24,7 +24,7 @@ The expected version is `0.11.0`. To develop from sources instead, clone the [re
 
 ## Experimental native Rust toolchain
 
-Python 0.11.0 and the Rust preview are different tracks. To try the **unreleased** standalone compiler on a machine with Rust/Cargo, build it from the repository:
+Python 0.11.0 and the Rust preview are different tracks. To try the standalone alpha compiler on a machine with Rust/Cargo, build it from the repository:
 
 ~~~sh
 git clone https://github.com/VasiliiBabkin/sedrava.git
@@ -86,3 +86,5 @@ This generates Android/Compose sources, **not an APK**. Building an APK needs JD
 Read [language overview](/language-overview/), [text semantics](/text-010/), [examples](/examples/) and [roadmap](/roadmap/). Also see [current language documentation](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/README.en.md) and [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md).
 
 **Important:** site and WebApp generation are available in [stable 0.11.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0); they are absent from 0.10.0 but were introduced in the historical [0.11.0rc1 prerelease](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1). The official documentation site itself still uses Astro/Starlight.
+
+Linux alpha downloads: [native guide](/rust-native/). SQL API has reached A21; B25 is a separate storage experiment.

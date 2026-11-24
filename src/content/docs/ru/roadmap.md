@@ -34,3 +34,7 @@ description: Стабильная Sedrava 0.11.0, предыдущая 0.10 и �
 - Честно описывать границы проверок, включая неподтверждённые устройства.
 
 Главный документ — [дорожная карта языка](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/ROADMAP.md). [Известные ограничения](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md). Планы могут меняться.
+
+## Нативная линия 0.12.0-alpha.1
+
+[Нативные загрузки](/ru/rust-native/) · [SedravaSQL B25](/ru/sedravasql/) · [Измерения](/ru/benchmarks/). A6 — исторический этап; текущий SQL API A21. Стабильная Python 0.11.0 не заменена.

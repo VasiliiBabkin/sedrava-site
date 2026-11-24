@@ -5,7 +5,7 @@ description: Экспериментальная открытая СУБД на R
 
 **SedravaSQL** — отдельный публичный [проект с лицензией Apache-2.0](https://github.com/VasiliiBabkin/sedravasql) в экосистеме Sedrava. Он посвящён памяти **Дмитрия Грабыльникова**.
 
-Сейчас реализованы **экспериментальная Rust-библиотека и CLI на базе SQLite**, а не замена PostgreSQL, сетевой SQL-сервер или промышленная универсальная СУБД. Интерфейс пока ограничен типизированными ключами и значениями, версионированной схемой и проверяемыми операциями изменения.
+Две экспериментальные реализации: управляемый key/value API поверх SQLite и независимый NativeLog с ограниченным SQL B23. Страничный B+Tree B25 — отдельный прототип, ещё не backend SQL. Не замена PostgreSQL и не сетевой SQL-сервер.
 
 ## Что уже работает
 
@@ -46,10 +46,8 @@ BIN=./target/debug/sedravasql
 "$BIN" backup "$DB" /tmp/sedravasql-example/backup.sqlite
 ~~~
 
-## Архитектура и развитие
+## Независимый SQL
 
-В Rust API также появилось атомарное сохранение ограниченного JSON-ответа приложения вместе с квитанцией изменения. Такие квитанции **не удаляются автоматически**. Нативный [сервер Sedrava A6](/ru/rust-native/) применяет этот механизм для безопасного повтора HTTP-запросов после перезапуска. Оператора записи в базу из самого языка Sedrava пока нет.
+NativeLog: типизированные таблицы, SELECT/INSERT/UPDATE/DELETE, JOIN, агрегаты, GROUP BY/HAVING, DISTINCT, вторичные индексы, внешние ключи и ограниченные последовательные транзакции. B24/B25: отдельные изменяемые страницы, redo WAL, кеш, разделение узлов B+Tree. SQL пока работает на журнале; слияние узлов и интеграция остаются задачами.
 
-**Остаются задачи:** типизированные многоключевые транзакции, миграции, квоты, архивирование квитанций, проверки на разных ОС, реальные тесты отключения питания, аутентификация и безопасная публикация серверов. Для важных производственных данных текущая версия не предназначена.
-
-[Исходники и запуск](https://github.com/VasiliiBabkin/sedravasql) · [Реализованные возможности](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/IMPLEMENTED_V0_1.ru.md) · [Протокол проверки](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/VERIFICATION.md) · [План разработки](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/ROADMAP.md)
+[Официальный сайт и загрузки](https://sql.virtreal.ru/) · [SQL B23](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/NATIVE_SQL_B23.ru.md) · [B25](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/NATIVE_TREE_B25.ru.md) · [Измерения](/ru/benchmarks/). Не используйте ценные данные.

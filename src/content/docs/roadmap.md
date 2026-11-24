@@ -34,3 +34,7 @@ The official documentation site still uses **Astro/Starlight**; the [Sedrava-aut
 - Report validation limits, including unverified device configurations.
 
 Source of truth: [language roadmap](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/ROADMAP.md), [known limitations](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/KNOWN_LIMITATIONS.md). Features may change as development progresses.
+
+## Native 0.12.0-alpha.1 track
+
+[Native downloads](/rust-native/) · [SedravaSQL B25](/sedravasql/) · [Benchmarks](/benchmarks/). A6 is a historical milestone; current SQL API A21. Stable Python 0.11.0 is unchanged.

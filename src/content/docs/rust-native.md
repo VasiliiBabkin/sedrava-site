@@ -1,49 +1,31 @@
 ---
-title: Native Rust (experimental)
-description: Build Sedrava's experimental standalone Rust compiler and loopback-only server without replacing stable 0.11.0.
+title: Sedrava Native — Rust
+description: Native alpha compiler, Web/Android and local SQL API A21.
 ---
 
-Sedrava has an independently developed **native Rust implementation** in the [main repository](https://github.com/VasiliiBabkin/sedrava). It covers a growing, tested subset of language, Web, Android, Host and server functionality. It is **experimental**, not a new stable release or a complete compatibility replacement for the published Python-based **0.11.0**.
+**Sedrava Native 0.12.0-alpha.1** is a standalone experimental Rust toolchain. The sedrava-native command does not replace stable Python 0.11.0 ([GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0), [PyPI](https://pypi.org/project/sedrava/0.11.0/)). For development and learning, not production.
 
-**Published release:** [0.11.0 on GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0) and [PyPI](https://pypi.org/project/sedrava/0.11.0/). Historical [0.10.0](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.10.0) ([PyPI](https://pypi.org/project/sedrava/0.10.0/)) and [0.11.0rc1](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.11.0rc1) ([PyPI](https://pypi.org/project/sedrava/0.11.0rc1/)) remain available. Experimental 0.12.0a1 is not a published stable release.
+## Installation
 
-## Build a native preview from source
-
-On an environment with a compatible Rust toolchain and Cargo:
+Linux x86_64: [native archives and SHA-256](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.1/). The installed binary needs neither Python nor Rust. Windows/macOS builds are not verified.
 
 ~~~sh
 git clone https://github.com/VasiliiBabkin/sedrava.git
 cd sedrava
-cargo build --manifest-path rust/Cargo.toml --locked --bin sedrava-native
-cargo test --manifest-path rust/Cargo.toml --locked --all-targets
-./rust/target/debug/sedrava-native server check examples/native_server/sqlite_a5.sdr
+cargo build --manifest-path rust/Cargo.toml --locked --release --bin sedrava-native
+./rust/target/release/sedrava-native --version
+./rust/target/release/sedrava-native check examples/service_journal.sdr
+./rust/target/release/sedrava-native build webapp examples/service_journal.sdr --output build/journal
 ~~~
 
-The binary is built from the repository. **Do not install the Python PyPI package expecting that it contains the A6 Rust server.** Rust runtime operations do not require Python, though development verification scripts may use Python. Availability and validation differ by OS; the A6 evidence is for Ubuntu Linux x86_64.
+## Verified scope
 
-## Server progression
+- State, records, bounded collections, functions, navigation, Unicode, checking and execution.
+- Site/WebApp and Kotlin/Compose generators; Android debug APK build verified, not the full device matrix.
+- Trusted Host with bounded file effects.
+- Local HTTP A1–A16; separate database-api A17–A21 with named parameters, Bearer roles, SQL queries, bounded transactions and durable receipts.
+- Self-host A5.11b: separate experimental compiler written in Sedrava with functions and nested if/while, not the main compiler.
 
-| Mode | Experimentally implemented | Boundaries |
-| --- | --- | --- |
-| A1–A2 | Strict local HTTP, typed server state and guarded snapshots | Localhost only; not a public API |
-| A3 | Request keys, CAS revisions and atomic state snapshots | 32 permanent receipts; hard cap |
-| A4 | Bounded fsynced redo journal | No checkpoint or production power-loss proof |
-| A5 | SedravaSQL-backed SQLite state, atomic audit and response ledger | Still 32 embedded application receipts |
-| **A6** | Separate immutable SQL receipts; no 32-entry cap; first read-only database expression | No automatic receipt retention, write DSL or public authentication |
+Loopback only, one writer, bounded resources. No public service or valuable data. Complete Python parity, real-browser tests, Windows/macOS and production security are not established.
 
-A6 uses a *new opt-in storage mode* and **does not silently migrate A5 files**. The only current direct database expression in a Sedrava server is a checked literal read in a GET response:
-
-~~~text
-server "A6 SQL Read Example"
-state enabled: bool = true
-route GET "/note":
-    respond 200 { note: db_get("public_notes/welcome"), enabled: state.enabled }
-~~~
-
-The example requires an existing private SedravaSQL SQLite database and the experimental flag shown in the [Server A6 documentation](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/RUST_NATIVE_SERVER_A6_SQLITE.ru.md). It is **not** an online, publicly exposed interactive database playground. The expression cannot execute arbitrary SQL, write records, or access the server's reserved internal namespace.
-
-## Evidence and remaining work
-
-The integration evidence records **78 Rust tests**, live local HTTP tests beyond the 32-receipt threshold, exact replay after restart, and four *debug-only* forced process exits around the SQLite commit boundary. These are **not physical power-loss tests**. There is no demonstrated general SQL DSL, cross-platform distribution matrix, secure public service, automatic schema migration or production-grade storage.
-
-[Reproducible A6 test report](https://github.com/VasiliiBabkin/sedrava/blob/main/evidence/native-server/2026-11-23-a6-sqlite.md) · [Open storage tracking issue #84](https://github.com/VasiliiBabkin/sedrava/issues/84) · [SedravaSQL project](/sedravasql/)
+[Distribution](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/DISTRIBUTION_NATIVE.ru.md) · [SQL API A21](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SALES_DEMO_A21.ru.md) · [SedravaSQL](/sedravasql/) · [Benchmarks](/benchmarks/)
