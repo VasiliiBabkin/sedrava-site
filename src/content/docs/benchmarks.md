@@ -22,3 +22,6 @@ Two runs on Linux x86_64, two Skylake vCPUs and 7941 MiB RAM. Sedrava 6883818 an
 CLI includes process startup; DOM uses jsdom, not a real browser; tsc is nonincremental; SQLite and NativeLog differ in receipt/history semantics. HTTP tests are short loopback series and competitors use SQLite. Android build is not device execution. All 120 transaction workflows passed, not proof of production reliability. Human productivity was not measured.
 
 [Methodology and raw results](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BENCHMARK_2026_11_24.ru.md) · [SQL](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/BENCHMARK_2026_11_24.ru.md)
+
+
+Earlier measurements on this page are the pre-B26–B28 baseline. **B31 source checkpoint:** NativeLog B28 in main; B31 is separate research. Public alpha releases unchanged. [Status and reports](/sedravasql/).

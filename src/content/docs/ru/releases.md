@@ -8,3 +8,6 @@ description: Текущая Rust-линия.
 Прежний интерпретатор и его упаковка исключены из main. Старые артефакты сохранены исключительно для воспроизводимости; новые проекты используют текущую линию.
 
 [History / История](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/HISTORY.md) · [Release notes](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/RELEASE_NOTES_0_12_0_ALPHA2.md) · [Roadmap](/ru/roadmap/).
+
+
+**Состояние исходников B31:** NativeLog B28 в main, B31 — отдельное исследование. Публичные alpha-релизы не изменены. [Контрольная точка и отчёты](/ru/sedravasql/).

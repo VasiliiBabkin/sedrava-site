@@ -86,7 +86,7 @@ page home at "/":
                     card style tile:
                         column gap 14:
                             heading "SedravaSQL" size 30
-                            paragraph "Экспериментальная СУБД: независимый NativeLog SQL и управляемый SQLite API. B25 — отдельный страничный прототип." variant muted
+                            paragraph "Экспериментальная СУБД: независимый NativeLog SQL и управляемый SQLite API. В main — NativeLog B28; B31 — отдельный бинарный COW-прототип со значениями до 64 КиБ. Публичные релизы не изменены." variant muted
                             link "Документация SedravaSQL ↗" to "https://sedrava.virtreal.ru/ru/sedravasql/"
             card style tile id native:
                 column gap 18:
@@ -101,7 +101,7 @@ page home at "/":
                 column gap 20:
                     paragraph "КУДА ДВИЖЕМСЯ" variant eyebrow
                     heading "Сайты, приложения и собственный сервер."
-                    paragraph "Rust — основная реализация Sedrava. Дальше — интеграция SQL со страничным хранилищем, проверяемые миграции и новые инструменты. Это направления разработки, а не объявление стабильного выпуска." variant lead
+                    paragraph "Rust — основная реализация Sedrava. Следующий этап B32 — безопасное повторное использование страниц; затем квитанции, миграции и SQL-интеграция. Это направления разработки, а не объявление стабильного выпуска." variant lead
                     row gap 14:
                         button "Следить за развитием ↗" to "https://github.com/VasiliiBabkin/sedrava"
                         button "Техническая документация ↗" to "https://github.com/VasiliiBabkin/sedrava/tree/main/docs" variant secondary

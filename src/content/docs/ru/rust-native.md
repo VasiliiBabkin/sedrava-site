@@ -18,3 +18,6 @@ cargo test --manifest-path rust/Cargo.toml --locked --all-targets
 Проверено Linux x86-64 GNU на Ubuntu 24.04. Windows/macOS, полный набор браузеров и устройств, совместимость старых проектов и промышленная безопасность не доказаны. Не все конструкции поддерживаются всеми генераторами. Сервер только loopback; тестовые данные.
 
 [Distribution](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/DISTRIBUTION_NATIVE.ru.md) · [SQL](/ru/sedravasql/) · [Benchmarks](/ru/benchmarks/).
+
+
+**Состояние исходников B31:** NativeLog B28 в main, B31 — отдельное исследование. Публичные alpha-релизы не изменены. [Контрольная точка и отчёты](/ru/sedravasql/).

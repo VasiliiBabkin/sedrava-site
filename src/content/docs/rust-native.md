@@ -18,3 +18,6 @@ Typed state, records, bounded collections, functions, navigation, Unicode, impor
 Linux x86-64 GNU tested on Ubuntu 24.04. Windows/macOS, full browser/device coverage, legacy compatibility and production security are not established. Generator support varies by target. Loopback only; disposable test data.
 
 [Distribution](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/DISTRIBUTION_NATIVE.ru.md) · [SQL](/sedravasql/) · [Benchmarks](/benchmarks/).
+
+
+**B31 source checkpoint:** NativeLog B28 in main; B31 is separate research. Public alpha releases unchanged. [Status and reports](/sedravasql/).

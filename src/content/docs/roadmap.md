@@ -7,10 +7,13 @@ description: Rust ecosystem milestones.
 
 - Expand typing and Web/Android generators.
 - Optimize SQL, HTTP and UI.
-- Integrate B+Tree with SQL after recovery gates.
+- B32 safe page reuse; then durable receipts, migration and SQL integration.
 - Generated client/API/database integration.
 - Develop self-host A5.11b.
 - Windows/macOS builds and actual browser/device tests.
 - Beta/stable acceptance gates.
 
 [Full roadmap](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/ROADMAP.md).
+
+
+**B31 source checkpoint:** NativeLog B28 in main; B31 is separate research. Public alpha releases unchanged. [Status and reports](/sedravasql/).
