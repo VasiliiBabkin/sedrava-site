@@ -8,3 +8,5 @@ Typed state, records, bounded collections, functions, navigation, Unicode, impor
 Linux x86-64 GNU tested on Ubuntu 24.04. Windows/macOS, full browser/device coverage, legacy compatibility and production security are not established. Generator support varies by target. Loopback only; disposable test data.
 
 [Start](/getting-started/) · [Examples](/examples/).
+
+For the new project CLI use the verified A26/A28 candidate, not the older published archive. [A28 platform](/platform/).

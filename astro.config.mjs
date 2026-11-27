@@ -38,6 +38,7 @@ export default defineConfig({
           translations: { ru: 'Начало' },
           items: [
             { slug: 'getting-started' },
+            { slug: 'platform' },
             { slug: 'examples' },
           ],
         },

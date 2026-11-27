@@ -41,3 +41,5 @@ sedrava build android hello.sdr --output build/hello-android --application-id or
 ~~~
 
 Android generates source; APK builds require JDK/SDK/Gradle. [Build](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md) · [Examples](/examples/).
+
+For the new project CLI use the verified A26/A28 candidate, not the older published archive. [A28 platform](/platform/).

@@ -7,7 +7,7 @@ description: Rust ecosystem milestones.
 
 - Expand typing and Web/Android generators.
 - Optimize SQL, HTTP and UI.
-- B32 safe page reuse; then durable receipts, migration and SQL integration.
+- A24–A28: migrations, project CLI, integration, Forgejo CI and offline package verified. Next A29/A30: docs and coordinated release.
 - Generated client/API/database integration.
 - Develop self-host A5.11b.
 - Windows/macOS builds and actual browser/device tests.
@@ -16,4 +16,4 @@ description: Rust ecosystem milestones.
 [Full roadmap](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/ROADMAP.md).
 
 
-**B31 source checkpoint:** NativeLog B28 in main; B31 is separate research. Public alpha releases unchanged. [Status and reports](/sedravasql/).
+**A28 development candidate (27 November 2026).** A26 integration passed both Forgejo jobs; A28 offline Linux x86-64 package and installation passed. Published alpha archives are unchanged. NativeLog remains the SQL backend; B32–B36 COW research is not adopted. See [platform distribution](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) and [integration evidence](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).

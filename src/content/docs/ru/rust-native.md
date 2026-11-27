@@ -20,4 +20,6 @@ cargo test --manifest-path rust/Cargo.toml --locked --all-targets
 [Distribution](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/DISTRIBUTION_NATIVE.ru.md) · [SQL](/ru/sedravasql/) · [Benchmarks](/ru/benchmarks/).
 
 
-**Состояние исходников B31:** NativeLog B28 в main, B31 — отдельное исследование. Публичные alpha-релизы не изменены. [Контрольная точка и отчёты](/ru/sedravasql/).
+**Кандидат A28 (27 ноября 2026).** Интеграция A26 прошла обе проверки Forgejo; автономный комплект Linux x86-64 A28 и его установка проверены. Публичные alpha-архивы не изменены. SQL использует NativeLog; COW B32–B36 не принят как основной движок. [Дистрибутив](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) · [Отчёт](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).
+
+Для новых команд проектного CLI используйте проверенный кандидат A26/A28, а не старый опубликованный архив. [Платформа A28](/ru/platform/).

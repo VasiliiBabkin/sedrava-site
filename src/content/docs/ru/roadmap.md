@@ -7,7 +7,7 @@ description: Развитие Rust-экосистемы.
 
 - Расширение типизации и генераторов Web/Android.
 - Оптимизация SQL, HTTP и UI.
-- B32: безопасное повторное использование страниц; затем квитанции, миграция и SQL-интеграция.
+- A24–A28: миграции, CLI проектов, интеграция, Forgejo CI и автономный комплект проверены. Далее A29/A30: документация и согласованный выпуск.
 - Связка клиент/API/БД.
 - Развитие self-host A5.11b.
 - Сборки Windows/macOS и реальные браузерные/Android-тесты.
@@ -16,4 +16,4 @@ description: Развитие Rust-экосистемы.
 [Full roadmap](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/ROADMAP.md).
 
 
-**Состояние исходников B31:** NativeLog B28 в main, B31 — отдельное исследование. Публичные alpha-релизы не изменены. [Контрольная точка и отчёты](/ru/sedravasql/).
+**Кандидат A28 (27 ноября 2026).** Интеграция A26 прошла обе проверки Forgejo; автономный комплект Linux x86-64 A28 и его установка проверены. Публичные alpha-архивы не изменены. SQL использует NativeLog; COW B32–B36 не принят как основной движок. [Дистрибутив](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) · [Отчёт](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).

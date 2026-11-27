@@ -24,4 +24,4 @@ CLI включает запуск процесса; DOM — jsdom, не брау
 [Подробная методика и первичные данные](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BENCHMARK_2026_11_24.ru.md) · [SQL](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/BENCHMARK_2026_11_24.ru.md)
 
 
-Прежние измерения ниже — базовая серия до B26–B28. **Состояние исходников B31:** NativeLog B28 в main, B31 — отдельное исследование. Публичные alpha-релизы не изменены. [Контрольная точка и отчёты](/ru/sedravasql/).
+Прежние измерения на этой странице — базовая серия до B26–B28, а не измерения A28. **Кандидат A28 (27 ноября 2026).** Интеграция A26 прошла обе проверки Forgejo; автономный комплект Linux x86-64 A28 и его установка проверены. Публичные alpha-архивы не изменены. SQL использует NativeLog; COW B32–B36 не принят как основной движок. [Дистрибутив](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) · [Отчёт](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).

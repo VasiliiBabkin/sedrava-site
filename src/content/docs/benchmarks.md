@@ -24,4 +24,4 @@ CLI includes process startup; DOM uses jsdom, not a real browser; tsc is nonincr
 [Methodology and raw results](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BENCHMARK_2026_11_24.ru.md) · [SQL](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/BENCHMARK_2026_11_24.ru.md)
 
 
-Earlier measurements on this page are the pre-B26–B28 baseline. **B31 source checkpoint:** NativeLog B28 in main; B31 is separate research. Public alpha releases unchanged. [Status and reports](/sedravasql/).
+Earlier measurements on this page are the pre-B26–B28 baseline; they do not measure A28. **A28 development candidate (27 November 2026).** A26 integration passed both Forgejo jobs; A28 offline Linux x86-64 package and installation passed. Published alpha archives are unchanged. NativeLog remains the SQL backend; B32–B36 COW research is not adopted. See [platform distribution](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) and [integration evidence](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).

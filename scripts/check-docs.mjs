@@ -1,7 +1,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { resolve, join } from 'node:path';
 const root=resolve('src/content/docs');
-const slugs=['index','getting-started','examples','language-overview','roadmap','releases','text-010','rust-native','sedravasql','benchmarks'];
+const slugs=['index','getting-started','platform','examples','language-overview','roadmap','releases','text-010','rust-native','sedravasql','benchmarks'];
 let checked=0;
 for(const prefix of ['', 'ru/']) for(const slug of slugs){
  const path=join(root,prefix,slug+(slug==='index'?'.mdx':'.md'));

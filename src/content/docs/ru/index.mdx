@@ -66,7 +66,7 @@ screen main:
 
 ## Единая экосистема
 
-Типизированное состояние, записи, ограниченные коллекции, функции, навигация, Unicode, импорты и локальные пакеты. Web/Site/WebApp, Kotlin/Compose, trusted Host, локальный HTTP и SQL API A21 с ролями и ограниченными транзакциями. Self-host A5.11b — отдельный эксперимент. NativeLog SQL B28 в main; B31 — отдельное исследование, не backend SQL.
+Типизированное состояние, записи, ограниченные коллекции, функции, навигация, Unicode, импорты и локальные пакеты. Web/Site/WebApp, Kotlin/Compose, trusted Host, локальный HTTP и SQL API A21 с ролями и ограниченными транзакциями. Self-host A5.11b — отдельный эксперимент. SQL использует NativeLog. В кандидате A26 добавлены сессии, нативный WebApp, миграции и CLI проектов.
 
 [Начало работы](/ru/getting-started/) · [SedravaSQL](/ru/sedravasql/) · [Измерения](/ru/benchmarks/) · [Дорожная карта](/ru/roadmap/).
 
@@ -74,4 +74,6 @@ screen main:
 
 Sedrava посвящается Геннадию Ивановичу Смирных — учителю информатики. [Подробнее](https://github.com/VasiliiBabkin/sedrava/blob/main/DEDICATION.md).
 
-**Контрольная точка B31:** [состояние экосистемы и результаты испытаний](/ru/sedravasql/). Следующий этап — B32. Публичные выпуски не изменены.
+**Кандидат A28 (27 ноября 2026).** Интеграция A26 прошла обе проверки Forgejo; автономный комплект Linux x86-64 A28 и его установка проверены. Публичные alpha-архивы не изменены. SQL использует NativeLog; COW B32–B36 не принят как основной движок. [Дистрибутив](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) · [Отчёт](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).
+
+[Платформа A28: создание и запуск проекта](/ru/platform/)

@@ -15,3 +15,5 @@ sedrava database-api check examples/sales_demo/sales_api.sdr
 ~~~
 
 [Service journal](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SERVICE_JOURNAL_DEMO.ru.md) · [SQL API](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SALES_DEMO_A21.ru.md).
+
+For the new project CLI use the verified A26/A28 candidate, not the older published archive. [A28 platform](/platform/).
