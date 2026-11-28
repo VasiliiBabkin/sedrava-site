@@ -3,7 +3,7 @@ title: Sedrava on Rust
 description: Primary language implementation.
 ---
 
-**Sedrava 0.12.0-alpha.2** is the current Rust toolchain. Experimental alpha, not production-ready. [Downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.2/) · [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2).
+**Sedrava 0.12.0-alpha.3** is the current Rust toolchain. Experimental alpha, not production-ready. [Downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.3/) · [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.3).
 
 ~~~sh
 git clone https://github.com/VasiliiBabkin/sedrava.git
@@ -17,9 +17,9 @@ Typed state, records, bounded collections, functions, navigation, Unicode, impor
 
 Linux x86-64 GNU tested on Ubuntu 24.04. Windows/macOS, full browser/device coverage, legacy compatibility and production security are not established. Generator support varies by target. Loopback only; disposable test data.
 
-[Distribution](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/DISTRIBUTION_NATIVE.ru.md) · [SQL](/sedravasql/) · [Benchmarks](/benchmarks/).
+[Distribution](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/PLATFORM_RELEASE_A30.ru.md) · [SQL](/sedravasql/) · [Benchmarks](/benchmarks/).
 
 
-**A28 development candidate (27 November 2026).** A26 integration passed both Forgejo jobs; A28 offline Linux x86-64 package and installation passed. Published alpha archives are unchanged. NativeLog remains the SQL backend; B32–B36 COW research is not adopted. See [platform distribution](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) and [integration evidence](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).
+**A30 release (28 November 2026).** [Sedrava 0.12.0-alpha.3](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.3) and [SedravaSQL 0.1.0-alpha.2](https://github.com/VasiliiBabkin/sedravasql/releases/tag/v0.1.0-alpha.2), NativeLog 0.0.2. A single verified Linux x86-64 package with three CLIs: [downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.3/) · [distribution guide](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/PLATFORM_RELEASE_A30.ru.md). A30 passed VDS release qualification; earlier A26 passed independent Forgejo CI. COW B32–B36 remains research. Not production-ready.
 
-For the new project CLI use the verified A26/A28 candidate, not the older published archive. [A28 platform](/platform/).
+The project CLI is included in alpha.3. [A30 platform](/platform/).

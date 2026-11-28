@@ -9,4 +9,4 @@ Linux x86-64 GNU tested on Ubuntu 24.04. Windows/macOS, full browser/device cove
 
 [Start](/getting-started/) · [Examples](/examples/).
 
-For the new project CLI use the verified A26/A28 candidate, not the older published archive. [A28 platform](/platform/).
+The project CLI is included in alpha.3. [A30 platform](/platform/).

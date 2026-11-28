@@ -3,17 +3,19 @@ title: Getting started
 description: Install the Rust CLI.
 ---
 
-**Sedrava 0.12.0-alpha.2** is the current Rust toolchain. Experimental alpha, not production-ready. [Downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.2/) · [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2).
+**Sedrava 0.12.0-alpha.3** is the current Rust toolchain. Experimental alpha, not production-ready. [Downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.3/) · [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.3).
 
-Download archive, SHA256SUMS, manifest.json, installer and RELEASE_NOTES.md together. No Python or Rust required for the executable. The installer refuses overwrite.
+Download all seven files from the versioned download page into one directory. The installer checks SHA-256 and refuses to overwrite an existing prefix. No Python or Rust required on PATH.
 
 ~~~sh
 sha256sum -c SHA256SUMS
-ARCHIVE=sedrava-0.12.0-alpha.2-x86_64-unknown-linux-gnu.tar.gz
-HASH=$(sha256sum "$ARCHIVE" | cut -d ' ' -f 1)
-sh install_native_preview.sh "$ARCHIVE" "$HASH" "$HOME/.local/sedrava/0.12.0-alpha.2"
-export PATH="$HOME/.local/sedrava/0.12.0-alpha.2/bin:$PATH"
+ARCHIVE=sedrava-sedrava-platform-0.12.0-alpha.3-sql-0.1.0-alpha.2-linux-x86_64.tar.gz
+HASH=438d8a974bd9edf3247da25d28fa76a96ad5e33a5d17554b3eec62b22a2f934f
+sh install_platform_a30.sh "$ARCHIVE" "$HASH" "$HOME/sedrava-alpha3"
+export PATH="$HOME/sedrava-alpha3/bin:$PATH"
 sedrava --version
+sedravasql --version
+sedravasql-native-preview --version
 ~~~
 
 ## First program
@@ -42,4 +44,4 @@ sedrava build android hello.sdr --output build/hello-android --application-id or
 
 Android generates source; APK builds require JDK/SDK/Gradle. [Build](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md) · [Examples](/examples/).
 
-For the new project CLI use the verified A26/A28 candidate, not the older published archive. [A28 platform](/platform/).
+The project CLI is included in alpha.3. [A30 platform](/platform/).

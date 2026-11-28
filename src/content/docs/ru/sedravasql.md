@@ -3,7 +3,7 @@ title: SedravaSQL
 description: Экспериментальная открытая СУБД на Rust и SQLite в экосистеме Sedrava.
 ---
 
-**Кандидат A28 (27 ноября 2026).** Интеграция A26 прошла обе проверки Forgejo; автономный комплект Linux x86-64 A28 и его установка проверены. Публичные alpha-архивы не изменены. SQL использует NativeLog; COW B32–B36 не принят как основной движок. [Дистрибутив](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) · [Отчёт](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).
+**Выпуск A30 (28 ноября 2026).** [Sedrava 0.12.0-alpha.3](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.3) и [SedravaSQL 0.1.0-alpha.2](https://github.com/VasiliiBabkin/sedravasql/releases/tag/v0.1.0-alpha.2), NativeLog 0.0.2. Единый проверенный комплект Linux x86-64 из трёх CLI: [загрузки](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.3/) · [установка](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/PLATFORM_RELEASE_A30.ru.md). A30 прошёл приёмку на VDS; ранее A26 прошёл независимый Forgejo CI. COW B32–B36 остаётся исследованием. Не для production.
 
 [Контракт миграций A24](https://github.com/VasiliiBabkin/sedravasql/blob/integration/a26-platform/docs/NATIVE_MIGRATIONS_A24.ru.md) · [Платформа](/ru/platform/)
 
@@ -58,7 +58,7 @@ NativeLog: типизированные таблицы, SELECT/INSERT/UPDATE/DEL
 
 ## Историческая контрольная точка B31 (24–25 ноября 2026)
 
-**Публичные выпуски не менялись:** [Sedrava 0.12.0-alpha.2](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2), [SedravaSQL 0.1.0-alpha.1](https://github.com/VasiliiBabkin/sedravasql/releases/tag/v0.1.0-alpha.1), Linux x86-64 GNU. Rust — единственная развиваемая реализация Sedrava. Ни один выпуск не объявлен стабильным.
+**Выпуски на момент контрольной точки B31:** [Sedrava 0.12.0-alpha.2](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2), [SedravaSQL 0.1.0-alpha.1](https://github.com/VasiliiBabkin/sedravasql/releases/tag/v0.1.0-alpha.1), Linux x86-64 GNU. Rust — единственная развиваемая реализация Sedrava. Ни один выпуск не объявлен стабильным.
 
 | Контур | Проверенная основа | Состояние |
 |---|---|---|
@@ -79,6 +79,6 @@ NativeLog: типизированные таблицы, SELECT/INSERT/UPDATE/DEL
 
 ### Продолжение исследования
 
-Эти планы B32–B36 исследованы отдельно. COW не принят как основной SQL backend. Следующий шаг хранения — отдельная квалификация дискового интерфейса; релиз A28 сохраняет NativeLog. Не использовать ценные данные.
+Эти планы B32–B36 исследованы отдельно. COW не принят как основной SQL backend. Следующий шаг хранения — отдельная квалификация дискового интерфейса; релиз A30 сохраняет NativeLog. Не использовать ценные данные.
 
 **Отчёты и исходные измерения:** [B26](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/NATIVE_SQL_B26_PERFORMANCE.ru.md) · [B27](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/NATIVE_SQL_B27_PERFORMANCE.ru.md) · [B28](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/NATIVE_SQL_B28_ORDERED_RANGE.ru.md) · [B28-A](https://github.com/VasiliiBabkin/sedravasql/blob/research/b28-tree-sql/docs/NATIVE_SQL_B28_TREE_EXPERIMENT.ru.md) · [B29](https://github.com/VasiliiBabkin/sedravasql/blob/research/b29-cow-tree/docs/NATIVE_COW_B29.ru.md) · [B30](https://github.com/VasiliiBabkin/sedravasql/blob/research/b30-compact/docs/NATIVE_COW_B30.ru.md) · [B31](https://github.com/VasiliiBabkin/sedravasql/blob/research/b31-overflow/docs/NATIVE_COW_B31.ru.md).

@@ -16,4 +16,4 @@ sedrava database-api check examples/sales_demo/sales_api.sdr
 
 [Service journal](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SERVICE_JOURNAL_DEMO.ru.md) · [SQL API](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/SALES_DEMO_A21.ru.md).
 
-Для новых команд проектного CLI используйте проверенный кандидат A26/A28, а не старый опубликованный архив. [Платформа A28](/ru/platform/).
+Проектный CLI доступен в alpha.3. [Платформа A30](/ru/platform/).

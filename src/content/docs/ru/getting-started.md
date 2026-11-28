@@ -3,17 +3,19 @@ title: Начало работы
 description: Установка Rust CLI.
 ---
 
-**Sedrava 0.12.0-alpha.2** — текущая линия, основная реализация на Rust. Экспериментальная alpha, не для production. [Загрузки](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.2/) · [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2).
+**Sedrava 0.12.0-alpha.3** — текущая линия, основная реализация на Rust. Экспериментальная alpha, не для production. [Загрузки](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.3/) · [GitHub](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.3).
 
-Скачайте архив, SHA256SUMS, manifest.json, установщик и RELEASE_NOTES.md в один каталог. Готовому бинарнику не нужны Python и Rust. Установщик не перезаписывает существующую команду.
+Скачайте все семь файлов со страницы загрузки в один каталог. Установщик проверяет SHA-256 и не перезаписывает существующий префикс. Python и Rust на PATH не требуются.
 
 ~~~sh
 sha256sum -c SHA256SUMS
-ARCHIVE=sedrava-0.12.0-alpha.2-x86_64-unknown-linux-gnu.tar.gz
-HASH=$(sha256sum "$ARCHIVE" | cut -d ' ' -f 1)
-sh install_native_preview.sh "$ARCHIVE" "$HASH" "$HOME/.local/sedrava/0.12.0-alpha.2"
-export PATH="$HOME/.local/sedrava/0.12.0-alpha.2/bin:$PATH"
+ARCHIVE=sedrava-sedrava-platform-0.12.0-alpha.3-sql-0.1.0-alpha.2-linux-x86_64.tar.gz
+HASH=438d8a974bd9edf3247da25d28fa76a96ad5e33a5d17554b3eec62b22a2f934f
+sh install_platform_a30.sh "$ARCHIVE" "$HASH" "$HOME/sedrava-alpha3"
+export PATH="$HOME/sedrava-alpha3/bin:$PATH"
 sedrava --version
+sedravasql --version
+sedravasql-native-preview --version
 ~~~
 
 ## Первая программа
@@ -42,4 +44,4 @@ sedrava build android hello.sdr --output build/hello-android --application-id or
 
 Android создаёт исходники; для APK нужны JDK/SDK/Gradle. [Build](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/BUILD.md) · [Examples](/ru/examples/).
 
-Для новых команд проектного CLI используйте проверенный кандидат A26/A28, а не старый опубликованный архив. [Платформа A28](/ru/platform/).
+Проектный CLI доступен в alpha.3. [Платформа A30](/ru/platform/).

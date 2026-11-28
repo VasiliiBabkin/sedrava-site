@@ -8,7 +8,7 @@ for(const prefix of ['', 'ru/']) for(const slug of slugs){
  const text=readFileSync(path,'utf8');
  if(!text.startsWith('---\n'))throw Error('Missing frontmatter: '+path);
  if(/pypi\.org|pip install|stable 0\.11|стабильн[^\n]*0\.11/i.test(text))throw Error('Legacy distribution in active docs: '+path);
- if(['index','getting-started','releases','rust-native','roadmap'].includes(slug)&&!text.includes('0.12.0-alpha.2'))throw Error('Missing current version: '+path);
+ if(['index','getting-started','releases','rust-native','roadmap'].includes(slug)&&!text.includes('0.12.0-alpha.3'))throw Error('Missing current version: '+path);
  for(const m of text.matchAll(/(?:\]\(|href="|link: )\/(ru\/)?([a-z0-9-]+)\//g)){
   const route=(m[1]||'')+m[2];
   if(!existsSync(join(root,route+'.md'))&&!existsSync(join(root,route+'.mdx')))throw Error('Broken local route: '+route);

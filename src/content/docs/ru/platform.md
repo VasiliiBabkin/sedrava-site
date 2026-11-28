@@ -1,16 +1,16 @@
 ---
-title: Платформа A28
+title: Платформа A30
 description: Experimental integrated platform and offline distribution.
 ---
 
-Проверенный кандидат, не опубликованный alpha-релиз. Сборка из точного коммита A26; используйте только отдельные тестовые данные. Публичная версия 0.12.0-alpha.2 не содержит новых команд.
+Скачайте [готовый комплект](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.3/) и следуйте [инструкции установки](/ru/getting-started/). Для сборки из исходников используйте проверенный тег. Только тестовые данные.
 
-**Кандидат A28 (27 ноября 2026).** Интеграция A26 прошла обе проверки Forgejo; автономный комплект Linux x86-64 A28 и его установка проверены. Публичные alpha-архивы не изменены. SQL использует NativeLog; COW B32–B36 не принят как основной движок. [Дистрибутив](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) · [Отчёт](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).
+**Выпуск A30 (28 ноября 2026).** [Sedrava 0.12.0-alpha.3](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.3) и [SedravaSQL 0.1.0-alpha.2](https://github.com/VasiliiBabkin/sedravasql/releases/tag/v0.1.0-alpha.2), NativeLog 0.0.2. Единый проверенный комплект Linux x86-64 из трёх CLI: [загрузки](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.3/) · [установка](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/PLATFORM_RELEASE_A30.ru.md). A30 прошёл приёмку на VDS; ранее A26 прошёл независимый Forgejo CI. COW B32–B36 остаётся исследованием. Не для production.
 
 ~~~sh
 git clone https://github.com/VasiliiBabkin/sedrava.git
 cd sedrava
-git checkout --detach f688f992f0e6e047b03ffdb968ddd4a454b091fe
+git checkout --detach 761213bfd0240ffc6a2390045c125def4b87e194
 cargo build --manifest-path rust/Cargo.toml --locked --release --bin sedrava
 export PATH="$PWD/rust/target/release:$PATH"
 ~~~
@@ -36,4 +36,4 @@ sedrava migrate --data "$DATA" --trusted --apply
 sedrava serve --data "$DATA" --auth-file "$DATA/auth.json" --trusted --allow-write --port 8080
 ~~~
 
-Сервер только loopback, не публикуйте в интернет. Миграции добавочные, база привязана к имени проекта. A28: 4 732 501 байт, два CLI; архив проверен, но ещё не опубликован. Проверки: 85 Rust, 319 HTTP, 21+73 SQL, 23 HTTP из установленного комплекта и jsdom. Не production.
+Сервер только loopback, не публикуйте в интернет. Миграции добавочные, база привязана к имени проекта. A30: 6 097 061 байт, три CLI. Проверки: 85 Rust, 319 HTTP, 21+73 SQL, 23 HTTP из установленного комплекта, jsdom, шесть негативных сценариев установщика. Linux x86-64 GNU, Ubuntu 24.04. Не production.

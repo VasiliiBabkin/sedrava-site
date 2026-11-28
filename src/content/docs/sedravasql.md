@@ -3,7 +3,7 @@ title: SedravaSQL
 description: Experimental SQLite-backed managed API and independent Rust SQL engine.
 ---
 
-**A28 development candidate (27 November 2026).** A26 integration passed both Forgejo jobs; A28 offline Linux x86-64 package and installation passed. Published alpha archives are unchanged. NativeLog remains the SQL backend; B32–B36 COW research is not adopted. See [platform distribution](https://github.com/VasiliiBabkin/sedrava/blob/feat/a28-distribution/docs/PLATFORM_DISTRIBUTION_A28.ru.md) and [integration evidence](https://github.com/VasiliiBabkin/sedrava/blob/integration/a26-platform/docs/INTEGRATION_A26.ru.md).
+**A30 release (28 November 2026).** [Sedrava 0.12.0-alpha.3](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.3) and [SedravaSQL 0.1.0-alpha.2](https://github.com/VasiliiBabkin/sedravasql/releases/tag/v0.1.0-alpha.2), NativeLog 0.0.2. A single verified Linux x86-64 package with three CLIs: [downloads](https://sedrava.virtreal.ru/downloads/0.12.0-alpha.3/) · [distribution guide](https://github.com/VasiliiBabkin/sedrava/blob/main/docs/PLATFORM_RELEASE_A30.ru.md). A30 passed VDS release qualification; earlier A26 passed independent Forgejo CI. COW B32–B36 remains research. Not production-ready.
 
 [A24 migration contract](https://github.com/VasiliiBabkin/sedravasql/blob/integration/a26-platform/docs/NATIVE_MIGRATIONS_A24.ru.md) · [Platform](/platform/)
 
@@ -22,7 +22,7 @@ cargo build --locked --release --manifest-path native-engine/Cargo.toml
 
 ## Historical B31 checkpoint (24–25 November 2026)
 
-**Public releases remain unchanged:** [Sedrava 0.12.0-alpha.2](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2) and [SedravaSQL 0.1.0-alpha.1](https://github.com/VasiliiBabkin/sedravasql/releases/tag/v0.1.0-alpha.1), Linux x86-64 GNU. Rust is the sole maintained Sedrava implementation. Neither release is production-ready.
+**Published versions at the B31 checkpoint:** [Sedrava 0.12.0-alpha.2](https://github.com/VasiliiBabkin/sedrava/releases/tag/v0.12.0-alpha.2) and [SedravaSQL 0.1.0-alpha.1](https://github.com/VasiliiBabkin/sedravasql/releases/tag/v0.1.0-alpha.1), Linux x86-64 GNU. Rust is the sole maintained Sedrava implementation. Neither release is production-ready.
 
 | Track | Verified source basis | Status |
 |---|---|---|
@@ -36,6 +36,6 @@ B29 implements a separate binary copy-on-write B+Tree, 4 KiB pages, 64-node cach
 
 Measurements are workload-specific on a shared VDS, not universal speedups or proof of superiority over SQLite. Process-exit tests do not establish physical power-loss durability. These post-release changes are not in the public archives. Milestone IDs are not release versions.
 
-Historical next steps; see the A28 update above.
+Historical next steps; see the A30 update above.
 
 **Reports and raw evidence:** [B26](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/NATIVE_SQL_B26_PERFORMANCE.ru.md) · [B27](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/NATIVE_SQL_B27_PERFORMANCE.ru.md) · [B28](https://github.com/VasiliiBabkin/sedravasql/blob/main/docs/NATIVE_SQL_B28_ORDERED_RANGE.ru.md) · [B28-A](https://github.com/VasiliiBabkin/sedravasql/blob/research/b28-tree-sql/docs/NATIVE_SQL_B28_TREE_EXPERIMENT.ru.md) · [B29](https://github.com/VasiliiBabkin/sedravasql/blob/research/b29-cow-tree/docs/NATIVE_COW_B29.ru.md) · [B30](https://github.com/VasiliiBabkin/sedravasql/blob/research/b30-compact/docs/NATIVE_COW_B30.ru.md) · [B31](https://github.com/VasiliiBabkin/sedravasql/blob/research/b31-overflow/docs/NATIVE_COW_B31.ru.md).
